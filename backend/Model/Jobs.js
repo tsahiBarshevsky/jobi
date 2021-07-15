@@ -9,6 +9,6 @@ const JobSchema = new mongoose.Schema({
     archived: { type: Boolean }
 });
 
-const JobModel = mongoose.model("Jobs", JobSchema);
+const JobModel = mongoose.model("jobs", JobSchema);
 
 module.exports = JobModel;
