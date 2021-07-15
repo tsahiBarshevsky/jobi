@@ -10,10 +10,8 @@ app.use(cors());
 app.use(express.urlencoded());
 app.use(express.json());
 
-app.get('/check', async (req, res) =>
-{
-    res.json("Check ok");
-});
+// Connect to database
+mongoose.connect('mongodb://localhost:27017/jobi', { useNewUrlParser: true });
 
 app.listen(port, () => {
     console.log(`Listening at port ${port}`);
