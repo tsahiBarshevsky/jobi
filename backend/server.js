@@ -18,7 +18,7 @@ mongoose.connect('mongodb://localhost:27017/jobi', {
     useFindAndModify: false 
 });
 
-// Add new job
+// 1. Add new job
 app.post('/add-new-job', async (req, res) =>
 {
     const newJob = new JobModel({
@@ -34,7 +34,7 @@ app.post('/add-new-job', async (req, res) =>
     res.json(`${req.body.title} added successfully`);
 });
 
-// Edit job
+// 2. Edit job
 app.post('/edit-job', async (req, res) =>
 {
     var id = req.query.id;
@@ -65,7 +65,7 @@ app.post('/edit-job', async (req, res) =>
     );
 });
 
-// Update job status
+// 3. Update job status
 app.post('/update-job-status', async (req, res) =>
 {
     var id = req.query.id;
@@ -87,7 +87,7 @@ app.post('/update-job-status', async (req, res) =>
     );
 });
 
-// Send to archive
+// 4. Send to archive
 app.get('/archive-job', async (req, res) =>
 {
     var id = req.query.id;
@@ -108,7 +108,7 @@ app.get('/archive-job', async (req, res) =>
     );
 });
 
-// Delete job
+// 5. Delete job
 app.get('/delete-job', async (req, res) =>
 {
     var id = req.query.id;
@@ -129,7 +129,7 @@ app.get('/delete-job', async (req, res) =>
     );
 });
 
-// Get single job
+// 6. Get single job
 app.get('/get-single-job', async (req, res) => 
 {
     var id = req.query.id;
@@ -154,6 +154,29 @@ app.get('/get-single-job', async (req, res) =>
             }
         }
     });
+});
+
+// 7. Get all user's unarchived jobs
+// 8. Get all user's archived jobs
+app.get('/get-all-jobs', async (req, res) =>
+{
+    var email = req.query.email;
+    var archived = req.query.archived;
+    JobModel.find({"owner": email, "archived": archived}, 
+        function(err, result)
+        {
+            if (err)
+            {
+                console.log("Error: " + err)
+                res.send(err);
+            }
+            else
+            {
+                console.log(`${result.length} jobs found`);
+                res.json(result);
+            }
+        }
+    );
 });
 
 app.listen(port, () => {
