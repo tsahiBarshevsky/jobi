@@ -71,7 +71,7 @@ app.post('/update-job-status', async (req, res) =>
     var id = req.query.id;
     var status = req.body.status;
     JobModel.findByIdAndUpdate(id, { status: status },
-        function(err)
+        function(err, result)
         {
             if (err)
             {
@@ -80,8 +80,50 @@ app.post('/update-job-status', async (req, res) =>
             }
             else
             {
-                console.log(`Status has changed to ${status}`);
-                res.json(`Status has changed to ${status}`);
+                console.log(`${result.title}'s status has changed to ${status}`);
+                res.json(`${result.title}'s status has changed to ${status}`);
+            }
+        }
+    );
+});
+
+// Send to archive
+app.get('/archive-job', async (req, res) =>
+{
+    var id = req.query.id;
+    JobModel.findByIdAndUpdate(id, { archived: true },
+        function(err, result)
+        {
+            if (err)
+            {
+                console.log(err);
+                res.status(500).send(err);
+            }
+            else
+            {
+                console.log(`${result.title} archived`);
+                res.json(`${result.title} archived`);
+            }
+        }
+    );
+});
+
+// Delete job
+app.get('/delete-job', async (req, res) =>
+{
+    var id = req.query.id;
+    JobModel.findByIdAndDelete(id,
+        function(err, result)
+        {
+            if (err)
+            {
+                console.log(err);
+                res.status(500).send(err);
+            }
+            else
+            {
+                console.log(`${result.title} deleted successfully`);
+                res.json(`${result.title} deleted successfully`);
             }
         }
     );
