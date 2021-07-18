@@ -2,13 +2,15 @@
 
 .dashboard-container
     display: flex
-    justify-content: center
+    flex-direction: column
+    justify-content: flex-start
     align-items: flex-start
     color: white
     background-color: $primary-color
     width: 100vw
-    min-height: 100vh
+    min-height: calc( 100vh - 45px )
     overflow-x: hidden
+    padding: 25px 15px 15px
     // cursor: default
 
     .dnd-container

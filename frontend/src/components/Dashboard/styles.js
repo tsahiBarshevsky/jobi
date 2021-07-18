@@ -10,8 +10,8 @@ export default makeStyles((theme) => ({
     fab:
     {
         position: 'fixed',
-        width: 50,
-        height: 50,
+        width: 45,
+        height: 45,
         zIndex: 1,
         bottom: 15,
         right: 15

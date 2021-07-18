@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { Divider, Fab, Typography } from '@material-ui/core';
 import AddRoundedIcon from '@material-ui/icons/AddRounded';
+import Navbar from '../Navbar/Navbar';
 import useStyles from './styles';
 import './Dashboard.sass';
 
@@ -16,19 +17,19 @@ const Dashboard = () =>
         .then(res => res.json())
         .then(json => {
             const fetchedData = {
-                ["Applied"]: {
+                "Applied": {
                     name: "Applied",
                     items: json.applied
                 },
-                ["In Progress"]: {
+                "In Progress": {
                     name: "In Progress",
                     items: json.inProgress
                 },
-                ["Rejected"]: {
+                "Rejected": {
                     name: "Rejected",
                     items: json.rejected
                 },
-                ["Not Answered"]: {
+                "Not Answered": {
                     name: "Not Answered",
                     items: json.notAnswered
                 }
@@ -37,7 +38,7 @@ const Dashboard = () =>
         });
     }, []);
 
-    const addJob = () =>
+    /*const addJob = () =>
     {
         var newJob = {
             owner: email,
@@ -76,7 +77,7 @@ const Dashboard = () =>
                 }
             });
         });
-    }
+    }*/
     
     const onDragEnd = (result, columns, setColumns) => 
     {
@@ -135,72 +136,76 @@ const Dashboard = () =>
     };
 
     return (
-        <div className="dashboard-container">
-            <Fab className={classes.fab}><AddRoundedIcon /></Fab>
-            <div className="dnd-container">
-                <DragDropContext onDragEnd={result => onDragEnd(result, columns, setColumns)}>
-                    {Object.entries(columns).map(([columnId, column], index) => {
-                    return (
-                        <div className="context" key={columnId}>
-                            <Typography className={classes.text} variant="h6">{column.name}</Typography>
-                            <div style={{ margin: 10 }}>
-                                <Droppable droppableId={columnId} key={columnId}>
-                                {(provided, snapshot) => {
-                                    return (
-                                    <div
-                                        className="droppable"
-                                        {...provided.droppableProps}
-                                        ref={provided.innerRef}
-                                        style={{
-                                            background: snapshot.isDraggingOver
-                                                ? "lightgrey"
-                                                : "#393d49"
-                                        }}
-                                    >
-                                        {column.items.map((item, index) => {
-                                            return (
-                                                <Draggable
-                                                    key={item._id}
-                                                    draggableId={item._id}
-                                                    index={index}
-                                                >
-                                                    {(provided, snapshot) => {
-                                                    return (
-                                                        <div
-                                                            onClick={() => console.log(item._id)}
-                                                            className="job-container"
-                                                            ref={provided.innerRef}
-                                                            {...provided.draggableProps}
-                                                            {...provided.dragHandleProps}
-                                                            style={{
-                                                                backgroundColor: snapshot.isDragging ? "#263B4A" : "#456C86",
-                                                                ...provided.draggableProps.style
-                                                            }}
-                                                        >
-                                                            <div className="job-header">
-                                                                <Typography className={classes.text} variant="subtitle1">{item.title}</Typography>
-                                                                <Typography className={classes.text} variant="caption">{(new Date(item.date * 1000).toLocaleDateString("en-GB"))}</Typography>
+        <>
+            <Navbar />
+            <div className="dashboard-container">
+
+                <Fab className={classes.fab}><AddRoundedIcon /></Fab>
+                <div className="dnd-container">
+                    <DragDropContext onDragEnd={result => onDragEnd(result, columns, setColumns)}>
+                        {Object.entries(columns).map(([columnId, column], index) => {
+                        return (
+                            <div className="context" key={columnId}>
+                                <Typography className={classes.text} variant="h6">{column.name}</Typography>
+                                <div style={{ margin: 10 }}>
+                                    <Droppable droppableId={columnId} key={columnId}>
+                                    {(provided, snapshot) => {
+                                        return (
+                                        <div
+                                            className="droppable"
+                                            {...provided.droppableProps}
+                                            ref={provided.innerRef}
+                                            style={{
+                                                background: snapshot.isDraggingOver
+                                                    ? "lightgrey"
+                                                    : "#393d49"
+                                            }}
+                                        >
+                                            {column.items.map((item, index) => {
+                                                return (
+                                                    <Draggable
+                                                        key={item._id}
+                                                        draggableId={item._id}
+                                                        index={index}
+                                                    >
+                                                        {(provided, snapshot) => {
+                                                        return (
+                                                            <div
+                                                                onClick={() => console.log(item._id)}
+                                                                className="job-container"
+                                                                ref={provided.innerRef}
+                                                                {...provided.draggableProps}
+                                                                {...provided.dragHandleProps}
+                                                                style={{
+                                                                    backgroundColor: snapshot.isDragging ? "#263B4A" : "#456C86",
+                                                                    ...provided.draggableProps.style
+                                                                }}
+                                                            >
+                                                                <div className="job-header">
+                                                                    <Typography className={classes.text} variant="subtitle1">{item.title}</Typography>
+                                                                    <Typography className={classes.text} variant="caption">{(new Date(item.date * 1000).toLocaleDateString("en-GB"))}</Typography>
+                                                                </div>
+                                                                <Divider className={classes.divider} />
+                                                                <Typography className={classes.text} variant="subtitle1">{item.company}</Typography>
                                                             </div>
-                                                            <Divider className={classes.divider} />
-                                                            <Typography className={classes.text} variant="subtitle1">{item.company}</Typography>
-                                                        </div>
-                                                    );
-                                                }}
-                                                </Draggable>
-                                            );
-                                        })}
-                                        {provided.placeholder}
-                                    </div>
-                                    );
-                                }}
-                                </Droppable>
+                                                        );
+                                                    }}
+                                                    </Draggable>
+                                                );
+                                            })}
+                                            {provided.placeholder}
+                                        </div>
+                                        );
+                                    }}
+                                    </Droppable>
+                                </div>
                             </div>
-                        </div>
-                    );
-                    })}
-                </DragDropContext>
+                        );
+                        })}
+                    </DragDropContext>
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 
