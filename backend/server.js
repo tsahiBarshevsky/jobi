@@ -25,13 +25,16 @@ app.post('/add-new-job', async (req, res) =>
         owner: req.body.owner,
         title: req.body.title,
         company: req.body.company,
-        status: 'Applied',
+        status: req.body.status,
         date: req.body.date,
-        archived: false
+        archived: req.body.archived
     });
     await newJob.save();
     console.log(`${req.body.title} added successfully`);
-    res.json(`${req.body.title} added successfully`);
+    res.json({
+        job_id: newJob._id,
+        message: `${req.body.title} added successfully`
+    });
 });
 
 // 2. Edit job
@@ -173,7 +176,36 @@ app.get('/get-all-jobs', async (req, res) =>
             else
             {
                 console.log(`${result.length} jobs found`);
-                res.json(result);
+                if (!(JSON.parse(archived)))
+                {
+                    var jobs = {
+                        applied: [],
+                        inProgress: [],
+                        rejected: [],
+                        notAnswered: []
+                    };
+                    result.forEach((job) =>
+                    {
+                        switch(job.status)
+                        {
+                            case 'Applied':
+                                jobs.applied.push(job);
+                                break;
+                            case 'In Progress':
+                                jobs.inProgress.push(job);
+                                break;
+                            case 'Rejected':
+                                jobs.rejected.push(job);
+                                break;
+                            case 'Not Answered':
+                                jobs.notAnswered.push(job);
+                                break;
+                        }
+                    });
+                    res.json(jobs);
+                }
+                else
+                    res.json(result);
             }
         }
     );
