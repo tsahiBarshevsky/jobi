@@ -1,0 +1,49 @@
+@import '../../_variables'
+
+.dashboard-container
+    display: flex
+    justify-content: center
+    align-items: flex-start
+    color: white
+    background-color: $primary-color
+    width: 100vw
+    min-height: 100vh
+    overflow-x: hidden
+    // cursor: default
+
+    .dnd-container
+        display: flex
+        justify-content: center
+        flex-wrap: wrap
+        width: 100%
+        overflow-x: hidden
+
+        .context
+            display: flex
+            flex-direction: column
+            align-items: center
+            width: fit-content
+
+            .droppable
+                padding: 10px
+                width: 300px
+                min-height: 500px
+                border-radius: 10px
+                margin-bottom: 10px
+
+        .job-container
+            display: flex
+            flex-direction: column
+            justify-content: center
+            align-items: flex-start
+            user-select: none
+            border-radius: 5px
+            padding: 10px
+            margin-bottom: 10px
+            min-height: 50px
+
+            .job-header
+                display: flex
+                justify-content: space-between
+                align-items: baseline
+                width: 100%

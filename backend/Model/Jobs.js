@@ -5,7 +5,7 @@ const JobSchema = new mongoose.Schema({
     title: { type: String },
     company: { type: String },
     status: { type: String },
-    date: { type: Date },
+    date: { type: Number },
     archived: { type: Boolean }
 });
 
