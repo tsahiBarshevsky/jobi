@@ -6,11 +6,14 @@ import Navbar from '../Navbar/Navbar';
 import useStyles from './styles';
 import './Dashboard.sass';
 import AddJob from './Add Job/AddJob';
+import EditJob from './Edit Job/EditJob';
 
 const Dashboard = () => 
 {
     const [columns, setColumns] = useState({});
     const [open, setOpen] = useState(false);
+    const [openEdit, setOpenEdit] = useState(false);
+    const [id, setId] = useState('');
     const classes = useStyles();
     const email = 'Tsahi';
 
@@ -40,47 +43,6 @@ const Dashboard = () =>
         });
     }, []);
 
-    /*const addJob = () =>
-    {
-        var newJob = {
-            owner: email,
-            title: 'timestamp check',
-            company: 'Company from client2',
-            date: parseInt(new Date().getTime() / 1000),
-            status: 'Applied',
-            archived: false
-        }
-        fetch('/add-new-job',
-            {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(newJob)
-            }
-        )
-        .then(res => res.json())
-        .then(res => {
-            console.log(res.message);
-
-            // Update
-            const source = "Applied";
-            const column = columns[source];
-            const copiedItems = [...column.items];
-            
-            newJob._id = res.job_id;
-            copiedItems.push(newJob);
-            setColumns({
-                ...columns,
-                [source]: {
-                    ...column,
-                    items: copiedItems
-                }
-            });
-        });
-    }*/
-    
     const onDragEnd = (result, columns, setColumns) => 
     {
         if (!result.destination) 
@@ -137,6 +99,8 @@ const Dashboard = () =>
         }
     };
 
+    console.log(openEdit);
+
     return (
         <>
             <Navbar />
@@ -172,7 +136,7 @@ const Dashboard = () =>
                                                         {(provided, snapshot) => {
                                                         return (
                                                             <div
-                                                                onClick={() => console.log(item._id)}
+                                                                onClick={() => {setOpenEdit(true); setId(item._id)}}
                                                                 className="job-container"
                                                                 ref={provided.innerRef}
                                                                 {...provided.draggableProps}
@@ -212,6 +176,10 @@ const Dashboard = () =>
                 email={email} 
                 columns={columns} 
                 setColumns={setColumns} />
+            <EditJob
+                openEdit={openEdit}
+                setOpenEdit={setOpenEdit}
+                id={id} />
         </>
     )
 }

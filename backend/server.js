@@ -94,6 +94,7 @@ app.post('/update-job-status', async (req, res) =>
 app.get('/archive-job', async (req, res) =>
 {
     var id = req.query.id;
+    console.log(id);
     JobModel.findByIdAndUpdate(id, { archived: true },
         function(err, result)
         {
