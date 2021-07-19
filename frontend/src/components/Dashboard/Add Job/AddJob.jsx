@@ -15,8 +15,9 @@ const AddJob = ({ open, setOpen, email, columns, setColumns }) =>
         setCompany('');
     }
 
-    const addJob = () =>
+    const addJob = (event) =>
     {
+        event.preventDefault();
         var newJob = {
             owner: email,
             title: title,

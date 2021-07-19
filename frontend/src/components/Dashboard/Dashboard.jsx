@@ -20,7 +20,6 @@ const Dashboard = () =>
     const classes = useStyles();
     const history = useHistory();
     const { user } = useAuth();
-    const email = "Tsahi";
 
     useEffect(() => 
     {
@@ -30,7 +29,7 @@ const Dashboard = () =>
             return;
         }
         document.title = `Jobi - ${user.email}'s dashboard`;
-        fetch(`/get-all-jobs?email=${email}&archived=false`)
+        fetch(`/get-all-jobs?email=${user.email}&archived=false`)
         .then(res => res.json())
         .then(json => {
             const fetchedData = {
@@ -117,7 +116,7 @@ const Dashboard = () =>
         history.push('/');
     };
 
-    return (
+    return user && (
         <>
             <Navbar user={user} logout={logout} />
             <Fab className={classes.fab} onClick={() => setOpen(true)}><AddRoundedIcon /></Fab>
@@ -189,7 +188,7 @@ const Dashboard = () =>
             <AddJob
                 open={open} 
                 setOpen={setOpen} 
-                email={email} 
+                email={user.email} 
                 columns={columns} 
                 setColumns={setColumns} />
             <EditJob

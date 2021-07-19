@@ -1,24 +1,47 @@
-import React, { useEffect } from 'react';
-import { useHistory } from 'react-router';
-import { useAuth } from '../../Contexts/AuthContext';
+import React, { useState } from 'react';
+import { Button, TextField } from '@material-ui/core';
+import { auth } from '../../firebase';
+import firebase from 'firebase/app';
+import 'firebase/app';
+import './Registration.sass';
 
 const Registration = () => 
 {
-    const history = useHistory();
-    const { user } = useAuth();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-    useEffect(() => {
-        if (!user)
-        {
-            history.push('/');
-            return;
-        }
-    }, [history, user]);
+    const registration = (event) => 
+    {
+        event.preventDefault();
+        auth.createUserWithEmailAndPassword(email, password);
+    }
+
+    const signInWithgoogle = () =>
+    {
+        auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
+    }
 
     return (
-        <div>
-            {user && user.email}
-            {user && <img src={user.photoURL} alt='ff' />}
+        <div className="registration-container">
+            <form onSubmit={registration}>
+                <TextField 
+                    required
+                    autoFocus 
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    variant="outlined" 
+                    label="Email" />
+                <TextField 
+                    required
+                    value={password}
+                    type="password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    variant="outlined" 
+                    label="Password" />
+                <Button type="submit" variant="contained">Create account</Button>
+                or
+                <Button onClick={() => signInWithgoogle()} variant="contained">Sign in with google</Button>
+            </form>
         </div>
     )
 }

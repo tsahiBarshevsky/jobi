@@ -16,8 +16,8 @@ export const AuthProvider = ({ children }) =>
         auth.onAuthStateChanged((user) => {
             setUser(user);
             setLoading(false);
-            // if (user)
-            //     history.push('/login');
+            if (user)
+                history.push('/dashboard');
         });
     }, [user, history]);
 
