@@ -15,7 +15,7 @@ export default makeStyles((theme) => ({
     input:
     {
         width: '100%',
-        marginBottom: 10
+        marginBottom: 20
     },
     button:
     {

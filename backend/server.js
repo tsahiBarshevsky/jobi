@@ -43,14 +43,10 @@ app.post('/edit-job', async (req, res) =>
     var id = req.query.id;
     var title = req.body.title;
     var company = req.body.company;
-    var status = req.body.status;
-    var date = req.body.date;
     JobModel.findByIdAndUpdate(id, 
         {
             title: title,
             company: company,
-            status: status,
-            date: date
         },
         function(err)
         {

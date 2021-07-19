@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Dialog, DialogActions, DialogContent, DialogTitle, IconButton, TextField, Typography } from '@material-ui/core';
+import { Dialog, DialogActions, DialogContent, DialogTitle, IconButton, TextField, Typography, Tooltip } from '@material-ui/core';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import ArchiveRoundedIcon from '@material-ui/icons/ArchiveRounded';
+import SaveRoundedIcon from '@material-ui/icons/SaveRounded';
 import useStyles from './styles';
 
-const EditJob = ({ openEdit, setOpenEdit, id, columns, setColumns }) => 
+const EditJob = ({ openEdit, setOpenEdit, id, columns, setColumns }) =>
 {
     const [job, setJob] = useState({});
     const [title, setTitle] = useState('');
     const [company, setCompany] = useState('');
-    const [disableEditing, setDisableEditing] = useState(true)
+    const [disableEditing, setDisableEditing] = useState(true);
     const classes = useStyles();
 
-    useEffect(() => 
+    useEffect(() =>
     {
         if (openEdit)
         {
@@ -21,7 +22,7 @@ const EditJob = ({ openEdit, setOpenEdit, id, columns, setColumns }) =>
             .then(json => {
                 setJob(json);
                 setTitle(json.title);
-                setCompany(json.title);
+                setCompany(json.company);
             });
         }
     }, [id, openEdit]);
@@ -57,36 +58,98 @@ const EditJob = ({ openEdit, setOpenEdit, id, columns, setColumns }) =>
         handleClose();
     }
 
+    const handleEditing = () =>
+    {
+        if (disableEditing)
+        {
+            setDisableEditing(false)
+        }
+        else
+        {
+            fetch(`/edit-job?id=${id}`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        title: title,
+                        company: company
+                    })
+                }
+            )
+            .then(res => res.json())
+            .then(json => {
+                console.log(json);
+
+                // New job to replace
+                const newJob = {
+                    _id: id,
+                    title: title,
+                    company: company,
+                    owner: job.owner,
+                    status: job.status,
+                    date: job.date,
+                    archive: job.archive
+                };
+
+                // Update columns
+                const source = job.status;
+                const column = columns[source];
+                const copiedItems = [...column.items];
+                const indexToUpdate = copiedItems.map(function(e) { return e._id }).indexOf(id);
+
+                // Replacement
+                copiedItems[indexToUpdate] = newJob;
+                setColumns({
+                    ...columns,
+                    [source]: {
+                        ...column,
+                        items: copiedItems
+                    }
+                });
+            });
+            handleClose();
+        }
+    }
+
     return (
         <Dialog open={openEdit} onClose={handleClose} className={classes.dialog}>
-            <DialogTitle>{title}</DialogTitle>
+            <DialogTitle>{job.title}</DialogTitle>
             <DialogContent className={classes.content}>
                 <Typography variant="h6">{`Applied on: ${new Date(job.date * 1000).toLocaleDateString("en-GB")}`}</Typography>
                 <Typography variant="h6">{`Status: ${job.status}`}</Typography>
                 <h3>{id}</h3>
                 <form>
-                    <TextField 
-                        required 
+                    <TextField
+                        required
                         disabled={disableEditing}
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        className={classes.input} 
-                        variant="outlined" 
+                        className={classes.input}
+                        variant="outlined"
                         label="Job title" />
-                    <TextField 
-                        required 
+                    <TextField
+                        required
                         disabled={disableEditing}
                         value={company}
                         onChange={(e) => setCompany(e.target.value)}
-                        className={classes.input} 
-                        variant="outlined" 
+                        className={classes.input}
+                        variant="outlined"
                         label="Company" />
-                    
+
                 </form>
             </DialogContent>
             <DialogActions>
-                <IconButton onClick={sendToArchive}><ArchiveRoundedIcon /></IconButton>
-                <IconButton onClick={() => setDisableEditing(!disableEditing)}><EditRoundedIcon /></IconButton>
+                <Tooltip title="Archive" placement="top" arrow>
+                    <IconButton onClick={sendToArchive}><ArchiveRoundedIcon /></IconButton>
+                </Tooltip>
+                <Tooltip title={disableEditing ? "Edit" : "Save changes"} placement="top" arrow>
+                    <IconButton onClick={handleEditing}>
+                        {disableEditing ? <EditRoundedIcon /> : <SaveRoundedIcon />}
+                    </IconButton>
+                </Tooltip>
             </DialogActions>
         </Dialog>
     )
