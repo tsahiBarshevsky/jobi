@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { IconButton, Typography, SwipeableDrawer } from '@material-ui/core';
 import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
-import { MdDashboard, IoStatsChart, FiLogOut } from 'react-icons/all';
+import { MdDashboard, IoStatsChart, IoArchiveSharp, FiLogOut } from 'react-icons/all';
 import useStyles from './styles';
 import './Navbar.sass';
 
@@ -59,6 +59,10 @@ const Navbar = () =>
                         <li className="option" onClick={handleClose}>
                             <IoStatsChart className="icon" />
                             <Typography className={classes.menuItem} variant="h6">Statistics</Typography>
+                        </li>
+                        <li className="option" onClick={handleClose}>
+                            <IoArchiveSharp className="icon" />
+                            <Typography className={classes.menuItem} variant="h6">Archive</Typography>
                         </li>
                         <li className="option" onClick={handleClose}>
                             <FiLogOut className="icon logout" />

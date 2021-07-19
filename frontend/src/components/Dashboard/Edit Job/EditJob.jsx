@@ -4,7 +4,7 @@ import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import ArchiveRoundedIcon from '@material-ui/icons/ArchiveRounded';
 import useStyles from './styles';
 
-const EditJob = ({ openEdit, setOpenEdit, id }) => 
+const EditJob = ({ openEdit, setOpenEdit, id, columns, setColumns }) => 
 {
     const [job, setJob] = useState({});
     const [title, setTitle] = useState('');
@@ -39,6 +39,21 @@ const EditJob = ({ openEdit, setOpenEdit, id }) =>
         fetch(`/archive-job?id=${id}`)
         .then(res => res.json())
         .then(json => console.log(json));
+
+        //Update columns
+        const source = job.status;
+        const column = columns[source];
+        const copiedItems = [...column.items];
+        const indexToDelete = copiedItems.map(function(e) { return e._id }).indexOf(id);
+        if (indexToDelete > -1)
+            copiedItems.splice(indexToDelete, 1)
+        setColumns({
+            ...columns,
+            [source]: {
+                ...column,
+                items: copiedItems
+            }
+        });
         handleClose();
     }
 

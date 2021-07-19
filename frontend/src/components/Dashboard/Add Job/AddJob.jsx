@@ -39,7 +39,7 @@ const AddJob = ({ open, setOpen, email, columns, setColumns }) =>
         .then(res => {
             console.log(res.message);
 
-            // Update
+            // Update columns
             const source = "Applied";
             const column = columns[source];
             const copiedItems = [...column.items];
@@ -53,8 +53,8 @@ const AddJob = ({ open, setOpen, email, columns, setColumns }) =>
                     items: copiedItems
                 }
             });
-            handleClose();
         });
+        handleClose();
     }
 
     return (

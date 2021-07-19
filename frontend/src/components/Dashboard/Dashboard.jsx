@@ -99,8 +99,6 @@ const Dashboard = () =>
         }
     };
 
-    console.log(openEdit);
-
     return (
         <>
             <Navbar />
@@ -179,7 +177,9 @@ const Dashboard = () =>
             <EditJob
                 openEdit={openEdit}
                 setOpenEdit={setOpenEdit}
-                id={id} />
+                id={id}
+                columns={columns} 
+                setColumns={setColumns} />
         </>
     )
 }
