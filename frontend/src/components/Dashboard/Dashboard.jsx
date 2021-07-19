@@ -5,10 +5,12 @@ import AddRoundedIcon from '@material-ui/icons/AddRounded';
 import Navbar from '../Navbar/Navbar';
 import useStyles from './styles';
 import './Dashboard.sass';
+import AddJob from './Add Job/AddJob';
 
 const Dashboard = () => 
 {
     const [columns, setColumns] = useState({});
+    const [open, setOpen] = useState(false);
     const classes = useStyles();
     const email = 'Tsahi';
 
@@ -138,9 +140,8 @@ const Dashboard = () =>
     return (
         <>
             <Navbar />
+            <Fab className={classes.fab} onClick={() => setOpen(true)}><AddRoundedIcon /></Fab>
             <div className="dashboard-container">
-
-                <Fab className={classes.fab}><AddRoundedIcon /></Fab>
                 <div className="dnd-container">
                     <DragDropContext onDragEnd={result => onDragEnd(result, columns, setColumns)}>
                         {Object.entries(columns).map(([columnId, column], index) => {
@@ -205,6 +206,12 @@ const Dashboard = () =>
                     </DragDropContext>
                 </div>
             </div>
+            <AddJob
+                open={open} 
+                setOpen={setOpen} 
+                email={email} 
+                columns={columns} 
+                setColumns={setColumns} />
         </>
     )
 }
