@@ -1,16 +1,26 @@
 import React, { useState } from 'react';
-import { Button, TextField } from '@material-ui/core';
+import { Button, Input, InputAdornment, Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import EmailOutlinedIcon from '@material-ui/icons/EmailOutlined';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import { FaGoogle } from 'react-icons/fa';
 import { auth } from '../../firebase';
 import firebase from 'firebase/app';
 import 'firebase/app';
+import useStyles from './styles';
 import './Registration.sass';
+
 
 const Registration = () => 
 {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+    const classes = useStyles();
 
     const notify = (message) => 
     {
@@ -33,24 +43,68 @@ const Registration = () =>
 
     return (
         <div className="registration-container">
+            <div className="login" title="Background vector created by rawpixel.com - www.freepik.com">
+                <Link to="/" className="logo">Jobi</Link>
+                <Typography className={classes.title} variant="h3" align="center">
+                    Already registered?
+                </Typography>
+                <Typography className={classes.text} variant="h6" align="center">
+                    To stay up to date on the latest jobs you have submitted lately, please sign into your account with your personal info.
+                </Typography>
+                <Button component={Link} to='/login' className={classes.button}>Sign in</Button>
+            </div>
             <form onSubmit={registration}>
-                <TextField 
+                <Typography variant="h4" className={classes.formText}>Create New Account</Typography>
+                <Input 
                     required
                     autoFocus 
+                    disableUnderline
+                    placeholder="Email..."
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    variant="outlined" 
-                    label="Email" />
-                <TextField 
+                    className={classes.input}
+                    startAdornment={
+                        <InputAdornment style={{marginLeft: 15}} position="start">
+                            <EmailOutlinedIcon style={{fontSize: 20, color: '#BEBEBE'}} />
+                        </InputAdornment>
+                    } />
+                <Input 
                     required
+                    disableUnderline
+                    placeholder="Password..."
                     value={password}
-                    type="password"
+                    type={showPassword ? 'text' : 'password'} 
                     onChange={(e) => setPassword(e.target.value)}
-                    variant="outlined" 
-                    label="Password" />
-                <Button type="submit" variant="contained">Create account</Button>
-                or
-                <Button onClick={() => signInWithgoogle()} variant="contained">Sign in with google</Button>
+                    className={classes.input}
+                    startAdornment={
+                        <InputAdornment style={{marginLeft: 15}} position="start">
+                            <LockOutlinedIcon style={{fontSize: 20, color: '#BEBEBE'}} />
+                        </InputAdornment>
+                    }
+                    endAdornment=
+                    {
+                        <InputAdornment position="end"
+                            onClick={() => setShowPassword(!showPassword)}>
+                            {showPassword ? 
+                            <VisibilityOffIcon className={classes.visibilty} /> 
+                            : 
+                            <VisibilityIcon className={classes.visibilty} />}
+                        </InputAdornment>
+                    } />
+                <Button type="submit" className={classes.submit}>Create account</Button>
+                <h4 className="or"><span>Or</span></h4>
+                <Button 
+                    className={classes.google}
+                    onClick={() => signInWithgoogle()}
+                    startIcon={<FaGoogle />}
+                >
+                    Sign in with google
+                </Button>
+                <div className="mobile-login-link">
+                    <Typography variant="subtitle1" className={classes.text}>
+                        Already registered? <Link className={classes.link} to="/login">Sign in</Link>
+                    </Typography>
+                </div>
             </form>
             <ToastContainer
                 position="bottom-center"
