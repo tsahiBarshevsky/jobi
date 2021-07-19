@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { Divider, Fab, Typography } from '@material-ui/core';
+import { useHistory } from 'react-router';
+import { useAuth } from '../../Contexts/AuthContext';
+import { auth } from '../../firebase';
 import AddRoundedIcon from '@material-ui/icons/AddRounded';
 import Navbar from '../Navbar/Navbar';
-import useStyles from './styles';
-import './Dashboard.sass';
 import AddJob from './Add Job/AddJob';
 import EditJob from './Edit Job/EditJob';
+import useStyles from './styles';
+import './Dashboard.sass';
 
 const Dashboard = () => 
 {
@@ -15,9 +18,18 @@ const Dashboard = () =>
     const [openEdit, setOpenEdit] = useState(false);
     const [id, setId] = useState('');
     const classes = useStyles();
-    const email = 'Tsahi';
+    const history = useHistory();
+    const { user } = useAuth();
+    const email = "Tsahi";
 
-    useEffect(() => {
+    useEffect(() => 
+    {
+        if (!user)
+        {
+            history.push('/');
+            return;
+        }
+        document.title = `Jobi - ${user.email}'s dashboard`;
         fetch(`/get-all-jobs?email=${email}&archived=false`)
         .then(res => res.json())
         .then(json => {
@@ -41,7 +53,7 @@ const Dashboard = () =>
             };
             setColumns(fetchedData);
         });
-    }, []);
+    }, [history, user]);
 
     const onDragEnd = (result, columns, setColumns) => 
     {
@@ -99,9 +111,15 @@ const Dashboard = () =>
         }
     };
 
+    const logout = async() =>
+    {
+        await auth.signOut();
+        history.push('/');
+    };
+
     return (
         <>
-            <Navbar />
+            <Navbar user={user} logout={logout} />
             <Fab className={classes.fab} onClick={() => setOpen(true)}><AddRoundedIcon /></Fab>
             <div className="dashboard-container">
                 <div className="dnd-container">

@@ -6,7 +6,7 @@ import { MdDashboard, IoStatsChart, IoArchiveSharp, FiLogOut } from 'react-icons
 import useStyles from './styles';
 import './Navbar.sass';
 
-const Navbar = () => 
+const Navbar = ({ user, logout }) => 
 {
     const [openDrawer, setOpenDrawer] = useState(false);
     const classes = useStyles();
@@ -48,9 +48,11 @@ const Navbar = () =>
                                 <CloseRoundedIcon />
                         </IconButton>
                     </div>
+                    {user && 
                     <div className="user-info">
-                        <img className="image" src="https://images.pexels.com/photos/6430730/pexels-photo-6430730.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="pic" />
-                    </div>
+                        <img className="image" src={user.photoURL} alt="pic" />
+                        <Typography className={classes.text} variant="h6">{user.email}</Typography>
+                    </div>}
                     <ul className="options">
                         <li className="option" onClick={handleClose}>
                             <MdDashboard className="icon" />
@@ -64,7 +66,7 @@ const Navbar = () =>
                             <IoArchiveSharp className="icon" />
                             <Typography className={classes.menuItem} variant="h6">Archive</Typography>
                         </li>
-                        <li className="option" onClick={handleClose}>
+                        <li className="option" onClick={logout}>
                             <FiLogOut className="icon logout" />
                             <Typography className={classes.menuItem} variant="h6">Logout</Typography>
                         </li>
