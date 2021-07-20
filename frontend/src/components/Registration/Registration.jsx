@@ -14,13 +14,13 @@ import 'firebase/app';
 import useStyles from './styles';
 import './Registration.sass';
 
-
 const Registration = () => 
 {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const classes = useStyles();
+    document.title = 'Jobi - Registration';
 
     const notify = (message) => 
     {
@@ -49,7 +49,7 @@ const Registration = () =>
                     Already registered?
                 </Typography>
                 <Typography className={classes.text} variant="h6" align="center">
-                    To stay up to date on the latest jobs you have submitted lately, please sign into your account with your personal info.
+                    To stay up to date on the latest jobs you've applied for lately, please sign into your account with your personal info.
                 </Typography>
                 <Button component={Link} to='/login' className={classes.button}>Sign in</Button>
             </div>
