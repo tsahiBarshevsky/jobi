@@ -116,12 +116,16 @@ const Dashboard = () =>
         history.push('/');
     };
 
-    return user && (
+    return user && Object.keys(columns).length > 0 && (
         <>
             <Navbar user={user} logout={logout} />
             <Fab className={classes.fab} onClick={() => setOpen(true)}><AddRoundedIcon /></Fab>
             <div className="dashboard-container">
-                <div className="dnd-container">
+                {columns["Applied"].items.length > 0 || 
+                columns["In Progress"].items.length > 0 || 
+                columns["Not Answered"].items.length > 0 ||
+                columns["Rejected"].items.length > 0 ?
+                (<div className="dnd-container">
                     <DragDropContext onDragEnd={result => onDragEnd(result, columns, setColumns)}>
                         {Object.entries(columns).map(([columnId, column], index) => {
                         return (
@@ -163,7 +167,9 @@ const Dashboard = () =>
                                                             >
                                                                 <div className="job-header">
                                                                     <Typography className={classes.text} variant="subtitle1">{item.title}</Typography>
-                                                                    <Typography className={classes.text} variant="caption">{(new Date(item.date * 1000).toLocaleDateString("en-GB"))}</Typography>
+                                                                    <Typography className={classes.text} variant="caption" color="textSecondary">
+                                                                        {(new Date(item.date * 1000).toLocaleDateString("en-GB"))}
+                                                                    </Typography>
                                                                 </div>
                                                                 <Divider className={classes.divider} />
                                                                 <Typography className={classes.text} variant="subtitle1">{item.company}</Typography>
@@ -183,7 +189,9 @@ const Dashboard = () =>
                         );
                         })}
                     </DragDropContext>
-                </div>
+                </div>)
+                :
+                <h1>You don't have any active jobs yet</h1>}
             </div>
             <AddJob
                 open={open} 

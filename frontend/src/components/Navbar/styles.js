@@ -15,7 +15,7 @@ export default makeStyles((theme) => ({
         width: '100%', 
         backgroundColor: '#ffffff1A',
         borderRadius: 25,
-        marginBottom: 5
+        marginBottom: 8
     },
     button: 
     { 

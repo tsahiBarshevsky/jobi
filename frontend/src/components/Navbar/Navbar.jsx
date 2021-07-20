@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { IconButton, Typography, SwipeableDrawer, Divider, Avatar } from '@material-ui/core';
 import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
-import { MdDashboard, IoStatsChart, IoArchiveSharp, FiLogOut } from 'react-icons/all';
+import { AiFillHome, MdDashboard, IoStatsChart, IoArchiveSharp, FiLogOut } from 'react-icons/all';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import useStyles from './styles';
@@ -24,6 +24,28 @@ const Navbar = ({ user, logout }) =>
         setOpenDrawer(false);
     }
 
+    const rednerRotue = () =>
+    {
+        switch (location.pathname)
+        {
+            case '/dashboard':
+                return (
+                    <div className="route">
+                        <MdDashboard className="icon" />
+                        <Typography className={classes.text} variant="caption">Dashboard</Typography>
+                    </div>
+                )
+            case '/archive':
+                return (
+                    <div className="route">
+                        <IoArchiveSharp className="icon" />
+                        <Typography className={classes.text} variant="caption">Archive</Typography>
+                    </div>
+                )
+            default: return null;
+        }
+    }
+
     return (
         <>
             <div className="navbar-container">
@@ -31,9 +53,7 @@ const Navbar = ({ user, logout }) =>
                     <IconButton className={classes.button} onClick={handleOpen}><MenuRoundedIcon className="icon"/></IconButton>
                     <Typography className={classes.text} variant="subtitle1">Menu</Typography>
                 </div>
-                <Link to='/'>
-                    <Typography className={classes.text} variant="h6">Jobi</Typography>
-                </Link>
+                {rednerRotue()}
             </div>
             <SwipeableDrawer 
                 anchor="left" 
@@ -44,7 +64,8 @@ const Navbar = ({ user, logout }) =>
                 onClose={handleClose}
             >
                 <div className="menu-container">
-                    <div className="close-button">
+                    <div className="header">
+                        <Typography className={classes.text} variant="h6">Jobi</Typography>
                         <IconButton 
                             size="small" 
                             disableRipple onClick={handleClose} 
@@ -69,6 +90,12 @@ const Navbar = ({ user, logout }) =>
                         <Typography className={classes.text} variant="h6">{user.email}</Typography>}
                     </div>}
                     <ul className="options">
+                        <li className="option">
+                            <AiFillHome className="icon" />
+                            <Link className={classes.link} to='/'>
+                                <Typography className={classes.menuItem} variant="h6">Homepage</Typography>
+                            </Link>
+                        </li>
                         <li className="option" onClick={handleClose}>
                             <MdDashboard className="icon" />
                             {location.pathname !== '/dashboard' ?
