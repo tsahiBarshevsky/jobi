@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { auth } from '../firebase';
 
@@ -11,15 +12,18 @@ export const AuthProvider = ({ children }) =>
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState(null);
     const history = useHistory();
+    const location = useLocation();
 
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
             setUser(user);
             setLoading(false);
-            if (user)
+            if (user && (location.pathname === '/login' || location.pathname === '/registration'))
+            {
                 history.push('/dashboard');
+            }
         });
-    }, [user, history]);
+    }, [user, history, location]);
 
     const value = { user };
 

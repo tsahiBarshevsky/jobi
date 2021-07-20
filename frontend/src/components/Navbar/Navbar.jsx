@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { IconButton, Typography, SwipeableDrawer } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import { MdDashboard, IoStatsChart, IoArchiveSharp, FiLogOut } from 'react-icons/all';
@@ -28,7 +29,9 @@ const Navbar = ({ user, logout }) =>
                     <IconButton className={classes.button} size="small" onClick={handleOpen}><MenuRoundedIcon className="icon"/></IconButton>
                     <Typography className={classes.text} variant="subtitle1">Menu</Typography>
                 </div>
-                <Typography className={classes.text} variant="h6">Jobi</Typography>
+                <Link to='/'>
+                    <Typography className={classes.text} variant="h6">Jobi</Typography>
+                </Link>
             </div>
             <SwipeableDrawer 
                 anchor="left" 
