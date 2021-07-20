@@ -125,7 +125,8 @@ const Dashboard = () =>
                 columns["In Progress"].items.length > 0 || 
                 columns["Not Answered"].items.length > 0 ||
                 columns["Rejected"].items.length > 0 ?
-                (<div className="dnd-container">
+                // (<div className="dnd-container">
+                (
                     <DragDropContext onDragEnd={result => onDragEnd(result, columns, setColumns)}>
                         {Object.entries(columns).map(([columnId, column], index) => {
                         return (
@@ -189,7 +190,8 @@ const Dashboard = () =>
                         );
                         })}
                     </DragDropContext>
-                </div>)
+                // </div>)
+                )
                 :
                 <h1>You don't have any active jobs yet</h1>}
             </div>
