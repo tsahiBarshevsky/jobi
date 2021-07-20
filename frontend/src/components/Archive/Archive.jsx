@@ -38,15 +38,18 @@ const Archive = () =>
         <>
             <Navbar user={user} logout={logout} />
             <div className="archive-container">
+                {jobs.length > 0 ?
                 <Grid container spacing={3} direction="row" justifyContent="center" alignItems="center">
                     {jobs.map((job) => {
                         return (
                             <Grid item key={job._id} style={matches ? {width: '100%'} : {}}>
-                                <JobItem job={job} /> 
+                                <JobItem job={job} jobs={jobs} setJobs={setJobs} /> 
                             </Grid>
                         )
                     })}
                 </Grid>
+                :
+                <h1>Your archive is empty</h1>}
             </div>
         </>
     )

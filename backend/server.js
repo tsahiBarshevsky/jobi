@@ -107,7 +107,28 @@ app.get('/archive-job', async (req, res) =>
     );
 });
 
-// 5. Delete job
+// 6. Unarchive job
+app.get('/unarchive-job', async (req, res) =>
+{
+    var id = req.query.id;
+    JobModel.findByIdAndUpdate(id, { archived: false },
+        function(err, result)
+        {
+            if (err)
+            {
+                console.log(err);
+                res.status(500).send(err);
+            }
+            else
+            {
+                console.log(`${result.title} unarchived successfully`);
+                res.json(`${result.title} unarchived successfully`);
+            }
+        }
+    );
+});
+
+// 7. Delete job
 app.get('/delete-job', async (req, res) =>
 {
     var id = req.query.id;
@@ -128,7 +149,7 @@ app.get('/delete-job', async (req, res) =>
     );
 });
 
-// 6. Get single job
+// 8. Get single job
 app.get('/get-single-job', async (req, res) => 
 {
     var id = req.query.id;
@@ -155,8 +176,8 @@ app.get('/get-single-job', async (req, res) =>
     });
 });
 
-// 7. Get all user's unarchived jobs
-// 8. Get all user's archived jobs
+// 9. Get all user's unarchived jobs
+// 10. Get all user's archived jobs
 app.get('/get-all-jobs', async (req, res) =>
 {
     var email = req.query.email;
