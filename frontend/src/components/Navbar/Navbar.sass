@@ -30,8 +30,9 @@
 .menu-container
     display: flex
     flex-direction: column
-    justify-content: center
+    justify-content: flex-start
     align-items: center
+    height: 100%
 
     .close-button
         display: flex
@@ -44,14 +45,13 @@
         flex-direction: column
         justify-content: center
         align-items: center
-        margin-bottom: 15px
+        margin-bottom: 50px
 
         .image
-            // width: 150px
-            // height: 150px
             border-radius: 50%
             object-fit: cover
             object-position: center center
+            margin-bottom: 15px
 
     .options
         list-style: none
@@ -64,10 +64,32 @@
             align-items: center
             margin-bottom: 10px
             cursor: pointer
+            width: fit-content
 
             .icon
                 font-size: 20px
                 margin-right: 25px
 
             .logout
+                transform: rotate(180deg)
+
+    .logout-container
+        display: flex
+        flex-direction: column
+        justify-content: flex-end
+        align-items: flex-start
+        margin-top: auto
+        width: 100%
+
+        .logout
+            display: flex
+            justify-content: flex-start
+            align-items: center
+            margin-bottom: 10px
+            cursor: pointer
+            width: fit-content
+
+            .icon
+                font-size: 20px
+                margin-right: 25px
                 transform: rotate(180deg)
