@@ -91,9 +91,10 @@ const Login = () =>
                             <VisibilityIcon className={classes.visibilty} />}
                         </InputAdornment>
                     } />
-                <Button type="submit" className={classes.submit}>Sign In</Button>
+                <Button type="submit" variant="contained" className={classes.submit}>Sign In</Button>
                 <h4 className="or"><span>Or</span></h4>
                 <Button 
+                    variant="contained"
                     className={classes.google}
                     onClick={() => signInWithgoogle()}
                     startIcon={<FaGoogle />}

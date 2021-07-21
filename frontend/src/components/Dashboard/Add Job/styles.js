@@ -1,9 +1,30 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export default makeStyles((theme) => ({
+export default makeStyles(() => ({
+    text: { fontFamily: `'Poppins', sans-serif` },
+    paper: 
+    { 
+        borderRadius: 15, 
+        width: 350, 
+        '@media (max-width: 400px)':
+        {
+            width: '100%'
+        }
+    },
     dialog:
     {
         cursor: 'default',
+    },
+    title:
+    {
+        backgroundColor: '#f5f5f5'
+    },
+    titleItems:
+    {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
     content:
     {
@@ -19,7 +40,21 @@ export default makeStyles((theme) => ({
     },
     button:
     {
+        marginBlock: 5,
+        height: 40,
+        borderRadius: 25,
+        fontSize: 18,
+        zIndex: 1,
+        marginTop: 20,
+        marginBottom: 10,
         width: '100%',
-        marginTop: 10
+        color: 'white',
+        backgroundColor: '#3aa9ab',
+        textTransform: 'capitalize',
+        transition: '0.5s ease-out',
+        '&:hover':
+        {
+            backgroundColor: '#3aa9abCC'
+        }
     }
 }));

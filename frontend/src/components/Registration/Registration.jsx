@@ -91,9 +91,10 @@ const Registration = () =>
                             <VisibilityIcon className={classes.visibilty} />}
                         </InputAdornment>
                     } />
-                <Button type="submit" className={classes.submit}>Create account</Button>
+                <Button type="submit" variant="contained" className={classes.submit}>Create account</Button>
                 <h4 className="or"><span>Or</span></h4>
                 <Button 
+                    variant="contained"
                     className={classes.google}
                     onClick={() => signInWithgoogle()}
                     startIcon={<FaGoogle />}

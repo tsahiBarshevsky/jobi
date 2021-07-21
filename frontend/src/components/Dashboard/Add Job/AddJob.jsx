@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Button, Dialog, DialogContent, DialogTitle, TextField } from '@material-ui/core';
+import { Button, Dialog, DialogContent, DialogTitle, TextField, Typography, IconButton } from '@material-ui/core';
+import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import useStyles from './styles';
 
 const AddJob = ({ open, setOpen, email, columns, setColumns }) => 
@@ -59,8 +60,13 @@ const AddJob = ({ open, setOpen, email, columns, setColumns }) =>
     }
 
     return (
-        <Dialog open={open} onClose={handleClose} className={classes.dialog}>
-            <DialogTitle>Add new job</DialogTitle>
+        <Dialog open={open} onClose={handleClose} classes={{paper: classes.paper}} className={classes.dialog}>
+            <DialogTitle className={classes.title}>
+                <div className={classes.titleItems}>
+                    <Typography className={classes.text} variant="h6">Add new position</Typography>
+                    <IconButton onClick={() => handleClose()} size="small" disableRipple><CloseRoundedIcon /></IconButton>
+                </div>
+            </DialogTitle>
             <DialogContent className={classes.content}>
                 <form onSubmit={addJob}>
                     <TextField 
@@ -82,7 +88,7 @@ const AddJob = ({ open, setOpen, email, columns, setColumns }) =>
                         variant="contained"
                         className={classes.button} 
                     >
-                        Add job
+                        Add position
                     </Button>
                 </form>
             </DialogContent>
