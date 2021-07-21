@@ -90,38 +90,46 @@ const Navbar = ({ user, logout }) =>
                         <Typography className={classes.text} variant="h6">{user.email}</Typography>}
                     </div>}
                     <ul className="options">
-                        <li className="option">
-                            <AiFillHome className="icon" />
-                            <Link className={classes.link} to='/'>
-                                <Typography className={classes.menuItem} variant="h6">Homepage</Typography>
-                            </Link>
+                        <li className="option-container">
+                            <div className="option">
+                                <AiFillHome className="icon" />
+                                <Link className={classes.link} to='/'>
+                                    <Typography className={classes.menuItem} variant="h6">Homepage</Typography>
+                                </Link>
+                            </div>
                         </li>
-                        <li className="option" onClick={handleClose}>
-                            <MdDashboard className="icon" />
-                            {location.pathname !== '/dashboard' ?
-                            <Link className={classes.link} to='/dashboard'>
-                                <Typography className={classes.menuItem} variant="h6">Dashboard</Typography>
-                            </Link>
-                            :
-                            <Typography className={classes.menuItem} variant="h6">Dashboard</Typography>}
+                        <li className="option-container">
+                            <div className="option" onClick={handleClose}>
+                                <MdDashboard className="icon" />
+                                {location.pathname !== '/dashboard' ?
+                                <Link className={classes.link} to='/dashboard'>
+                                    <Typography className={classes.menuItem} variant="h6">Dashboard</Typography>
+                                </Link>
+                                :
+                                <Typography className={classes.menuItem} variant="h6">Dashboard</Typography>}
+                            </div>
                         </li>
-                        <li className="option" onClick={handleClose}>
-                            <IoStatsChart className="icon" />
-                            {location.pathname !== '/statistics' ?
-                            <Link className={classes.link} to='/statistics'>
-                                <Typography className={classes.menuItem} variant="h6">Statistics</Typography>
-                            </Link>
-                            :
-                            <Typography className={classes.menuItem} variant="h6">Statistics</Typography>}
+                        <li className="option-container" >
+                            <div className="option" onClick={handleClose}>
+                                <IoStatsChart className="icon" />
+                                {location.pathname !== '/statistics' ?
+                                <Link className={classes.link} to='/statistics'>
+                                    <Typography className={classes.menuItem} variant="h6">Statistics</Typography>
+                                </Link>
+                                :
+                                <Typography className={classes.menuItem} variant="h6">Statistics</Typography>}
+                            </div>
                         </li>
-                        <li className="option" onClick={handleClose}>
-                            <IoArchiveSharp className="icon" />
-                            {location.pathname !== '/archive' ?
-                            <Link className={classes.link} to='/archive'>
-                                <Typography className={classes.menuItem} variant="h6">Archive</Typography>
-                            </Link>
-                            :
-                            <Typography className={classes.menuItem} variant="h6">Archive</Typography>}
+                        <li className="option-container">
+                            <div className="option" onClick={handleClose}>
+                                <IoArchiveSharp className="icon" />
+                                {location.pathname !== '/archive' ?
+                                <Link className={classes.link} to='/archive'>
+                                    <Typography className={classes.menuItem} variant="h6">Archive</Typography>
+                                </Link>
+                                :
+                                <Typography className={classes.menuItem} variant="h6">Archive</Typography>}
+                            </div>
                         </li>
                     </ul>
                     <div className="logout-container">

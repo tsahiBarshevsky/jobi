@@ -66,20 +66,29 @@
         align-self: flex-start
         width: 100%
 
-        .option
+        .option-container
             display: flex
             justify-content: flex-start
             align-items: center
-            margin-bottom: 10px
-            cursor: pointer
-            width: fit-content
+            margin-bottom: 5px
+            width: 100%
+            border-radius: 10px
+            padding: 5px 10px
+            transition: background-color 0.3s ease-in-out
 
-            .icon
-                font-size: 20px
-                margin-right: 25px
+            &:hover
+                background-color: rgba(#494a50, 0.9)
 
-            .logout
-                transform: rotate(180deg)
+            .option
+                cursor: pointer
+                display: flex
+                justify-content: flex-start
+                align-items: center
+                width: fit-content
+
+                .icon
+                    font-size: 20px
+                    margin-right: 25px
 
     .logout-container
         display: flex
