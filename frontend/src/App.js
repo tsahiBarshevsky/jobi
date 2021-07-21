@@ -1,6 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { AuthProvider } from './Contexts/AuthContext';
+import Homepage from './components/Homepage/Homepage';
 import Registration from './components/Registration/Registration';
 import Login from './components/Login/Login';
 import Dashboard from './components/Dashboard/Dashboard';
@@ -12,13 +13,7 @@ const App = () =>
     return (
         <Router>
             <Switch>
-                <Route exact path="/">
-                    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh'}}>
-                        <Link to='/dashboard'>Dashboard</Link>
-                        <Link to='/login'>Login</Link>
-                        <Link to='/registration'>Registration</Link>
-                        <Link to='/archive'>Archive</Link>
-                    </div>
+                <Route exact path="/" component={Homepage}>
                 </Route>
                 <AuthProvider>
                     <Route exact path="/registration" component={Registration} />

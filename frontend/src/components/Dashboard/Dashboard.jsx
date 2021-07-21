@@ -26,7 +26,7 @@ const Dashboard = () =>
     {
         if (!user)
         {
-            history.push('/');
+            history.push('/login');
             return;
         }
         document.title = `Jobi - ${user.email}'s dashboard`;

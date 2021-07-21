@@ -25,7 +25,7 @@ const Archive = () =>
     {
         if (!user)
         {
-            history.push('/');
+            history.push('/login');
             return;
         }
         document.title = `Jobi - ${user.email}'s archive`;
