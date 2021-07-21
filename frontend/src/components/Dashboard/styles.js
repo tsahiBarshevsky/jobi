@@ -1,7 +1,16 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export default makeStyles((theme) => ({
-    text: { fontFamily: `'Poppins', sans-serif` },
+export default makeStyles(() => ({
+    text:
+    {
+        fontFamily: `'Poppins', sans-serif`,
+        cursor: 'default'
+    },
+    welcome: 
+    { 
+        fontFamily: `'Poppins', sans-serif`, 
+        fontWeight: 600 
+    },
     divider:
     {
         width: '100%',
@@ -9,11 +18,17 @@ export default makeStyles((theme) => ({
     },
     fab:
     {
+        backgroundColor: '#3aa9ab',
+        color: 'white',
         position: 'fixed',
-        width: 45,
-        height: 45,
+        width: 50,
+        height: 50,
         zIndex: 1,
         bottom: 15,
-        right: 15
+        right: 15,
+        '&:hover':
+        {
+            backgroundColor: '#3aa9abCC'
+        }
     }
 }));

@@ -42,7 +42,7 @@ const EditJob = ({ openEdit, setOpenEdit, id, columns, setColumns }) =>
     {
         fetch(`/archive-job?id=${id}`)
         .then(res => res.json())
-        .then(json => console.log(json));
+        .then(json => toast.success(`${job.title} sent to archive`));
 
         //Update columns
         const source = job.status;

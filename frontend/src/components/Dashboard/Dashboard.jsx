@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { Divider, Fab, Typography } from '@material-ui/core';
+import { Divider, Fab, Typography, Tooltip } from '@material-ui/core';
 import { useHistory } from 'react-router';
 import { useAuth } from '../../Contexts/AuthContext';
 import { auth } from '../../firebase';
+import Emoji from "react-emoji-render";
 import AddRoundedIcon from '@material-ui/icons/AddRounded';
 import Navbar from '../Navbar/Navbar';
 import AddJob from './Add Job/AddJob';
@@ -54,6 +55,7 @@ const Dashboard = () =>
         });
     }, [history, user]);
 
+    // Drag function
     const onDragEnd = (result, columns, setColumns) => 
     {
         if (!result.destination) 
@@ -119,13 +121,16 @@ const Dashboard = () =>
     return user && Object.keys(columns).length > 0 && (
         <>
             <Navbar user={user} logout={logout} />
-            <Fab className={classes.fab} onClick={() => setOpen(true)}><AddRoundedIcon /></Fab>
+            <Tooltip title={<Typography className={classes.text} variant="caption">Add new job</Typography>} placement="right" arrow>
+                <Fab className={classes.fab} onClick={() => setOpen(true)}>
+                    <AddRoundedIcon />
+                </Fab>
+            </Tooltip>
             <div className="dashboard-container">
                 {columns["Applied"].items.length > 0 || 
                 columns["In Progress"].items.length > 0 || 
                 columns["Not Answered"].items.length > 0 ||
                 columns["Rejected"].items.length > 0 ?
-                // (<div className="dnd-container">
                 (
                     <DragDropContext onDragEnd={result => onDragEnd(result, columns, setColumns)}>
                         {Object.entries(columns).map(([columnId, column], index) => {
@@ -141,9 +146,7 @@ const Dashboard = () =>
                                             {...provided.droppableProps}
                                             ref={provided.innerRef}
                                             style={{
-                                                background: snapshot.isDraggingOver
-                                                    ? "lightgrey"
-                                                    : "#393d49"
+                                                background: snapshot.isDraggingOver ? "#A9A9A9" : "lightgray"
                                             }}
                                         >
                                             {column.items.map((item, index) => {
@@ -162,8 +165,8 @@ const Dashboard = () =>
                                                                 {...provided.draggableProps}
                                                                 {...provided.dragHandleProps}
                                                                 style={{
-                                                                    backgroundColor: snapshot.isDragging ? "#263B4A" : "#456C86",
-                                                                    ...provided.draggableProps.style
+                                                                    marginBottom: (column.items.length - 1) === index ? 0 : 15,
+                                                                    ...provided.draggableProps.style,
                                                                 }}
                                                             >
                                                                 <div className="job-header">
@@ -190,10 +193,16 @@ const Dashboard = () =>
                         );
                         })}
                     </DragDropContext>
-                // </div>)
                 )
                 :
-                <h1>You don't have any active jobs yet</h1>}
+                <div className="message-container">
+                    <Typography variant="h5" align="center" className={classes.welcome}>
+                        Welcome to Jobi! <Emoji text=":sunglasses:" />
+                    </Typography>
+                    <Typography variant="h6" align="center" className={classes.text}>
+                        You don't have any active jobs yet
+                    </Typography>
+                </div>}
             </div>
             <AddJob
                 open={open} 

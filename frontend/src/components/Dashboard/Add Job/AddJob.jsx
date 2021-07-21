@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Dialog, DialogContent, DialogTitle, TextField, Typography, IconButton } from '@material-ui/core';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import useStyles from './styles';
 
 const AddJob = ({ open, setOpen, email, columns, setColumns }) => 
@@ -40,6 +42,7 @@ const AddJob = ({ open, setOpen, email, columns, setColumns }) =>
         .then(res => res.json())
         .then(res => {
             console.log(res.message);
+            toast.success(res.message);
 
             // Update columns
             const source = "Applied";
@@ -60,39 +63,49 @@ const AddJob = ({ open, setOpen, email, columns, setColumns }) =>
     }
 
     return (
-        <Dialog open={open} onClose={handleClose} classes={{paper: classes.paper}} className={classes.dialog}>
-            <DialogTitle className={classes.title}>
-                <div className={classes.titleItems}>
-                    <Typography className={classes.text} variant="h6">Add new position</Typography>
-                    <IconButton onClick={() => handleClose()} size="small" disableRipple><CloseRoundedIcon /></IconButton>
-                </div>
-            </DialogTitle>
-            <DialogContent className={classes.content}>
-                <form onSubmit={addJob}>
-                    <TextField 
-                        required 
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        className={classes.input} 
-                        variant="outlined" 
-                        label="Job title" />
-                    <TextField 
-                        required 
-                        value={company}
-                        onChange={(e) => setCompany(e.target.value)}
-                        className={classes.input} 
-                        variant="outlined" 
-                        label="Company" />
-                    <Button 
-                        type="submit" 
-                        variant="contained"
-                        className={classes.button} 
-                    >
-                        Add position
-                    </Button>
-                </form>
-            </DialogContent>
-        </Dialog>
+        <>
+            <Dialog open={open} onClose={handleClose} classes={{paper: classes.paper}} className={classes.dialog}>
+                <DialogTitle className={classes.title}>
+                    <div className={classes.titleItems}>
+                        <Typography className={classes.text} variant="h6">Add new position</Typography>
+                        <IconButton onClick={() => handleClose()} size="small" disableRipple><CloseRoundedIcon /></IconButton>
+                    </div>
+                </DialogTitle>
+                <DialogContent className={classes.content}>
+                    <form onSubmit={addJob}>
+                        <TextField 
+                            required 
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                            className={classes.input} 
+                            variant="outlined" 
+                            label="Job title" />
+                        <TextField 
+                            required 
+                            value={company}
+                            onChange={(e) => setCompany(e.target.value)}
+                            className={classes.input} 
+                            variant="outlined" 
+                            label="Company" />
+                        <Button 
+                            type="submit" 
+                            variant="contained"
+                            className={classes.button} 
+                        >
+                            Add position
+                        </Button>
+                    </form>
+                </DialogContent>
+            </Dialog>
+            <ToastContainer
+                position="bottom-center"
+                autoClose={5000}
+                closeOnClick
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
+        </>
     )
 }
 
