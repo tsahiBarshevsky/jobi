@@ -118,7 +118,7 @@ const Dashboard = () =>
         history.push('/');
     };
 
-    return user && Object.keys(columns).length > 0 && (
+    return user && Object.keys(columns).length > 0 ? (
         <>
             <Navbar user={user} logout={logout} />
             <Tooltip title={<Typography className={classes.text} variant="caption">Add new job</Typography>} placement="right" arrow>
@@ -136,7 +136,7 @@ const Dashboard = () =>
                         {Object.entries(columns).map(([columnId, column], index) => {
                         return (
                             <div className="context" key={columnId}>
-                                <Typography className={classes.text} variant="h6">{column.name}</Typography>
+                                <Typography className={classes.columnTitle} variant="h6">{column.name}</Typography>
                                 <div style={{ margin: 10 }}>
                                     <Droppable droppableId={columnId} key={columnId}>
                                     {(provided, snapshot) => {
@@ -217,7 +217,7 @@ const Dashboard = () =>
                 columns={columns} 
                 setColumns={setColumns} />
         </>
-    )
+    ) : <h1>loading...</h1>
 }
 
 export default Dashboard;

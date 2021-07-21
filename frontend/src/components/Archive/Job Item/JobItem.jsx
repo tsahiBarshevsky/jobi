@@ -5,24 +5,66 @@ import {
     DialogContentText, DialogActions } from '@material-ui/core';
 import UnarchiveRoundedIcon from '@material-ui/icons/UnarchiveRounded';
 import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
-// import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './JobItem.sass';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     text: { fontFamily: `'Poppins', sans-serif` },
-    divider: { marginBlock: 10}
+    divider: { marginBlock: 10 },
+    paper: 
+    { 
+        borderRadius: 15, 
+        width: 500,
+        cursor: 'default', 
+        [theme.breakpoints.down('xs')]:
+        {
+            width: '100%'
+        }
+    },
+    cancel:
+    {
+        height: 40,
+        borderRadius: 25,
+        fontSize: 18,
+        zIndex: 1,
+        marginTop: 20,
+        marginBottom: 10,
+        color: '#3aa9ab',
+        border: '2px solid #3aa9ab',
+        backgroundColor: 'transparent',
+        textTransform: 'capitalize',
+        transition: '0.5s ease-out',
+        '&:hover':
+        {
+            backgroundColor: 'transparent'
+        }
+    },
+    delete:
+    {
+        height: 40,
+        borderRadius: 25,
+        fontSize: 18,
+        zIndex: 1,
+        marginTop: 20,
+        marginBottom: 10,
+        color: 'white',
+        backgroundColor: '#3aa9ab',
+        textTransform: 'capitalize',
+        transition: '0.5s ease-out',
+        '&:hover':
+        {
+            backgroundColor: '#3aa9ab'
+        }
+    }
 }));
 
 const JobItem = ({ job, jobs, setJobs }) => 
 {
     const [open, setOpen] = useState(false);
+    const [disableUnarchive, setDisableUnarchive] = useState(false);
+    const [disableDelete, setDisableDelete] = useState(false);
     const classes = useStyles();
-
-    // const notify = (message) =>
-    // {
-    //     toast.success(message);
-    // }
 
     const updateJobs = () =>
     {
@@ -39,17 +81,27 @@ const JobItem = ({ job, jobs, setJobs }) =>
         .then(res => res.json())
         .then(json => {
             console.log(json);
-            updateJobs();
+            toast.success(json);
+            setDisableUnarchive(true);
+            setTimeout(() => {
+                updateJobs();
+            }, 5100);
         });
     }
-
+    
     const deleteJob = () =>
     {
+        setOpen(false);
         fetch(`/delete-job?id=${job._id}`)
         .then(res => res.json())
         .then(json => {
             console.log(json);
-            updateJobs();
+            toast.success(json);
+            setDisableUnarchive(true);
+            setDisableDelete(true);
+            setTimeout(() => {
+                updateJobs();
+            }, 5100);
         });
     }
 
@@ -59,48 +111,52 @@ const JobItem = ({ job, jobs, setJobs }) =>
     }
 
     return (
-        <div className="job-item-container">
-            <div className="header">
-                <Typography className={classes.text} variant="subtitle1">{job.title}</Typography>
-                <Typography className={classes.text} variant="caption" color="textSecondary">
-                    {(new Date(job.date * 1000).toLocaleDateString("en-GB"))}
-                </Typography>
+        <>
+            <div className="job-item-container">
+                <div className="header">
+                    <Typography className={classes.text} variant="subtitle1">{job.title}</Typography>
+                    <Typography className={classes.text} variant="caption" color="textSecondary">
+                        {(new Date(job.date * 1000).toLocaleDateString("en-GB"))}
+                    </Typography>
+                </div>
+                <Divider className={classes.divider} />
+                <Typography className={classes.text} variant="subtitle1">{job.company}</Typography>
+                <div className="actions">
+                    <Tooltip title={<Typography className={classes.text} variant="caption">Unarchive</Typography>} placement="top" arrow>
+                        <IconButton disabled={disableUnarchive} style={{width: 35, height: 35}} onClick={() => unarchive()}><UnarchiveRoundedIcon /></IconButton>
+                    </Tooltip>
+                    <Tooltip title={<Typography className={classes.text} variant="caption">Delete permanently</Typography>} placement="top" arrow>
+                        <IconButton disabled={disableDelete} style={{width: 35, height: 35}} onClick={() => setOpen(true)}><DeleteRoundedIcon /></IconButton>
+                    </Tooltip>
+                </div>
+                <Dialog classes={{paper: classes.paper}} open={open} onClose={handleClose} fullWidth>
+                    <DialogTitle>
+                        <Typography className={classes.text} variant="h6">Delete job</Typography>
+                    </DialogTitle>
+                    <DialogContent>
+                        <DialogContentText className={classes.dialogText}>
+                            Are you sure you want to delete {`${job.title}`}?
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button className={classes.cancel} onClick={handleClose} variant="contained">
+                            Cancel
+                        </Button>
+                        <Button className={classes.delete} onClick={() => deleteJob()} variant="contained">
+                            Yes, delete
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             </div>
-            <Divider className={classes.divider} />
-            <Typography className={classes.text} variant="subtitle1">{job.company}</Typography>
-            <div className="actions">
-                <Tooltip title={<Typography className={classes.text} variant="caption">Unarchive</Typography>} placement="top" arrow>
-                    <IconButton onClick={() => unarchive()}><UnarchiveRoundedIcon /></IconButton>
-                </Tooltip>
-                <Tooltip title={<Typography className={classes.text} variant="caption">Delete permanently</Typography>} placement="top" arrow>
-                    <IconButton onClick={() => setOpen(true)}><DeleteRoundedIcon /></IconButton>
-                </Tooltip>
-            </div>
-            {/* <ToastContainer
+            <ToastContainer
                 position="bottom-center"
                 autoClose={5000}
                 closeOnClick
                 pauseOnFocusLoss
                 draggable
                 pauseOnHover
-            /> */}
-            <Dialog open={open} onClose={handleClose} fullWidth disableBackdropClick>
-                <DialogTitle className={classes.dialog}>Delete job</DialogTitle>
-                <DialogContent className={classes.dialog}>
-                    <DialogContentText className={classes.dialogText}>
-                        Are you sure you want to delete {`${job.title}`}?
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions className={classes.dialog}>
-                    <Button onClick={handleClose} variant="contained">
-                        Cancel
-                    </Button>
-                    <Button onClick={() => deleteJob()} variant="contained">
-                        Yes, delete
-                    </Button>
-                </DialogActions>
-            </Dialog>
-        </div>
+            />
+        </>
     )
 }
 

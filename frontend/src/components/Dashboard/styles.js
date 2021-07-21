@@ -1,10 +1,12 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles(() => ({
-    text:
-    {
+    text: { fontFamily: `'Poppins', sans-serif` },
+    columnTitle: {
         fontFamily: `'Poppins', sans-serif`,
-        cursor: 'default'
+        cursor: 'default',
+        fontWeight: 600,
+        letterSpacing: 1.5
     },
     welcome: 
     { 
