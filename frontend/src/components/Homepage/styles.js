@@ -30,5 +30,11 @@ export default makeStyles(() => ({
             color: 'white',
             backgroundColor: '#3aa9ab'
         }
+    },
+    feature:
+    {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 }));
