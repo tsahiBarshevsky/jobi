@@ -1,16 +1,25 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
     text: 
     { 
         fontFamily: `'Ubuntu', sans-serif`,
-        textAlign: 'start',
-        letterSpacing: 1.5
+        letterSpacing: 1.5,
+        zIndex: 1
     },
-    item:
+    heroTitle:
     {
-        
-        backgroundColor: 'blue'
+        fontFamily: `'Permanent Marker', sans-serif`,
+        textShadow: '5px 5px 0px rgba(255, 255, 255, 0.2)',
+        zIndex: 1
+    },
+    heroSubtitle:
+    {
+        fontFamily: `'Ubuntu', sans-serif`,
+        zIndex: 1,
+        width: '50%',
+        [theme.breakpoints.down('md')]: { width: '75%'},
+        [theme.breakpoints.down('sm')]: { width: '90%'}
     },
     button:
     {
@@ -19,7 +28,8 @@ export default makeStyles(() => ({
         height: 40,
         fontSize: 18,
         letterSpacing: 1,
-        marginTop: 20,
+        zIndex: 1,
+        marginTop: 30,
         color: '#3aa9ab',
         backgroundColor: 'transparent',
         border: '2px solid #3aa9ab',
@@ -30,11 +40,5 @@ export default makeStyles(() => ({
             color: 'white',
             backgroundColor: '#3aa9ab'
         }
-    },
-    feature:
-    {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
     }
 }));
