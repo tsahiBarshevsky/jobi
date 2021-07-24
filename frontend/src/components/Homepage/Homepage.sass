@@ -8,30 +8,17 @@
     background-color: $primary-color
     width: 100%
     height: fit-content
+    cursor: default
 
     .hero-container
-        width: 100%
-        height: 700px
-        position: relative
-        background: $secondary-color
-        border-bottom-left-radius: 350px
-        border-bottom-right-radius: 350px
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        padding: 25px 120px
 
-        &::after
-            content: ''
-            display: block
-            position: absolute
-            left: 0
-            top: 0
+        .vector
             width: 100%
-            height: 700px
-            opacity: 0.1
-            background-color: black
-            background-image: url('../../assets/form-background.jpg')
-            background-repeat: no-repeat
-            background-position: center center
-            background-size: cover
-            pointer-events: none
-            filter: blur(1.5px)
-            border-bottom-left-radius: 350px
-            border-bottom-right-radius: 350px
+            height: auto
+
+    .features
