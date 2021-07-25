@@ -17,6 +17,7 @@ import Navbar from './Navbar/Navbar';
 
 const Homepage = () => 
 {
+    document.title = `Jobi - a Job Tracker`;
     const classes = useStyles();
 
     return (
