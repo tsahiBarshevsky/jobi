@@ -8,6 +8,7 @@ import Emoji from "react-emoji-render";
 import Navbar from '../Navbar/Navbar';
 import JobItem from './Job Item/JobItem';
 import './Archive.sass';
+import LoadingAnimation from '../Loading Animation/LoadingAnimation';
 
 const useStyles = makeStyles(() => ({
     text: { fontFamily: `'Poppins', sans-serif` }
@@ -15,7 +16,7 @@ const useStyles = makeStyles(() => ({
 
 const Archive = () => 
 {
-    const [jobs, setJobs] = useState([]);
+    const [jobs, setJobs] = useState('');
     const history = useHistory();
     const { user } = useAuth();
     const classes = useStyles();
@@ -40,7 +41,8 @@ const Archive = () =>
         history.push('/');
     }
 
-    return user && (
+
+    return (user && jobs) ? (
         <>
             <Navbar user={user} logout={logout} />
             <div className="archive-container">
@@ -65,7 +67,7 @@ const Archive = () =>
                 </div>}
             </div>
         </>
-    )
+    ) : <LoadingAnimation />
 }
 
 export default Archive;

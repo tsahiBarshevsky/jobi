@@ -9,6 +9,7 @@ import AddRoundedIcon from '@material-ui/icons/AddRounded';
 import Navbar from '../Navbar/Navbar';
 import AddJob from './Add Job/AddJob';
 import EditJob from './Edit Job/EditJob';
+import LoadingAnimation from '../Loading Animation/LoadingAnimation';
 import useStyles from './styles';
 import './Dashboard.sass';
 
@@ -217,7 +218,7 @@ const Dashboard = () =>
                 columns={columns} 
                 setColumns={setColumns} />
         </>
-    ) : <h1>loading...</h1>
+    ) : <LoadingAnimation />
 }
 
 export default Dashboard;
