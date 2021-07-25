@@ -2,6 +2,8 @@ import React from 'react';
 import { Button, Divider, Typography, Grid } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { Link as Scroll } from 'react-scroll';
+import Emoji from 'react-emoji-render';
+import { FaLinkedinIn, FaGithub} from 'react-icons/fa';
 import Illustartion from '../../assets/about-illustartion.svg';
 import Feature1 from '../../assets/features/f1.png';
 import Feature2 from '../../assets/features/f2.png';
@@ -152,6 +154,29 @@ const Homepage = () =>
                     </div>
                 </div>
             </div>
+            <footer>
+                <Typography className={classes.footerContent} paragraph>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur quis porta sapien. Ut vitae nulla purus. Aliquam mattis enim lectus. Pellentesque vulputate lacus in mattis tempus. Phasellus aliquam nibh at nunc dignissim vulputate nec a turpis. Aenean at massa ex. Donec non nibh commodo libero pulvinar varius. Vivamus scelerisque nisi tortor, sed tempus tortor dapibus eu. Maecenas et sodales eros. Donec viverra ornare leo, vitae accumsan metus tincidunt sit amet. Nam massa tellus, sodales nec enim nec, porttitor sagittis ex. Mauris pharetra elit sem, et luctus ligula scelerisque eget. Etiam odio arcu, interdum id efficitur vel, ultrices ac magna. Mauris sed posuere lectus. Ut vel tellus semper, porttitor eros vel, laoreet orci.
+                </Typography>
+                <Typography className={classes.footerContent} paragraph>
+                    Quisque sed venenatis justo. Pellentesque id metus vitae tellus mattis convallis quis eu ligula. Nam ac viverra orci, eget tincidunt tellus. Donec semper, nisl id vulputate bibendum, purus turpis ultricies quam, at eleifend elit nisi vel nibh. Pellentesque volutpat sem ante, eget venenatis felis bibendum nec. Donec nec volutpat risus. Mauris a mi rutrum sem ornare semper at at lorem. Nullam ut cursus sem. Fusce venenatis dolor a nisl ultricies, sed fermentum ante tincidunt. Integer id sollicitudin velit. Cras egestas libero massa, sed laoreet elit molestie id. Nulla ac felis vitae purus malesuada consectetur ut a augue. Proin ac semper eros. Vivamus id luctus enim.
+                </Typography>
+                <Divider className={classes.footerDivider} />
+                <div className="wrapper">
+                    <div className="content">
+                        <Typography variant="subtitle1" className={classes.copyright}>
+                            Copyright &copy; {new Date().getFullYear() === 2021 ? 2021 : `2021 - ${new Date().getFullYear()}`} All Rights Reserved
+                        </Typography>
+                        <Typography variant="subtitle1" align="center" className={classes.copyright}>
+                            Coded with <Emoji text=":heart:" /> by Tsahi Barshavsky
+                        </Typography>
+                    </div>
+                    <div className="contact">
+                        <a href="https://www.linkedin.com/in/tsahi-barshavsky-frontend-developer/" target="_blank" rel="noreferrer" className="linkedin"><FaLinkedinIn /></a>
+                        <a href="https://github.com/tsahiBarshevsky" target="_blank" rel="noreferrer" className="github"><FaGithub /></a>
+                    </div>
+                </div>
+            </footer>
         </div>
     )
 }

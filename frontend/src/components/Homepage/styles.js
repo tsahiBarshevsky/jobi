@@ -104,5 +104,32 @@ export default makeStyles((theme) => ({
     {
         fontFamily: `'Poppins', sans-serif`,
         lineHeight: 1.4
+    },
+    /* ============ Features elements ============ */
+    footerContent:
+    {
+        color: 'white',
+        fontFamily: `'Poppins', sans-serif`,
+        fontSize: 18,
+        '@media (max-width: 500px)':
+        {
+            textAlign: 'center'
+        }
+    },
+    footerDivider:
+    {
+        width: '100%',
+        backgroundColor: '#ffffff33',
+        marginBlock: 20
+    },
+    copyright:
+    {
+        color: 'white',
+        fontFamily: `'Poppins', sans-serif`,
+        marginBottom: -5,
+        '@media (max-width: 500px)':
+        {
+            textAlign: 'center'
+        }
     }
 }));

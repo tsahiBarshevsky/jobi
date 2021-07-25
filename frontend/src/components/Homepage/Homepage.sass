@@ -179,3 +179,81 @@
         justify-content: center
         align-items: center
         width: fit-content
+
+    footer
+        background-color: #010E21
+        width: 100%
+        height: fit-content
+        color: white
+        padding: 30px 150px
+
+        @media screen and ( max-width: 700px )
+            padding: 30px 60px
+
+        @media screen and ( max-width: $xs )
+            padding: 30px
+
+        .wrapper
+            display: flex
+            justify-content: space-between
+            align-items: center
+            width: 100%
+
+            @media screen and ( max-width: $vs )
+                flex-direction: column
+                justify-content: center
+                align-items: center
+
+            .content
+                display: flex
+                flex-direction: column
+                justify-content: flex-start
+                align-items: flex-start
+
+                @media screen and ( max-width: $vs )
+                    justify-content: center
+                    align-items: center
+
+            .contact
+                display: flex
+                flex-direction: row
+                justify-content: flex-end
+                align-items: flex-end
+
+                .linkedin
+                    display: flex
+                    justify-content: center
+                    align-items: center
+                    border-radius: 50%
+                    width: 40px
+                    height: 40px
+                    margin-left: 7px
+                    color: #818a91
+                    background-color: #33353d
+                    transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out
+
+                    @media screen and ( max-width: $vs )
+                        margin: 20px 0 0 0
+
+                    &:hover
+                        color: white
+                        background-color: #0A66C2
+
+                .github
+                    display: flex
+                    justify-content: center
+                    align-items: center
+                    border-radius: 50%
+                    width: 40px
+                    height: 40px
+                    margin-left: 7px
+                    color: #818a91
+                    background-color: #33353d
+                    transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out
+
+                    @media screen and ( max-width: $vs )
+                        margin-top: 20px
+
+                    &:hover
+                        color: white
+                        background-color: #1b1f23
