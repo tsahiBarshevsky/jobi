@@ -4,11 +4,18 @@ import { useAuth } from '../../Contexts/AuthContext';
 import { auth } from '../../firebase';
 import { Bar } from 'react-chartjs-2';
 import NavBar from '../Navbar/Navbar';
+import LoadingAnimation from '../Loading Animation/LoadingAnimation';
 import './Statistics.sass';
+import { makeStyles, Typography } from '@material-ui/core';
+
+const useStyles = makeStyles(() => ({
+    text: { fontFamily: `'Poppins', sans-serif`, fontWeight: 600, letterSpacing: 1.2 }
+}))
 
 const Statistics = () => 
 {
-    const [months, setMonths] = useState([]);
+    const [statistics, setStatistics] = useState({});
+    const classes = useStyles();
     const history = useHistory();
     const { user } = useAuth();
     const data = {
@@ -16,7 +23,7 @@ const Statistics = () =>
         datasets: 
         [{
             label: 'Total Applies on this month',
-            data: months.map(a => a.amount),
+            data: Object.keys(statistics).length > 0 ? statistics.months.map(a => a.amount) : [],
             backgroundColor: [
                 'rgba(54, 162, 235, 0.3)',
                 'rgba(255, 206, 86, 0.3)',
@@ -57,9 +64,9 @@ const Statistics = () =>
             return;
         }
         document.title = `Jobi - ${user.email}'s statistics`;
-        fetch(`/get-jobs-per-month?email=${user.email}`)
+        fetch(`/get-statistics?email=${user.email}`)
         .then(res => res.json())
-        .then(json => setMonths(json));
+        .then(json => setStatistics(json));
     }, [history, user]);
 
     const logout = async() =>
@@ -68,14 +75,34 @@ const Statistics = () =>
         history.push('/');
     };
 
-    return (
+    const renderSentence = () =>
+    {
+        switch (statistics.total)
+        {
+            case 0:
+                return `Seems like you haven't applied for positions in ${new Date().getFullYear()} yet.`;
+            case 1:
+                return `So far, in ${new Date().getFullYear()} you've applied for only one position. Keep going 💪🏼`;
+            default:
+                return `So far, in ${new Date().getFullYear()} you've applied for ${statistics.total} positions. Keep going 💪🏼`;
+        }
+    }
+
+    return (user && Object.keys(statistics).length > 0) ? (
         <>
             <NavBar user={user} logout={logout} />
             <div className="statistics-container">
-            <Bar data={data} />
+                <div className="title-container">
+                    <Typography variant="h6" className={classes.text}>
+                        {renderSentence()}
+                    </Typography>
+                </div>
+                <div className="chart-container">
+                    <Bar data={data} />
+                </div>
             </div>
         </>
-    )
+    ) : <LoadingAnimation />
 }
 
 export default Statistics;

@@ -35,6 +35,13 @@ const Navbar = ({ user, logout }) =>
                         <Typography className={classes.text} variant="caption">Dashboard</Typography>
                     </div>
                 )
+            case '/statistics':
+                return (
+                    <div className="route">
+                        <IoStatsChart className="icon" />
+                        <Typography className={classes.text} variant="caption">Statistics</Typography>
+                    </div>
+                )
             case '/archive':
                 return (
                     <div className="route">

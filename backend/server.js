@@ -229,20 +229,24 @@ app.get('/get-all-jobs', async (req, res) =>
 });
 
 // 10. Apply per month
-app.get('/get-jobs-per-month', async (req, res) => {
-    var months = [
-        {month: 'January', amount: 0},
-        {month: 'February', amount: 0},
-        {month: 'March', amount: 0},
-        {month: 'April', amount: 0},
-        {month: 'May', amount: 0},
-        {month: 'June', amount: 0},
-        {month: 'July', amount: 0},
-        {month: 'August', amount: 0},
-        {month: 'September', amount: 0},
-        {month: 'October', amount: 0},
-        {month: 'November', amount: 0},
-        {month: 'December', amount: 0}];
+app.get('/get-statistics', async (req, res) => {
+    var results = 
+    {
+        total: 0,
+        months: [
+            {month: 'January', amount: 0},
+            {month: 'February', amount: 0},
+            {month: 'March', amount: 0},
+            {month: 'April', amount: 0},
+            {month: 'May', amount: 0},
+            {month: 'June', amount: 0},
+            {month: 'July', amount: 0},
+            {month: 'August', amount: 0},
+            {month: 'September', amount: 0},
+            {month: 'October', amount: 0},
+            {month: 'November', amount: 0},
+            {month: 'December', amount: 0}]
+    };
     var email = req.query.email;
     JobModel.find({"owner": email}, 
         function(err, result)
@@ -255,12 +259,13 @@ app.get('/get-jobs-per-month', async (req, res) => {
             else
             {
                 console.log(`${result.length} jobs found`);
+                results.total = result.length;
                 result.map((res) => {
                     var casting = new Date(res.date * 1000); 
                     if (casting.getFullYear() === new Date().getFullYear())
-                        months[casting.getMonth()].amount++;
+                       results.months[casting.getMonth()].amount++;
                 });
-                res.json(months);
+                res.json(results);
             }
         }
     );
