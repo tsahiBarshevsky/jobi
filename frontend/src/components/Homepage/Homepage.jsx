@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Divider, Typography } from '@material-ui/core';
-// import { Link } from 'react-router-dom';
+import { Link as Scroll } from 'react-scroll';
 import Feature1 from '../../assets/features/f1.png';
 import Feature2 from '../../assets/features/f2.png';
 import Feature3 from '../../assets/features/f3.png';
@@ -9,6 +9,7 @@ import Feature5 from '../../assets/features/f5.png';
 import Feature6 from '../../assets/features/f6.png';
 import useStyles from './styles';
 import './Homepage.sass';
+import Navbar from './Navbar/Navbar';
 
 const Homepage = () => 
 {
@@ -16,18 +17,23 @@ const Homepage = () =>
 
     return (
         <div className="homepage-container">
-            {/* <Link to='/dashboard'>Dashboard</Link>
-            <Link to='/login'>Login</Link>
-            <Link to='/registration'>Registration</Link>
-            <Link to='/archive'>Archive</Link> */}
+            <Navbar />
             <div id="hero-container" title="Background image made designed by pikisuperstar from Freepik">
+                <div className={classes.toolbar} />
                 <Typography className={classes.heroTitle} variant="h2" align="center" gutterBottom>
                     Welcome to Jobi!
                 </Typography>
                 <Typography className={classes.heroSubtitle} variant="h5" align="center">
                     A jobseeker? Using a clumsy Excel file for tracking of jobs for which you've applied? Forget about it and meet Jobi - an online job tracker!
                 </Typography>
-                <Button variant="contained" className={classes.button}>
+                <Button 
+                    component={Scroll} 
+                    to="about-us" 
+                    variant="contained" 
+                    className={classes.button} 
+                    smooth spy exact='true' 
+                    duration={1000} offset={-40}
+                >
                     <Typography className={classes.text} variant="h6" align="center">
                         Tell me more!
                     </Typography>

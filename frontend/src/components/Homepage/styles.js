@@ -24,6 +24,7 @@ export default makeStyles((theme) => ({
         backgroundColor: '#3aa9ab'
     },
     /* ============ Hero elements ============ */
+    toolbar: theme.mixins.toolbar,
     heroTitle:
     {
         fontFamily: `'Permanent Marker', sans-serif`,
