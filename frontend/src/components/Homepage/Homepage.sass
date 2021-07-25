@@ -10,7 +10,7 @@
     width: 100%
     cursor: default
 
-    .hero-container
+    #hero-container
         display: flex
         flex-direction: column
         justify-content: center
@@ -37,41 +37,68 @@
             pointer-events: none
             filter: blur(0.7px)
 
-    .features-container
+    #features-container
         display: flex
         flex-direction: column
         justify-content: center
         align-items: center
         width: 100%
-        padding: 20px
+        padding: 30px 20px
 
-        .feature-box
+        .columns
             display: flex
-            justify-content: space-between
-            align-items: flex-start
-            width: 550px
-            height: 180px
-            padding: 15px
-            margin: 10px
-            border-radius: 5px
-            background-color: white
-            box-shadow: 0 3px 7px -1px rgba(black, 0.1)
+            flex-direction: row
+            justify-content: center
+            align-items: center
 
-            @media screen and ( max-width: $md )
-                width: 350px
-                height: fit-content
+            @media screen and ( max-width: $sm )
+                flex-direction: column
 
-            @media screen and ( max-width: $xs )
-                width: 100%
-
-            .feature-image
-                width: 80px
-                height: 80px
-                margin-right: 25px
-
-            .feature-text
+            .column
                 display: flex
                 flex-direction: column
-                justify-content: flex-start
-                align-items: flex-start
-                width: 100%
+                justify-content: center
+                align-items: center
+
+                .feature-box
+                    display: flex
+                    justify-content: space-between
+                    align-items: flex-start
+                    width: 550px
+                    height: 180px
+                    padding: 15px
+                    margin: 15px
+                    border-radius: 5px
+                    background-color: white
+                    box-shadow: 0 3px 7px -1px rgba(black, 0.1)
+
+                    @media screen and ( max-width: $md )
+                        width: 350px
+                        height: 301px
+
+                    @media screen and ( max-width: $sm )
+                        width: 550px
+                        height: 180px
+
+                    @media screen and ( max-width: $xs )
+                        width: 100%
+                        height: fit-content
+
+                    .feature-image
+                        width: 80px
+                        height: 80px
+                        margin-right: 25px
+
+                    .feature-text
+                        display: flex
+                        flex-direction: column
+                        justify-content: flex-start
+                        align-items: flex-start
+                        width: 100%
+
+    #features-container > .section-title
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        width: fit-content

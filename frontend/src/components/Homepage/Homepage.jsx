@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Typography } from '@material-ui/core';
+import { Button, Divider, Typography } from '@material-ui/core';
 // import { Link } from 'react-router-dom';
 import Feature1 from '../../assets/features/f1.png';
 import Feature2 from '../../assets/features/f2.png';
@@ -20,7 +20,7 @@ const Homepage = () =>
             <Link to='/login'>Login</Link>
             <Link to='/registration'>Registration</Link>
             <Link to='/archive'>Archive</Link> */}
-            <div className="hero-container" title="Background image made designed by pikisuperstar from Freepik">
+            <div id="hero-container" title="Background image made designed by pikisuperstar from Freepik">
                 <Typography className={classes.heroTitle} variant="h2" align="center" gutterBottom>
                     Welcome to Jobi!
                 </Typography>
@@ -33,59 +33,69 @@ const Homepage = () =>
                     </Typography>
                 </Button>
             </div>
-            <div className="features-container">
-                <div className="feature-box">
-                    <img className="feature-image" src={Feature1} alt="Prevents unpleasantness" title="Icons made by Freepik from Flaticon" />
-                    <div className="feature-text">
-                        <Typography className={classes.featureTitle} variant="h6" gutterBottom>Prevents unpleasantness</Typography>
-                        <Typography className={classes.featureText} variant="subtitle1" color="textSecondary">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent egestas pellentesque erat, at maximus tellus iaculis et. Suspendisse vitae purus quis tortor condimentum consequat non a urna. Interdum et malesuada.
-                        </Typography>
-                    </div>
+            <div id="features-container">
+                <div className="section-title">
+                    <Typography className={classes.sectionTitle} variant="h4">Features</Typography>
+                    <Divider className={classes.divider} />
                 </div>
-                <div className="feature-box">
-                    <img className="feature-image" src={Feature2} alt="No Excel files needed" title="Icons made by Freepik from Flaticon" />
-                    <div className="feature-text">
-                        <Typography className={classes.featureTitle} variant="h6" gutterBottom>No Excel files needed</Typography>
-                        <Typography className={classes.featureText} variant="subtitle1" color="textSecondary">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent egestas pellentesque erat, at maximus tellus iaculis et. Suspendisse vitae purus quis tortor condimentum consequat non a urna. Interdum et malesuada.
-                        </Typography>
+                <div className="columns">
+                    <div className="column">
+                        <div className="feature-box">
+                            <img className="feature-image" src={Feature1} alt="Prevents unpleasantness" title="Icons made by Freepik from Flaticon" />
+                            <div className="feature-text">
+                                <Typography className={classes.featureTitle} variant="h6">Prevents unpleasantness</Typography>
+                                <Typography className={classes.featureText} variant="subtitle1" color="textSecondary">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent egestas pellentesque erat, at maximus tellus iaculis et. Suspendisse vitae purus quis tortor condimentum consequat non a urna. Interdum et malesuada.
+                                </Typography>
+                            </div>
+                        </div>
+                        <div className="feature-box">
+                            <img className="feature-image" src={Feature2} alt="No Excel files needed" title="Icons made by Freepik from Flaticon" />
+                            <div className="feature-text">
+                                <Typography className={classes.featureTitle} variant="h6">No Excel files needed</Typography>
+                                <Typography className={classes.featureText} variant="subtitle1" color="textSecondary">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent egestas pellentesque erat, at maximus tellus iaculis et. Suspendisse vitae purus quis tortor condimentum consequat non a urna. Interdum et malesuada.
+                                </Typography>
+                            </div>
+                        </div>
+                        <div className="feature-box">
+                            <img className="feature-image" src={Feature3} alt="Mobile friendly" title="Icons made by Freepik from Flaticon" />
+                            <div className="feature-text">
+                                <Typography className={classes.featureTitle} variant="h6">Mobile friendly</Typography>
+                                <Typography className={classes.featureText} variant="subtitle1" color="textSecondary">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent egestas pellentesque erat, at maximus tellus iaculis et. Suspendisse vitae purus quis tortor condimentum consequat non a urna. Interdum et malesuada.
+                                </Typography>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div className="feature-box">
-                    <img className="feature-image" src={Feature3} alt="Mobile friendly" title="Icons made by Freepik from Flaticon" />
-                    <div className="feature-text">
-                        <Typography className={classes.featureTitle} variant="h6" gutterBottom>Mobile friendly</Typography>
-                        <Typography className={classes.featureText} variant="subtitle1" color="textSecondary">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent egestas pellentesque erat, at maximus tellus iaculis et. Suspendisse vitae purus quis tortor condimentum consequat non a urna. Interdum et malesuada.
-                        </Typography>
-                    </div>
-                </div>
-                <div className="feature-box">
-                    <img className="feature-image" src={Feature4} alt="Friendly interface" title="Icons made by Freepik from Flaticon" />
-                    <div className="feature-text">
-                        <Typography className={classes.featureTitle} variant="h6" gutterBottom>Friendly interface</Typography>
-                        <Typography className={classes.featureText} variant="subtitle1" color="textSecondary">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent egestas pellentesque erat, at maximus tellus iaculis et. Suspendisse vitae purus quis tortor condimentum consequat non a urna. Interdum et malesuada.
-                        </Typography>
-                    </div>
-                </div>
-                <div className="feature-box">
-                    <img className="feature-image" src={Feature5} alt="Sign in with Google" title="Icons made by Freepik from Flaticon" />
-                    <div className="feature-text">
-                        <Typography className={classes.featureTitle} variant="h6" gutterBottom>Sign in with Google</Typography>
-                        <Typography className={classes.featureText} variant="subtitle1" color="textSecondary">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent egestas pellentesque erat, at maximus tellus iaculis et. Suspendisse vitae purus quis tortor condimentum consequat non a urna. Interdum et malesuada.
-                        </Typography>
-                    </div>
-                </div>
-                <div className="feature-box">
-                    <img className="feature-image" src={Feature6} alt="Use simple drag & drop" title="Icons made by Freepik from Flaticon" />
-                    <div className="feature-text">
-                        <Typography className={classes.featureTitle} variant="h6" gutterBottom>Use simple drag & drop</Typography>
-                        <Typography className={classes.featureText} variant="subtitle1" color="textSecondary">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent egestas pellentesque erat, at maximus tellus iaculis et. Suspendisse vitae purus quis tortor condimentum consequat non a urna. Interdum et malesuada.
-                        </Typography>
+                    <div className="column">
+                        <div className="feature-box">
+                            <img className="feature-image" src={Feature4} alt="Friendly interface" title="Icons made by Freepik from Flaticon" />
+                            <div className="feature-text">
+                                <Typography className={classes.featureTitle} variant="h6">Friendly interface</Typography>
+                                <Typography className={classes.featureText} variant="subtitle1" color="textSecondary">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent egestas pellentesque erat, at maximus tellus iaculis et. Suspendisse vitae purus quis tortor condimentum consequat non a urna. Interdum et malesuada.
+                                </Typography>
+                            </div>
+                        </div>
+                        <div className="feature-box">
+                            <img className="feature-image" src={Feature5} alt="Sign in with Google" title="Icons made by Freepik from Flaticon" />
+                            <div className="feature-text">
+                                <Typography className={classes.featureTitle} variant="h6">Sign in with Google</Typography>
+                                <Typography className={classes.featureText} variant="subtitle1" color="textSecondary">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent egestas pellentesque erat, at maximus tellus iaculis et. Suspendisse vitae purus quis tortor condimentum consequat non a urna. Interdum et malesuada.
+                                </Typography>
+                            </div>
+                        </div>
+                        <div className="feature-box">
+                            <img className="feature-image" src={Feature6} alt="Use simple drag & drop" title="Icons made by Freepik from Flaticon" />
+                            <div className="feature-text">
+                                <Typography className={classes.featureTitle} variant="h6">Use simple drag & drop</Typography>
+                                <Typography className={classes.featureText} variant="subtitle1" color="textSecondary">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent egestas pellentesque erat, at maximus tellus iaculis et. Suspendisse vitae purus quis tortor condimentum consequat non a urna. Interdum et malesuada.
+                                </Typography>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
