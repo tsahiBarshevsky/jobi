@@ -33,6 +33,17 @@ const Homepage = () =>
                     </Typography>
                 </Button>
             </div>
+            <div id="how-does-it-works-container">
+                <div className="section-title">
+                    <Typography className={classes.sectionTitle} variant="h4">How does it works</Typography>
+                    <Divider className={classes.divider} style={{background: 'black'}} />
+                </div>
+                <ol className="steps">
+                    <li className="step">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent egestas pellentesque erat, at maximus tellus iaculis et. Suspendisse vitae purus quis tortor condimentum consequat non a urna. Interdum et malesuada.</li>
+                    <li className="step">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent egestas pellentesque erat, at maximus tellus iaculis et. Suspendisse vitae purus quis tortor condimentum consequat non a urna. Interdum et malesuada.</li>
+                    <li className="step">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent egestas pellentesque erat, at maximus tellus iaculis et. Suspendisse vitae purus quis tortor condimentum consequat non a urna. Interdum et malesuada.</li>
+                </ol>
+            </div>
             <div id="features-container">
                 <div className="section-title">
                     <Typography className={classes.sectionTitle} variant="h4">Features</Typography>

@@ -37,6 +37,55 @@
             pointer-events: none
             filter: blur(0.7px)
 
+    #how-does-it-works-container
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        width: 100%
+        padding: 30px 20px
+        background-color: $secondary-color
+
+        .steps
+            list-style: none
+            counter-reset: steps
+            display: flex
+            flex-direction: row
+            justify-content: center
+            align-items: center
+            flex-wrap: wrap
+
+            .step
+                counter-increment: steps
+                display: flex
+                flex-direction: column
+                justify-content: center
+                align-items: center
+                text-align: center
+                width: 500px
+                height: 250px
+                position: relative
+                margin: 0 10px
+                padding: 15px
+                // border: 1px solid black
+
+                @media screen and ( max-width: $xs )
+                    width: 100%
+
+                &::before
+                    content: counter(steps, decimal-leading-zero)
+                    font-size: 200px
+                    color: black
+                    text-align: center
+                    width: 100%
+                    display: block
+                    position: absolute
+                    left: 0
+                    top: 0
+                    opacity: 0.15
+                    transform: translateY(-8%)
+                    pointer-events: none
+
     #features-container
         display: flex
         flex-direction: column
@@ -96,6 +145,7 @@
                         align-items: flex-start
                         width: 100%
 
+    #how-does-it-works-container > .section-title,
     #features-container > .section-title
         display: flex
         flex-direction: column
