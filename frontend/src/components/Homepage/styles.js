@@ -12,7 +12,8 @@ export default makeStyles((theme) => ({
     {
         fontFamily: `'Ubuntu', sans-serif`,
         fontWeight: 600,
-        marginBottom: 10
+        marginBottom: 10,
+        textTransform: 'capitalize'
     },
     divider:
     {

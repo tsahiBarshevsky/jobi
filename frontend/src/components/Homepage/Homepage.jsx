@@ -33,6 +33,24 @@ const Homepage = () =>
                     </Typography>
                 </Button>
             </div>
+            <div id="about-us">
+                <div className="section-title">
+                    <Typography className={classes.sectionTitle} variant="h4">About us</Typography>
+                    <Divider className={classes.divider} />
+                </div>
+                <div className="about-us-text">
+                    <div className="text-wrapper">
+                        <Typography className={classes.text} paragraph>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</Typography>
+                        <Typography className={classes.text} paragraph>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.</Typography>
+                    </div>
+                    <img className="image" src="https://images.pexels.com/photos/1764436/pexels-photo-1764436.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" />
+                    <div className="text-wrapper">
+                        <Typography className={classes.text} paragraph>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</Typography>
+                        <Typography className={classes.text}>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.</Typography>
+                    </div>
+                    {/* <img className="image-mobile" src="https://images.pexels.com/photos/1764436/pexels-photo-1764436.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" /> */}
+                </div>
+            </div>
             <div id="how-does-it-works-container">
                 <div className="section-title">
                     <Typography className={classes.sectionTitle} variant="h4">How does it works</Typography>

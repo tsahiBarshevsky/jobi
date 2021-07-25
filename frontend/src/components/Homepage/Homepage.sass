@@ -37,6 +37,50 @@
             pointer-events: none
             filter: blur(0.7px)
 
+    #about-us
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        width: 100%
+        padding: 30px 20px
+
+        .about-us-text
+            display: flex
+            flex-direction: row
+            justify-content: center
+            align-items: flex-start
+            margin: 20px 30px
+
+            @media screen and ( max-width: 1065px )
+                flex-direction: column
+
+            .text-wrapper
+                display: flex
+                flex-direction: column
+                justify-content: center
+                align-items: center
+                width: 350px
+                margin-inline: 20px
+                background-color: lightgray
+
+                @media screen and ( max-width: 1065px )
+                    margin: 0
+
+            .image
+                height: 350px
+
+                @media screen and ( max-width: 1065px )
+                    display: none
+
+            .image-mobile
+                display: none
+
+                @media screen and ( max-width: 1065px )
+                    display: inline
+                    width: 100%
+                    height: auto
+
     #how-does-it-works-container
         display: flex
         flex-direction: column
@@ -67,7 +111,6 @@
                 position: relative
                 margin: 0 10px
                 padding: 15px
-                // border: 1px solid black
 
                 @media screen and ( max-width: $xs )
                     width: 100%
@@ -145,6 +188,7 @@
                         align-items: flex-start
                         width: 100%
 
+    #about-us > .section-title,
     #how-does-it-works-container > .section-title,
     #features-container > .section-title
         display: flex
