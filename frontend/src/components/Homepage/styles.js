@@ -62,6 +62,35 @@ export default makeStyles((theme) => ({
             backgroundColor: 'white'
         }
     },
+    /* ============ About us elements ============ */
+    aboutTitle:
+    {
+        fontFamily: `'Poppins', sans-serif`,
+        color: '#28395A',
+        fontSize: 40,
+        fontWeight: 600,
+        lineHeight: 1.2,
+        marginBottom: 25
+    },
+    aboutButton:
+    {
+        borderRadius: 25,
+        width: 180,
+        height: 45,
+        fontSize: 18,
+        letterSpacing: 1,
+        zIndex: 1,
+        marginTop: 30,
+        color: 'white',
+        textTransform: 'capitalize',
+        background: 'linear-gradient(to left, #3aa9ab 50%, #328a8b 50%) right',
+        backgroundSize: '200%',
+        transition: '0.4s ease-out',
+        '&:hover':
+        {
+            backgroundPosition: 'left'
+        }
+    },
     /* ============ Features elements ============ */
     featureTitle:
     {

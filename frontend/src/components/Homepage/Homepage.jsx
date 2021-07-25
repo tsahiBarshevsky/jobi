@@ -1,6 +1,8 @@
 import React from 'react';
-import { Button, Divider, Typography } from '@material-ui/core';
+import { Button, Divider, Typography, Grid } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import { Link as Scroll } from 'react-scroll';
+import Illustartion from '../../assets/about-illustartion.svg';
 import Feature1 from '../../assets/features/f1.png';
 import Feature2 from '../../assets/features/f2.png';
 import Feature3 from '../../assets/features/f3.png';
@@ -44,18 +46,34 @@ const Homepage = () =>
                     <Typography className={classes.sectionTitle} variant="h4">About us</Typography>
                     <Divider className={classes.divider} />
                 </div>
-                <div className="about-us-text">
-                    <div className="text-wrapper">
-                        <Typography className={classes.text} paragraph>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</Typography>
-                        <Typography className={classes.text} paragraph>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.</Typography>
-                    </div>
-                    <img className="image" src="https://images.pexels.com/photos/1764436/pexels-photo-1764436.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" />
-                    <div className="text-wrapper">
-                        <Typography className={classes.text} paragraph>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</Typography>
-                        <Typography className={classes.text}>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.</Typography>
-                    </div>
-                    {/* <img className="image-mobile" src="https://images.pexels.com/photos/1764436/pexels-photo-1764436.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" /> */}
-                </div>
+                <Grid container spacing={3} direction="row" justifyContent="center" alignItems="center">
+                    <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
+                        <div className="about-us-title-warpper">
+                            <Typography className={classes.aboutTitle} variant="h4">
+                                Jobi is everything a job seeker needs
+                            </Typography>
+                        </div>
+                        <Typography className={classes.text} paragraph>
+                            Cnsectetur adipisicing cvbelit, sxced dbeo eiucdsmod tempor incididunt ut labore egsfgt dolore magna aliqua. Ut encim ad minim veniam, quis nostrud exercitation ulclamco laboris nisi ufgut aliquip edgx ebrha.
+                        </Typography>
+                        <Typography className={classes.text}>
+                            Cnsectetur adipisicing cvbelit, sxced dbeo eiucdsmod tempor incididunt ut labore egsfgt folorem.
+                        </Typography>
+                        <Button 
+                            component={Link} 
+                            to="/registration" 
+                            variant="contained" 
+                            className={classes.aboutButton} 
+                        >
+                            <Typography className={classes.text} variant="h6" align="center">
+                                Get started
+                            </Typography>
+                        </Button>
+                    </Grid>
+                    <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
+                        <img className="about-us-image" src={Illustartion} alt="" />
+                    </Grid>
+                </Grid>
             </div>
             <div id="how-does-it-works-container">
                 <div className="section-title">

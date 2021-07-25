@@ -43,43 +43,26 @@
         justify-content: center
         align-items: center
         width: 100%
-        padding: 30px 20px
+        padding: 30px 120px
 
-        .about-us-text
-            display: flex
-            flex-direction: row
-            justify-content: center
-            align-items: flex-start
-            margin: 20px 30px
+        @media screen and ( max-width: $md )
+            padding: 30px 80px
 
-            @media screen and ( max-width: 1065px )
-                flex-direction: column
+        @media screen and ( max-width: $xs )
+            padding: 30px 40px
 
-            .text-wrapper
-                display: flex
-                flex-direction: column
-                justify-content: center
-                align-items: center
-                width: 350px
-                margin-inline: 20px
-                background-color: lightgray
+        .about-us-title-warpper
+            width: 80%
 
-                @media screen and ( max-width: 1065px )
-                    margin: 0
+            @media screen and ( max-width: $md )
+                margin-top: 15px
 
-            .image
-                height: 350px
+            @media screen and ( max-width: 730px )
+                width: 100%
 
-                @media screen and ( max-width: 1065px )
-                    display: none
-
-            .image-mobile
-                display: none
-
-                @media screen and ( max-width: 1065px )
-                    display: inline
-                    width: 100%
-                    height: auto
+        .about-us-image
+            width: 100%
+            height: auto
 
     #how-does-it-works-container
         display: flex

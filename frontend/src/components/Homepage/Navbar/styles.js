@@ -7,7 +7,7 @@ export default makeStyles((theme) => ({
         paddingInline: 15,
         color: 'white',
         boxShadow: '0 2px 3px rgba(15, 15, 15, 0.25)',
-        backgroundColor: '#26272b',
+        backgroundColor: '#010E21',
         [theme.breakpoints.down('xs')]: { paddingInline: 5 }
     },
     toolbar:
@@ -50,7 +50,7 @@ export default makeStyles((theme) => ({
     {
         borderRadius: 25,
         width: 120,
-        height: 40,
+        height: 32,
         fontSize: 18,
         letterSpacing: 1,
         marginInline: 5,
@@ -70,7 +70,7 @@ export default makeStyles((theme) => ({
     {
         borderRadius: 25,
         width: 120,
-        height: 40,
+        height: 32,
         fontSize: 18,
         letterSpacing: 1,
         marginInline: 5,
@@ -90,7 +90,7 @@ export default makeStyles((theme) => ({
     {
         paddingInline: 15,
         paddingBlock: 10,
-        backgroundColor: '#26272b',
+        backgroundColor: '#010E21',
         [theme.breakpoints.down('xs')]: { paddingInline: 5 }
     },
     list:

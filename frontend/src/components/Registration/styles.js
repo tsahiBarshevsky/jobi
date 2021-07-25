@@ -79,12 +79,13 @@ export default makeStyles(() => ({
         marginTop: 20,
         marginBottom: 10,
         color: 'white',
-        backgroundColor: '#3aa9ab',
         textTransform: 'capitalize',
-        transition: '0.5s ease-out',
+        background: 'linear-gradient(to left, #3aa9ab 50%, #328a8b 50%) right',
+        backgroundSize: '200%',
+        transition: '0.4s ease-out',
         '&:hover':
         {
-            backgroundColor: '#3aa9abCC'
+            backgroundPosition: 'left'
         }
     },
     google:
@@ -96,12 +97,14 @@ export default makeStyles(() => ({
         zIndex: 1,
         marginTop: 10,
         color: 'white',
-        backgroundColor: '#DB4437',
         textTransform: 'capitalize',
-        transition: '0.5s ease-out',
+        backgroundColor: '#DB4437',
+        background: 'linear-gradient(to left, #DB4437 50%, #c74034 50%) right',
+        backgroundSize: '200%',
+        transition: '0.4s ease-out',
         '&:hover':
         {
-            backgroundColor: '#DB4437CC'
+            backgroundPosition: 'left'
         }
     },
     link:
