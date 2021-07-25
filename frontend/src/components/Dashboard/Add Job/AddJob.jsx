@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Dialog, DialogContent, DialogTitle, TextField, Typography, IconButton } from '@material-ui/core';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useStyles from './styles';
 
@@ -97,14 +97,6 @@ const AddJob = ({ open, setOpen, email, columns, setColumns }) =>
                     </form>
                 </DialogContent>
             </Dialog>
-            <ToastContainer
-                position="bottom-center"
-                autoClose={5000}
-                closeOnClick
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-            />
         </>
     )
 }

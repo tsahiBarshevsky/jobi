@@ -5,8 +5,6 @@ import {
     DialogContentText, DialogActions } from '@material-ui/core';
 import UnarchiveRoundedIcon from '@material-ui/icons/UnarchiveRounded';
 import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import './JobItem.sass';
 
 const useStyles = makeStyles((theme) => ({
@@ -62,8 +60,6 @@ const useStyles = makeStyles((theme) => ({
 const JobItem = ({ job, jobs, setJobs }) => 
 {
     const [open, setOpen] = useState(false);
-    const [disableUnarchive, setDisableUnarchive] = useState(false);
-    const [disableDelete, setDisableDelete] = useState(false);
     const classes = useStyles();
 
     const updateJobs = () =>
@@ -81,11 +77,7 @@ const JobItem = ({ job, jobs, setJobs }) =>
         .then(res => res.json())
         .then(json => {
             console.log(json);
-            toast.success(json);
-            setDisableUnarchive(true);
-            setTimeout(() => {
-                updateJobs();
-            }, 5100);
+            updateJobs();
         });
     }
     
@@ -96,12 +88,7 @@ const JobItem = ({ job, jobs, setJobs }) =>
         .then(res => res.json())
         .then(json => {
             console.log(json);
-            toast.success(json);
-            setDisableUnarchive(true);
-            setDisableDelete(true);
-            setTimeout(() => {
-                updateJobs();
-            }, 5100);
+            updateJobs();
         });
     }
 
@@ -123,10 +110,10 @@ const JobItem = ({ job, jobs, setJobs }) =>
                 <Typography className={classes.text} variant="subtitle1">{job.company}</Typography>
                 <div className="actions">
                     <Tooltip title={<Typography className={classes.text} variant="caption">Unarchive</Typography>} placement="top" arrow>
-                        <IconButton disabled={disableUnarchive} style={{width: 35, height: 35}} onClick={() => unarchive()}><UnarchiveRoundedIcon /></IconButton>
+                        <IconButton style={{width: 35, height: 35}} onClick={() => unarchive()}><UnarchiveRoundedIcon /></IconButton>
                     </Tooltip>
                     <Tooltip title={<Typography className={classes.text} variant="caption">Delete permanently</Typography>} placement="top" arrow>
-                        <IconButton disabled={disableDelete} style={{width: 35, height: 35}} onClick={() => setOpen(true)}><DeleteRoundedIcon /></IconButton>
+                        <IconButton style={{width: 35, height: 35}} onClick={() => setOpen(true)}><DeleteRoundedIcon /></IconButton>
                     </Tooltip>
                 </div>
                 <Dialog classes={{paper: classes.paper}} open={open} onClose={handleClose} fullWidth>
@@ -148,14 +135,6 @@ const JobItem = ({ job, jobs, setJobs }) =>
                     </DialogActions>
                 </Dialog>
             </div>
-            <ToastContainer
-                position="bottom-center"
-                autoClose={5000}
-                closeOnClick
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-            />
         </>
     )
 }

@@ -228,7 +228,7 @@ app.get('/get-all-jobs', async (req, res) =>
     );
 });
 
-// 10. Apply per month
+// 10. Statistics
 app.get('/get-statistics', async (req, res) => {
     var results = 
     {
@@ -266,6 +266,26 @@ app.get('/get-statistics', async (req, res) => {
                        results.months[casting.getMonth()].amount++;
                 });
                 res.json(results);
+            }
+        }
+    );
+});
+
+// 11. Empty archive
+app.get('/empty-archive', async (req, res) => {
+    var email = req.query.email;
+    JobModel.deleteMany({"owner": email, "archived": true},
+        function(err, result)
+        {
+            if (err)
+            {
+                console.log("Error: " + err)
+                res.send(err);
+            }
+            else
+            {
+                console.log('Archive emptied successfully');
+                res.json('Archive emptied successfully');
             }
         }
     );

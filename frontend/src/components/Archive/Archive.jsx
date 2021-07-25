@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { Grid, makeStyles, Typography } from '@material-ui/core';
+import { Grid, Typography, Tooltip, Fab, Button,
+    Dialog, DialogTitle, DialogContent, 
+    DialogContentText, DialogActions } from '@material-ui/core';
+import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded';
+import { ToastContainer, toast } from 'react-toastify';
 import { useHistory } from 'react-router';
 import { useAuth } from '../../Contexts/AuthContext';
 import { auth } from '../../firebase';
 import Emoji from "react-emoji-render";
 import Navbar from '../Navbar/Navbar';
 import JobItem from './Job Item/JobItem';
-import './Archive.sass';
 import LoadingAnimation from '../Loading Animation/LoadingAnimation';
-
-const useStyles = makeStyles(() => ({
-    text: { fontFamily: `'Poppins', sans-serif` }
-}));
+import useStyles from './styles';
+import './Archive.sass';
 
 const Archive = () => 
 {
     const [jobs, setJobs] = useState('');
+    const [open, setOpen] = useState(false);
     const history = useHistory();
     const { user } = useAuth();
     const classes = useStyles();
@@ -41,10 +43,31 @@ const Archive = () =>
         history.push('/');
     }
 
+    const handleClose = () => 
+    {
+        setOpen(false);
+    }
+
+    const emptyArchive = () =>
+    {
+        fetch(`/empty-archive?email=${user.email}`)
+        .then(res => res.json())
+        .then(json => {
+            toast.success(json);
+            setOpen(false);
+            setJobs([]);
+        });
+    }
 
     return (user && jobs) ? (
         <>
             <Navbar user={user} logout={logout} />
+            {jobs.length > 0 && 
+            <Tooltip title={<Typography className={classes.text} variant="caption">Empty archive</Typography>} placement="right" arrow>
+                <Fab className={classes.fab} onClick={() => setOpen(true)}>
+                    <DeleteForeverRoundedIcon />
+                </Fab>
+            </Tooltip>}
             <div className="archive-container">
                 {jobs.length > 0 ?
                 <Grid container spacing={3} direction="row" justifyContent="center" alignItems="center">
@@ -66,6 +89,32 @@ const Archive = () =>
                     </Typography>
                 </div>}
             </div>
+            <Dialog classes={{paper: classes.paper}} open={open} onClose={handleClose} fullWidth>
+                <DialogTitle>
+                    <Typography className={classes.text} variant="h6">Empty archive</Typography>
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText className={classes.dialogText}>
+                        Are you sure you want to empty your archive? This is a permanent action and all of the data will be deleted forever
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button className={classes.cancel} onClick={handleClose} variant="contained">
+                        Cancel
+                    </Button>
+                    <Button className={classes.delete} onClick={emptyArchive} variant="contained">
+                        Yes, empty
+                    </Button>
+                </DialogActions>
+            </Dialog>
+            <ToastContainer
+                position="bottom-center"
+                autoClose={5000}
+                closeOnClick
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </>
     ) : <LoadingAnimation />
 }
