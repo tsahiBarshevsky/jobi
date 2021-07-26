@@ -161,7 +161,7 @@ const Board = () =>
                                                                 <div className="job-header">
                                                                     <Typography className={classes.text} variant="subtitle1">{item.title}</Typography>
                                                                     <Typography className={classes.text} variant="caption" color="textSecondary">
-                                                                        {(new Date(item.timeline[0].date * 1000).toLocaleDateString("en-GB"))}
+                                                                        {(new Date(item.applied * 1000).toLocaleDateString("en-GB"))}
                                                                     </Typography>
                                                                 </div>
                                                                 <Divider className={classes.divider} />

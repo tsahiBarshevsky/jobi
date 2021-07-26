@@ -5,6 +5,46 @@ export default makeStyles((theme) => ({
     paper: 
     { 
         borderRadius: 10, 
+        minWidth: '85vh',
+        minHeight: '85vh',
+        '@media (max-width: 1000px)':
+        {
+            minWidth: '90%'
+        }
+    },
+    container:
+    {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+        minHeight: '85vh',
+    },
+    details:
+    {
+        width: '65%',
+        padding: 20
+    },
+    inputs:
+    {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+        flexWrap: 'wrap',
+    },
+    timelineContainer:
+    {
+        width: '35%',
+        height: '85vh',
+        backgroundColor: '#DCDCDC',
+        overflowY: 'auto',
+        overflowX: 'hidden',
+        padding: 10
+    },
+    timeline:
+    {
+        width: 480,
+        transform: 'translateX(-45%)'
     },
     dialog:
     {
@@ -32,7 +72,7 @@ export default makeStyles((theme) => ({
     input:
     {
         width: '100%',
-        marginBottom: 20
+        marginBlock: 10
     },
     actions:
     {

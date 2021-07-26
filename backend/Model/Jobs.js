@@ -7,7 +7,7 @@ const JobSchema = new mongoose.Schema({
     status: { type: String },
     color: { type: String },
     location: { type: String },
-    salary: { type: String },
+    salary: { type: Number },
     contact: { type: String },
     url: { type: String },
     timeline: { type: Array }

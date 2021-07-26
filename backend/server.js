@@ -26,6 +26,7 @@ app.post('/add-new-job', async (req, res) =>
         title: req.body.title,
         company: req.body.company,
         status: 'Applied',
+        applied: parseInt(new Date().getTime() / 1000),
         color: 'default',
         location: '',
         salary: '',
@@ -52,10 +53,18 @@ app.post('/edit-job', async (req, res) =>
     var id = req.query.id;
     var title = req.body.title;
     var company = req.body.company;
+    var location = req.body.location;
+    var salary = req.body.salary;
+    var contact = req.body.contact;
+    var url = req.body.url;
     JobModel.findByIdAndUpdate(id, 
         {
             title: title,
             company: company,
+            location: location,
+            salary: salary,
+            contact: contact,
+            url: url,
         },
         function(err)
         {
