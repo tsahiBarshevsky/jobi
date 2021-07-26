@@ -25,8 +25,7 @@ app.post('/add-new-job', async (req, res) =>
         owner: req.body.owner,
         title: req.body.title,
         company: req.body.company,
-        status: 'Applied',
-        applied: parseInt(new Date().getTime() / 1000),
+        status: req.body.status,
         color: 'default',
         location: '',
         salary: '',
@@ -34,7 +33,7 @@ app.post('/add-new-job', async (req, res) =>
         url: '',
         timeline: [
             {
-                action: 'Applied',
+                action: 'Created',
                 date: parseInt(new Date().getTime() / 1000)
             }
         ]

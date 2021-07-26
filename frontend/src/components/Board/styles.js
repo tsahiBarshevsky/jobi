@@ -2,9 +2,20 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles(() => ({
     text: { fontFamily: `'Poppins', sans-serif` },
+    addJobButton:
+    {
+        width: 100,
+        borderRadius: 5,
+        color: 'white',
+        backgroundColor: '#1d5692',
+        textTransform: 'capitalize',
+        '&:hover':
+        {
+            backgroundColor: '#1d5692CC'
+        }
+    },
     columnTitle: {
         fontFamily: `'Poppins', sans-serif`,
-        // fontWeight: 600,
         letterSpacing: 1.5
     },
     welcome: 

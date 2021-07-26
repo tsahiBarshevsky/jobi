@@ -2,58 +2,75 @@
 
 .board-container
     display: flex
-    flex-direction: row
+    flex-direction: column
     overflow-x: auto
     justify-content: flex-start
-    align-items: baseline
+    align-items: flex-start
     width: 100%
-    padding: 25px 15px
+    height: 100vh
     color: black
     background-color: $primary-color
-    min-height: 100vh
 
-    .context
+    .board-header
         display: flex
-        flex-direction: column
-        justify-content: center
+        justify-content: space-between
         align-items: center
-        width: fit-content
-        margin-inline: 10px
+        width: 100%
+        padding: 15px 20px
+        cursor: default
 
-        .column-header
+    .dnd-container
+        display: flex
+        flex-direction: row
+        overflow-x: auto
+        justify-content: flex-start
+        align-items: baseline
+        width: 100%
+        height: 100%
+        color: black
+        padding-inline: 10px
+
+        .context
             display: flex
             flex-direction: column
             justify-content: center
             align-items: center
-            width: 100%
-            color: white
-            background-color: #1d5692
-            border-top-left-radius: 5px
-            border-top-right-radius: 5px
-            padding: 5px 20px
-            cursor: default
+            width: fit-content
+            margin-inline: 10px
 
-            .column-header-top-line
+            .column-header
                 display: flex
-                flex-direction: row
-                justify-content: space-between
+                flex-direction: column
+                justify-content: center
                 align-items: center
                 width: 100%
-                margin-bottom: 5px
+                color: white
+                background-color: #1d5692
+                border-top-left-radius: 5px
+                border-top-right-radius: 5px
+                padding: 5px 20px
+                cursor: default
+                user-select: none
 
-            .column-header-icon
-                font-size: 18px
+                .column-header-top-line
+                    display: flex
+                    flex-direction: row
+                    justify-content: space-between
+                    align-items: center
+                    width: 100%
+                    margin-bottom: 5px
 
-        .droppable
-            padding: 10px
-            width: 300px
-            // height: 100px
-            // overflow-y: auto
-            min-height: 500px
-            // min-height: calc( 100vh - 114px)
-            border-bottom-left-radius: 5px
-            border-bottom-right-radius: 5px
-            border: 1px solid rgba(black, 0.1)
+                .column-header-icon
+                    font-size: 18px
+
+            .droppable
+                padding: 10px
+                width: 300px
+                overflow-y: auto
+                height: calc( 100vh - 160px)
+                border-bottom-left-radius: 5px
+                border-bottom-right-radius: 5px
+                border: 1px solid rgba(black, 0.1)
 
     .job-container
         display: flex
