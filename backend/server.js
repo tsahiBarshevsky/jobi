@@ -86,6 +86,23 @@ app.post('/update-job-status', async (req, res) =>
                 console.log(err);
                 res.status(500).send(err);
             }
+        }
+    );
+    // Add to timeline
+    var newStep = 
+    { 
+        action: `Moved to ${status}`,
+        date: parseInt(new Date().getTime() / 1000)
+    }
+    JobModel.findByIdAndUpdate(id, 
+        {$push: { timeline: newStep }},
+        function(err, result)
+        {
+            if (err)
+            {
+                console.log(err);
+                res.status(500).send(err);
+            }
             else
             {
                 console.log(`${result.title}'s status has changed to ${status}`);

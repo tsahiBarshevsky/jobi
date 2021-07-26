@@ -11,3 +11,47 @@
     color: black
     background-color: $primary-color
     min-height: 100vh
+
+    @media screen and ( max-width: 1310px )
+        justify-content: flex-start
+
+    .context
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        width: fit-content
+
+        .droppable
+            padding: 10px
+            width: 300px
+            min-height: 500px
+            border: 1px solid rgba(black, 0.1)
+
+    .job-container
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: flex-start
+        user-select: none
+        border-radius: 5px
+        padding: 10px
+        min-height: 50px
+        background-color: white
+        box-shadow: 0 3px 7px -1px rgba(black, 0.1)
+
+        .job-header
+            display: flex
+            justify-content: space-between
+            align-items: baseline
+            width: 100%
+
+    .message-container
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        width: 100%
+        height: calc( 100vh - 95px )
+        cursor: default
+        padding: 30px
