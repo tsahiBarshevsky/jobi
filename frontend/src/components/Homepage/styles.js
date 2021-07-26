@@ -72,6 +72,11 @@ export default makeStyles((theme) => ({
         lineHeight: 1.2,
         marginBottom: 25
     },
+    aboutText:
+    {
+        fontFamily: `'Poppins', sans-serif`,
+        fontSize: 18
+    },
     aboutButton:
     {
         borderRadius: 25,

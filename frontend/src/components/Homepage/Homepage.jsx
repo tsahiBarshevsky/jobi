@@ -11,9 +11,10 @@ import Feature3 from '../../assets/features/f3.png';
 import Feature4 from '../../assets/features/f4.png';
 import Feature5 from '../../assets/features/f5.png';
 import Feature6 from '../../assets/features/f6.png';
+import Navbar from './Navbar/Navbar';
+import texts from './texts';
 import useStyles from './styles';
 import './Homepage.sass';
-import Navbar from './Navbar/Navbar';
 
 const Homepage = () => 
 {
@@ -56,11 +57,11 @@ const Homepage = () =>
                                 Jobi is everything a job seeker needs
                             </Typography>
                         </div>
-                        <Typography className={classes.text} paragraph>
-                            Cnsectetur adipisicing cvbelit, sxced dbeo eiucdsmod tempor incididunt ut labore egsfgt dolore magna aliqua. Ut encim ad minim veniam, quis nostrud exercitation ulclamco laboris nisi ufgut aliquip edgx ebrha.
+                        <Typography className={classes.aboutText} paragraph>
+                            {texts.aboutPrimary}
                         </Typography>
-                        <Typography className={classes.text}>
-                            Cnsectetur adipisicing cvbelit, sxced dbeo eiucdsmod tempor incididunt ut labore egsfgt folorem.
+                        <Typography className={classes.aboutText}>
+                            {texts.aboutSecondary}
                         </Typography>
                         <Button 
                             component={Link} 

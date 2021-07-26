@@ -137,19 +137,20 @@ const Dashboard = () =>
                         {Object.entries(columns).map(([columnId, column], index) => {
                         return (
                             <div className="context" key={columnId}>
-                                <Typography className={classes.columnTitle} variant="h6">{column.name}</Typography>
                                 <div style={{ margin: 10 }}>
                                     <Droppable droppableId={columnId} key={columnId}>
                                     {(provided, snapshot) => {
                                         return (
-                                        <div
+                                            <div
                                             className="droppable"
                                             {...provided.droppableProps}
                                             ref={provided.innerRef}
                                             style={{
                                                 background: snapshot.isDraggingOver ? "#A9A9A9" : "lightgray"
                                             }}
-                                        >
+                                            >
+                                            <Typography className={classes.columnTitle} variant="h6">{column.name}</Typography>
+                                            <Typography className={classes.columnTitle} variant="h6">{column.items.length}</Typography>
                                             {column.items.map((item, index) => {
                                                 return (
                                                     <Draggable

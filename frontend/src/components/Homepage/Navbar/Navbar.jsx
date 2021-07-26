@@ -33,10 +33,10 @@ const Navbar = () =>
                 <div className={classes.mobileMenu}>
                     <ul className={classes.list}>
                         <li className={classes.listItem}>
-                            <Link to='about-us' className={classes.link} smooth spy exact='true' duration={1000} offset={-40}>About us</Link>
+                            <Link to='about-us' onClick={() => setExpanded(false)} className={classes.link} smooth spy exact='true' duration={1000} offset={-40}>About us</Link>
                         </li>
                         <li className={classes.listItem}>
-                            <Link to='features-container' className={classes.link} smooth spy exact='true' duration={1000} offset={-40}>Features</Link>
+                            <Link to='features-container' onClick={() => setExpanded(false)} className={classes.link} smooth spy exact='true' duration={1000} offset={-40}>Features</Link>
                         </li>
                         <li className={classes.listItem}>
                             <Route to='registration' className={classes.link}>Sign up</Route>

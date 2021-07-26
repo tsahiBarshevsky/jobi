@@ -5,8 +5,12 @@ const JobSchema = new mongoose.Schema({
     title: { type: String },
     company: { type: String },
     status: { type: String },
-    date: { type: Number },
-    archived: { type: Boolean }
+    color: { type: String },
+    location: { type: String },
+    salary: { type: String },
+    contact: { type: String },
+    url: { type: String },
+    timeline: { type: Array }
 });
 
 const JobModel = mongoose.model("jobs", JobSchema);

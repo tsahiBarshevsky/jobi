@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) =>
             setLoading(false);
             if (user && (location.pathname === '/login' || location.pathname === '/registration'))
             {
-                history.push('/dashboard');
+                history.push('/board');
             }
         });
     }, [user, history, location]);
