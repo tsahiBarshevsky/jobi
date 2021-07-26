@@ -185,15 +185,20 @@ app.get('/get-all-jobs', async (req, res) =>
             {
                 console.log(`${result.length} jobs found`);
                 var jobs = {
+                    wishlist: [],
                     applied: [],
                     inProgress: [],
                     rejected: [],
+                    accepted: [],
                     notAnswered: []
                 };
                 result.forEach((job) =>
                 {
                     switch(job.status)
                     {
+                        case 'Wishlist':
+                            jobs.wishlist.push(job);
+                            break;
                         case 'Applied':
                             jobs.applied.push(job);
                             break;
@@ -202,6 +207,9 @@ app.get('/get-all-jobs', async (req, res) =>
                             break;
                         case 'Rejected':
                             jobs.rejected.push(job);
+                            break;
+                        case 'Accepted':
+                            jobs.accepted.push(job);
                             break;
                         case 'Not Answered':
                             jobs.notAnswered.push(job);

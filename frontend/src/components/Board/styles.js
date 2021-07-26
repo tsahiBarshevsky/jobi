@@ -4,8 +4,7 @@ export default makeStyles(() => ({
     text: { fontFamily: `'Poppins', sans-serif` },
     columnTitle: {
         fontFamily: `'Poppins', sans-serif`,
-        cursor: 'default',
-        fontWeight: 600,
+        // fontWeight: 600,
         letterSpacing: 1.5
     },
     welcome: 

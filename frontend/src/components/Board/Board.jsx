@@ -4,6 +4,9 @@ import { Divider, Fab, Typography, Tooltip } from '@material-ui/core';
 import { useHistory } from 'react-router';
 import { useAuth } from '../../Contexts/AuthContext';
 import Emoji from "react-emoji-render";
+import { 
+    BsHeart, GiCheckMark, FiPhoneIncoming, HiOutlineThumbDown, 
+    HiOutlineThumbUp, FiPhoneOff } from 'react-icons/all';
 // import { auth } from '../../firebase';
 import useStyles from './styles';
 import './Board.sass';
@@ -32,6 +35,10 @@ const Board = () =>
         .then(res => res.json())
         .then(json => {
             const fetchedData = {
+                "Wishlist": {
+                    name: "Wishlist",
+                    items: json.wishlist
+                },
                 "Applied": {
                     name: "Applied",
                     items: json.applied
@@ -43,6 +50,10 @@ const Board = () =>
                 "Rejected": {
                     name: "Rejected",
                     items: json.rejected
+                },
+                "Accepted": {
+                    name: "Accepted",
+                    items: json.accepted
                 },
                 "Not Answered": {
                     name: "Not Answered",
@@ -110,20 +121,58 @@ const Board = () =>
         }
     };
 
+    const renderIcon = (columnName) =>
+    {
+        switch (columnName)
+        {
+            case 'Wishlist':
+                return <BsHeart className="column-header-icon" />;
+            case 'Applied':
+                return <GiCheckMark className="column-header-icon" />;
+            case 'In Progress':
+                return <FiPhoneIncoming className="column-header-icon" />;
+            case 'Rejected':
+                return <HiOutlineThumbDown className="column-header-icon" />;
+            case 'Accepted':
+                return <HiOutlineThumbUp className="column-header-icon" />;
+            case 'Not Answered':
+                return <FiPhoneOff className="column-header-icon" />;
+        }
+    }
+
+
     return user && Object.keys(columns).length > 0 ? (
     <>
+        {/* <Typography className={classes.text} variant="h6">Hey, {user.displayName}!</Typography> */}
         <div className="board-container">
-            {columns["Applied"].items.length > 0 || 
+            {columns["Wishlist"].items.length > 0 ||
+            columns["Applied"].items.length > 0 || 
             columns["In Progress"].items.length > 0 || 
-            columns["Not Answered"].items.length > 0 ||
-            columns["Rejected"].items.length > 0 ?
+            columns["Rejected"].items.length > 0 ||
+            columns["Accepted"].items.length > 0 ||
+            columns["Not Answered"].items.length > 0 ?
             (
                 <DragDropContext onDragEnd={result => onDragEnd(result, columns, setColumns)}>
                     {Object.entries(columns).map(([columnId, column], index) => {
                     return (
                         <div className="context" key={columnId}>
-                            <div>
-                                <Droppable droppableId={columnId} key={columnId}>
+                            <div className="column-header">
+                                <div className="column-header-top-line">
+                                    <Typography className={classes.columnTitle} variant="subtitle1">{column.name}</Typography>
+                                    {renderIcon(column.name)}
+                                </div>
+                                <Typography className={classes.text} variant="subtitle2">
+                                    {column.items.length === 0 ? 
+                                    'Empty list' 
+                                    : 
+                                    (column.items.length === 1 ? 
+                                        `${column.items.length} job` 
+                                        : 
+                                        `${column.items.length} jobs`
+                                    )}
+                                </Typography>
+                            </div>
+                            <Droppable droppableId={columnId} key={columnId}>
                                 {(provided, snapshot) => {
                                     return (
                                         <div
@@ -134,10 +183,6 @@ const Board = () =>
                                                 background: snapshot.isDraggingOver ? "#A9A9A9" : "lightgray"
                                             }}
                                         >
-                                            <div style={{marginBottom: 20}}>
-                                                <Typography className={classes.columnTitle} variant="h6">{column.name}</Typography>
-                                                <Typography className={classes.text} variant="subtitle1" color="textSecondary">{column.items.length} jobs</Typography>
-                                            </div>
                                             {column.items.map((item, index) => {
                                                 return (
                                                     <Draggable
@@ -161,7 +206,7 @@ const Board = () =>
                                                                 <div className="job-header">
                                                                     <Typography className={classes.text} variant="subtitle1">{item.title}</Typography>
                                                                     <Typography className={classes.text} variant="caption" color="textSecondary">
-                                                                        {(new Date(item.applied * 1000).toLocaleDateString("en-GB"))}
+                                                                        {(new Date(item.timeline[0].date * 1000).toLocaleDateString("en-GB"))}
                                                                     </Typography>
                                                                 </div>
                                                                 <Divider className={classes.divider} />
@@ -176,8 +221,7 @@ const Board = () =>
                                         </div>
                                     );
                                 }}
-                                </Droppable>
-                            </div>
+                            </Droppable>
                         </div>
                     );
                     })}

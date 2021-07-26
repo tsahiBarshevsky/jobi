@@ -44,7 +44,11 @@ export default makeStyles((theme) => ({
     timeline:
     {
         width: 480,
-        transform: 'translateX(-45%)'
+        transform: 'translateX(-45%)',
+        '@media (max-width: 800px)':
+        {
+            width: '100%'
+        }
     },
     dialog:
     {
