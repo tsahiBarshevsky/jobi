@@ -7,7 +7,6 @@ import { Timeline, Icon } from 'rsuite';
 import 'rsuite/dist/styles/rsuite-default.css';
 import useStyles from './styles';
 
-
 const EditJob = ({ openEdit, setOpenEdit, id, columns, setColumns }) =>
 {
     const [job, setJob] = useState({});
@@ -215,7 +214,15 @@ const EditJob = ({ openEdit, setOpenEdit, id, columns, setColumns }) =>
                         <Timeline>
                         {Object.keys(job).length > 0 && job.timeline.map((step, index) => {
                             return (
-                                <Timeline.Item key={index} dot={step.action === 'Accepted!' && <Icon icon="check" className={classes.icon} />}>
+                                <Timeline.Item 
+                                    key={index} 
+                                    dot={
+                                        step.action === 'Accepted!' ? 
+                                        <Icon icon="check" className={classes.icon} style={{backgroundColor: 'green'}} />
+                                        :
+                                        (step.action === 'Rejected' ?
+                                        <Icon icon="close" className={classes.icon} style={{backgroundColor: 'red'}} /> : null)
+                                    }>
                                     <Typography className={classes.action} variant="subtitle1">{step.action}</Typography>
                                     <Typography className={classes.text} variant="caption">{renderDate(new Date(step.date * 1000))}</Typography>
                                 </Timeline.Item>

@@ -31,7 +31,6 @@ const AddJob = ({ open, setOpen, email, columns, setColumns }) =>
             title: title,
             company: company,
             status: status,
-            color: 'default',
             location: '',
             salary: '',
             contact: '',

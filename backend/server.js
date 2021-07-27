@@ -26,7 +26,6 @@ app.post('/add-new-job', async (req, res) =>
         title: req.body.title,
         company: req.body.company,
         status: req.body.status,
-        color: 'default',
         location: '',
         salary: '',
         contact: '',
@@ -99,7 +98,8 @@ app.post('/update-job-status', async (req, res) =>
     // Add to timeline
     var newStep = 
     { 
-        action: status === 'Accepted' ? 'Accepted!' : `Moved to ${status}`,
+        // action: status === 'Accepted' ? 'Accepted!' : `Moved to ${status}`,
+        action: (status !== 'Accepted' && status !== 'Rejected') ? `Moved to ${status}` : (status === 'Accepted' ? "Accepted!" : "Rejected"),
         date: parseInt(new Date().getTime() / 1000)
     }
     JobModel.findByIdAndUpdate(id, 

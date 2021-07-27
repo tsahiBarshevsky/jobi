@@ -108,7 +108,6 @@ export default makeStyles((theme) => ({
         width: 20, 
         height: 20, 
         paddingTop: 3,
-        backgroundColor: 'green', 
         color: 'white', 
         borderRadius: '50%',
         transform: 'translateX(-22%)'
