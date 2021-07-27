@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Dialog, DialogActions, DialogContent, DialogTitle, TextField, Typography, Divider, Button } from '@material-ui/core';
-import 'react-toastify/dist/ReactToastify.css';
-import useStyles from './styles';
-
+import { 
+    Dialog, TextField, Typography, Divider, Button, IconButton,
+    DialogTitle, DialogContent, DialogContentText, DialogActions } from '@material-ui/core';
+import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import { Timeline, Icon } from 'rsuite';
 import 'rsuite/dist/styles/rsuite-default.css';
+import useStyles from './styles';
+
 
 const EditJob = ({ openEdit, setOpenEdit, id, columns, setColumns }) =>
 {
@@ -15,6 +17,7 @@ const EditJob = ({ openEdit, setOpenEdit, id, columns, setColumns }) =>
     const [salary, setSalary] = useState('');
     const [contact, setContact] = useState('');
     const [url, setUrl] = useState('');
+    const [openAlert, setOpenAlert] = useState(false);
     const classes = useStyles();
 
     useEffect(() =>
@@ -44,6 +47,11 @@ const EditJob = ({ openEdit, setOpenEdit, id, columns, setColumns }) =>
         setSalary('')
         setContact('')
         setUrl('');
+    }
+
+    const handleAlertClose = () => 
+    {
+        setOpenAlert(false);
     }
 
     const handleEditing = () =>
@@ -116,11 +124,44 @@ const EditJob = ({ openEdit, setOpenEdit, id, columns, setColumns }) =>
         return `${formatted} ${hours}:${minutes.substr(-2)}`;
     }
 
+    const deleteJob = () =>
+    {
+        setOpenAlert(false);
+        setOpenEdit(false);
+        fetch(`/delete-job?id=${job._id}`)
+        .then(res => res.json())
+        .then(json => {
+            console.log(json);
+
+            // Update columns
+            const source = job.status;
+            const column = columns[source];
+            const copiedItems = [...column.items];
+            const indexToDelete = copiedItems.map(function(e) { return e._id }).indexOf(job._id);
+            if (indexToDelete > -1)
+                copiedItems.splice(indexToDelete, 1);
+            setColumns({
+                ...columns,
+                [source]: {
+                    ...column,
+                    items: copiedItems
+                }
+            });
+        });
+    }
+
     return (
         <>
             <Dialog open={openEdit} onClose={handleClose} classes={{paper: classes.paper}} className={classes.dialog}>
                 <div className={classes.container}>
                     <div className={classes.details}>
+                        <div className={classes.header}>
+                            <div>
+                                <Typography className={classes.text} variant="h5">{job.title}</Typography>
+                                <Typography className={classes.text} variant="subtitle2" color="textSecondary">At {job.company}</Typography>
+                            </div>
+                            <IconButton size="small" onClick={() => setOpenEdit(false)}><CloseRoundedIcon /></IconButton>
+                        </div>
                         <div className={classes.inputs}>
                             <TextField
                                 required
@@ -148,7 +189,8 @@ const EditJob = ({ openEdit, setOpenEdit, id, columns, setColumns }) =>
                                 className={classes.input}
                                 variant="outlined"
                                 label="Salary"
-                                type="number" />
+                                type="number"
+                                inputProps={{ min: 1 }} />
                             <TextField
                                 value={contact}
                                 onChange={(e) => setContact(e.target.value)}
@@ -162,7 +204,10 @@ const EditJob = ({ openEdit, setOpenEdit, id, columns, setColumns }) =>
                                 variant="outlined"
                                 label="URL" />
                         </div>
-                        <Button variant="contained" onClick={handleEditing}>Save changes</Button>
+                        <div className={classes.actions}>
+                            <Button variant="contained" className={classes.delete} onClick={() => setOpenAlert(true)}>Delete job</Button>
+                            <Button variant="contained" className={classes.saveChanges} onClick={handleEditing}>Save changes</Button>
+                        </div>
                     </div>
                     <div className={classes.timelineContainer}>
                         <Typography className={classes.text} variant="h6">Timeline</Typography>
@@ -179,47 +224,24 @@ const EditJob = ({ openEdit, setOpenEdit, id, columns, setColumns }) =>
                         </Timeline>
                     </div>
                 </div>
-                {/* <DialogTitle className={classes.title}>
-                    <div className={classes.titleItems}>
-                        <Typography className={classes.text} variant="h6">{job.title}</Typography>
-                        <IconButton onClick={() => handleClose()} size="small" disableRipple><CloseRoundedIcon /></IconButton>
-                    </div>
+            </Dialog>
+            <Dialog open={openAlert} onClose={handleAlertClose} className={classes.dialog}>
+                <DialogTitle>
+                    <Typography className={classes.text} variant="h6">Delete job</Typography>
                 </DialogTitle>
-                <DialogContent className={classes.content}>
-                    <Typography className={classes.text} variant="subtitle1">{`Applied on: ${new Date(job.date * 1000).toLocaleDateString("en-GB")}`}</Typography>
-                    <Typography className={classes.text} variant="subtitle1">{`Status: ${job.status}`}</Typography>
-                    <form style={{marginTop: 25}}>
-                        <TextField
-                            required
-                            disabled={disableEditing}
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                            className={classes.input}
-                            variant="outlined"
-                            label="Job title" />
-                        <TextField
-                            required
-                            disabled={disableEditing}
-                            value={company}
-                            onChange={(e) => setCompany(e.target.value)}
-                            className={classes.input}
-                            variant="outlined"
-                            label="Company" />
-                    </form>
-                    <h4>Timeline</h4>
-                    {Object.keys(job).length > 0 && job.timeline.map((step, index) => {
-                        return (
-                            <p>{step.action} at {renderDate(new Date(step.date * 1000))} </p>
-                        )
-                    })}
+                <DialogContent>
+                    <DialogContentText className={classes.dialogContentText}>
+                        Are you sure you want to delete {`${job.title}`}?
+                    </DialogContentText>
                 </DialogContent>
-                <DialogActions className={classes.actions}>
-                    <Tooltip title={<Typography className={classes.text} variant="caption">Save changes</Typography>} placement="top" arrow>
-                        <IconButton className={classes.iconButton} onClick={() => handleEditing()}>
-                            <SaveRoundedIcon />
-                        </IconButton>
-                    </Tooltip>
-                </DialogActions> */}
+                <DialogActions>
+                    <Button className={classes.cancel} onClick={handleAlertClose} variant="contained">
+                        Cancel
+                    </Button>
+                    <Button className={classes.deleteAction} onClick={deleteJob} variant="contained">
+                        Yes, delete
+                    </Button>
+                </DialogActions>
             </Dialog>
         </>
     )

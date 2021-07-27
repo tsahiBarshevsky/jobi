@@ -22,15 +22,65 @@ export default makeStyles((theme) => ({
     details:
     {
         width: '65%',
-        padding: 20
+        minHeight: '85vh',
+        padding: 20,
+        position: 'relative',
+        [theme.breakpoints.down('sm')]:
+        {
+            width: '100%'
+        }
+    },
+    header:
+    {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'baseline',
+        marginBottom: 20
     },
     inputs:
     {
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
-        flexWrap: 'wrap',
+    },
+    actions:
+    {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'flex-end',
+        width: '100%',
+        marginBlock: 15,
+    },
+    saveChanges:
+    {
+        height: 40,
+        borderRadius: 5,
+        color: 'white',
+        backgroundColor: '#1d5692',
+        textTransform: 'capitalize',
+        position: 'absolute',
+        bottom: 10,
+        right: 20,
+        '&:hover': { backgroundColor: '#1d5692CC' }
+    },
+    delete:
+    {
+        height: 40,
+        borderRadius: 5,
+        border: '2px solid #1d5692',
+        color: '#1d5692',
+        backgroundColor: 'transparent',
+        textTransform: 'capitalize',
+        transition: 'all 0.25s ease-in-out',
+        position: 'absolute',
+        bottom: 10,
+        '&:hover':
+        {
+            color: 'white',
+            backgroundColor: '#1d5692'
+        }
     },
     timelineContainer:
     {
@@ -41,7 +91,11 @@ export default makeStyles((theme) => ({
         overflowY: 'auto',
         overflowX: 'hidden',
         paddingBlock: 10,
-        paddingInline: 15
+        paddingInline: 15,
+        [theme.breakpoints.down('sm')]:
+        {
+            display: 'none'
+        }
     },
     divider:
     {
@@ -59,47 +113,44 @@ export default makeStyles((theme) => ({
         borderRadius: '50%',
         transform: 'translateX(-22%)'
     },
-    action:
-    {
-        fontFamily: `'Poppins', sans-serif`,
-        lineHeight: 1.2
-    },
     dialog:
     {
         cursor: 'default',
-    },
-    title:
-    {
-        backgroundColor: '#f5f5f5'
-    },
-    titleItems:
-    {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    content:
-    {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        backgroundColor: '#f5f5f5'
     },
     input:
     {
         width: '100%',
         marginBlock: 10
     },
-    actions:
+    dialogContentText:
     {
-        backgroundColor: '#f5f5f5',
-        marginTop: -15
+        fontFamily: `'Poppins', sans-serif`,
+        color: 'black'
     },
-    iconButton:
+    cancel:
     {
-        width: 35,
-        height: 35,
+        height: 40,
+        borderRadius: 5,
+        marginRight: 5,
+        border: '2px solid #1d5692',
+        color: '#1d5692',
+        backgroundColor: 'transparent',
+        textTransform: 'capitalize',
+        transition: 'all 0.25s ease-in-out',
+        '&:hover':
+        {
+            color: 'white',
+            backgroundColor: '#1d5692'
+        }
+    },
+    deleteAction:
+    {
+        height: 40,
+        borderRadius: 5,
+        marginLeft: 5,
+        color: 'white',
+        backgroundColor: '#1d5692',
+        textTransform: 'capitalize',
+        '&:hover': { backgroundColor: '#1d5692CC' }
     }
 }));
