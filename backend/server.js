@@ -33,7 +33,7 @@ app.post('/add-new-job', async (req, res) =>
         url: '',
         timeline: [
             {
-                action: 'Created',
+                action: 'Job created',
                 date: parseInt(new Date().getTime() / 1000)
             }
         ]
@@ -99,7 +99,7 @@ app.post('/update-job-status', async (req, res) =>
     // Add to timeline
     var newStep = 
     { 
-        action: `Moved to ${status}`,
+        action: status === 'Accepted' ? 'Accepted!' : `Moved to ${status}`,
         date: parseInt(new Date().getTime() / 1000)
     }
     JobModel.findByIdAndUpdate(id, 

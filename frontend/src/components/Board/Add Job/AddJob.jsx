@@ -38,7 +38,7 @@ const AddJob = ({ open, setOpen, email, columns, setColumns }) =>
             url: '',
             timeline: [
                 {
-                    action: 'Created',
+                    action: 'Job created',
                     date: parseInt(new Date().getTime() / 1000)
                 }
             ]

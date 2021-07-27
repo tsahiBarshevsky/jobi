@@ -1,16 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Dialog, DialogActions, DialogContent, DialogTitle, IconButton, TextField, Typography, Tooltip, Divider, Button } from '@material-ui/core';
-import SaveRoundedIcon from '@material-ui/icons/SaveRounded';
-import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
+import { Dialog, DialogActions, DialogContent, DialogTitle, TextField, Typography, Divider, Button } from '@material-ui/core';
 import 'react-toastify/dist/ReactToastify.css';
 import useStyles from './styles';
 
-import Timeline from '@material-ui/lab/Timeline';
-import TimelineItem from '@material-ui/lab/TimelineItem';
-import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
-import TimelineConnector from '@material-ui/lab/TimelineConnector';
-import TimelineContent from '@material-ui/lab/TimelineContent';
-import TimelineDot from '@material-ui/lab/TimelineDot';
+import { Timeline, Icon } from 'rsuite';
+import 'rsuite/dist/styles/rsuite-default.css';
 
 const EditJob = ({ openEdit, setOpenEdit, id, columns, setColumns }) =>
 {
@@ -143,14 +137,12 @@ const EditJob = ({ openEdit, setOpenEdit, id, columns, setColumns }) =>
                                 variant="outlined"
                                 label="Company" />
                             <TextField
-                                required
                                 value={location}
                                 onChange={(e) => setLocation(e.target.value)}
                                 className={classes.input}
                                 variant="outlined"
                                 label="Location" />
                             <TextField
-                                required
                                 value={salary}
                                 onChange={(e) => setSalary(e.target.value)}
                                 className={classes.input}
@@ -158,14 +150,12 @@ const EditJob = ({ openEdit, setOpenEdit, id, columns, setColumns }) =>
                                 label="Salary"
                                 type="number" />
                             <TextField
-                                required
                                 value={contact}
                                 onChange={(e) => setContact(e.target.value)}
                                 className={classes.input}
                                 variant="outlined"
                                 label="Contact" />
                             <TextField
-                                required
                                 value={url}
                                 onChange={(e) => setUrl(e.target.value)}
                                 className={classes.input}
@@ -176,20 +166,14 @@ const EditJob = ({ openEdit, setOpenEdit, id, columns, setColumns }) =>
                     </div>
                     <div className={classes.timelineContainer}>
                         <Typography className={classes.text} variant="h6">Timeline</Typography>
-                        <Divider style={{marginBlock: 10}} />
-                        <Timeline className={classes.timeline}>
+                        <Divider className={classes.divider} />
+                        <Timeline>
                         {Object.keys(job).length > 0 && job.timeline.map((step, index) => {
                             return (
-                                <TimelineItem>
-                                    <TimelineSeparator>
-                                        <TimelineDot />
-                                        <TimelineConnector />
-                                        </TimelineSeparator>
-                                    <TimelineContent>
-                                        <Typography className={classes.text} variant="subtitle1">{step.action}</Typography>
-                                        <Typography className={classes.text} variant="caption" color="textSecondary">{renderDate(new Date(step.date * 1000))}</Typography>
-                                    </TimelineContent>
-                                </TimelineItem>
+                                <Timeline.Item key={index} dot={step.action === 'Accepted!' && <Icon icon="check" className={classes.icon} />}>
+                                    <Typography className={classes.action} variant="subtitle1">{step.action}</Typography>
+                                    <Typography className={classes.text} variant="caption">{renderDate(new Date(step.date * 1000))}</Typography>
+                                </Timeline.Item>
                             )
                         })}
                         </Timeline>

@@ -36,19 +36,33 @@ export default makeStyles((theme) => ({
     {
         width: '35%',
         height: '85vh',
-        backgroundColor: '#DCDCDC',
+        color: 'white',
+        backgroundColor: '#1d5692',
         overflowY: 'auto',
         overflowX: 'hidden',
-        padding: 10
+        paddingBlock: 10,
+        paddingInline: 15
     },
-    timeline:
+    divider:
     {
-        width: 480,
-        transform: 'translateX(-45%)',
-        '@media (max-width: 800px)':
-        {
-            width: '100%'
-        }
+        backgroundColor: '#ffffff4D',
+        marginTop: 2,
+        marginBottom: 15
+    },
+    icon:
+    {
+        width: 20, 
+        height: 20, 
+        paddingTop: 3,
+        backgroundColor: 'green', 
+        color: 'white', 
+        borderRadius: '50%',
+        transform: 'translateX(-22%)'
+    },
+    action:
+    {
+        fontFamily: `'Poppins', sans-serif`,
+        lineHeight: 1.2
     },
     dialog:
     {

@@ -26,6 +26,7 @@
     "react-scroll": "^1.8.3",
     "react-spinners": "^0.11.0",
     "react-toastify": "^7.0.4",
+    "rsuite": "^4.10.2",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
