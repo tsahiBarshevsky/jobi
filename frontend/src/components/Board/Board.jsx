@@ -30,7 +30,7 @@ const Board = () =>
             history.push('/login');
             return;
         }
-        document.title = `Jobi - ${user.email}'s dashboard`;
+        document.title = `Jobi - ${user.displayName || user.email}'s board`;
         fetch(`/get-all-jobs?email=${user.email}`)
         .then(res => res.json())
         .then(json => {
@@ -144,7 +144,7 @@ const Board = () =>
     return user && Object.keys(columns).length > 0 ? (
         <div className="board-container">
             <div className="board-header">
-                <Typography className={classes.greet} variant="h6">Hey, {user.displayName}!</Typography>
+                <Typography className={classes.greet} variant="h6">Hey, {user.displayName || user.email}!</Typography>
                 <Button variant="contained" onClick={() => setOpen(true)} className={classes.addJobButton}>Add job</Button>
             </div>
             <div className="dnd-container">
