@@ -35,7 +35,7 @@ const Login = () =>
         });
     }
 
-    const signInWithgoogle = () =>
+    const signInWithGoogle = () =>
     {
         auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider())
         .catch((error) => { notify(error.message); });
@@ -96,7 +96,7 @@ const Login = () =>
                 <Button 
                     variant="contained"
                     className={classes.google}
-                    onClick={() => signInWithgoogle()}
+                    onClick={() => signInWithGoogle()}
                     startIcon={<FaGoogle />}
                 >
                     Sign in with google

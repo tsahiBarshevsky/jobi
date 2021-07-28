@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import EmailOutlinedIcon from '@material-ui/icons/EmailOutlined';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
@@ -17,6 +18,7 @@ import './Registration.sass';
 const Registration = () => 
 {
     const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const classes = useStyles();
@@ -30,12 +32,20 @@ const Registration = () =>
     const registration = (event) => 
     {
         event.preventDefault();
-        auth.createUserWithEmailAndPassword(email, password).catch((error) => {
+        auth.createUserWithEmailAndPassword(email, password)
+        .then(function(result)
+        {
+            return result.user.updateProfile({
+                displayName: username
+            });
+        })
+        .catch((error) => 
+        {
             notify(error.message);
         });
     }
 
-    const signInWithgoogle = () =>
+    const signInWithGoogle = () =>
     {
         auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider())
         .catch((error) => { notify(error.message); });
@@ -71,6 +81,18 @@ const Registration = () =>
                 <Input 
                     required
                     disableUnderline
+                    placeholder="Username..."
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    className={classes.input}
+                    startAdornment={
+                        <InputAdornment style={{marginLeft: 15}} position="start">
+                            <AccountCircleIcon style={{fontSize: 20, color: '#BEBEBE'}} />
+                        </InputAdornment>
+                    } />
+                <Input 
+                    required
+                    disableUnderline
                     placeholder="Password..."
                     value={password}
                     type={showPassword ? 'text' : 'password'} 
@@ -96,7 +118,7 @@ const Registration = () =>
                 <Button 
                     variant="contained"
                     className={classes.google}
-                    onClick={() => signInWithgoogle()}
+                    onClick={() => signInWithGoogle()}
                     startIcon={<FaGoogle />}
                 >
                     Sign in with google
