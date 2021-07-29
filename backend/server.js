@@ -18,6 +18,43 @@ mongoose.connect('mongodb://localhost:27017/jobi', {
     useFindAndModify: false 
 });
 
+function mappingJobs(array)
+{
+    var jobs = {
+        wishlist: [],
+        applied: [],
+        inProgress: [],
+        rejected: [],
+        accepted: [],
+        notAnswered: []
+    };
+    array.forEach((job) =>
+    {
+        switch(job.status)
+        {
+            case 'Wishlist':
+                jobs.wishlist.push(job);
+                break;
+            case 'Applied':
+                jobs.applied.push(job);
+                break;
+            case 'In Progress':
+                jobs.inProgress.push(job);
+                break;
+            case 'Rejected':
+                jobs.rejected.push(job);
+                break;
+            case 'Accepted':
+                jobs.accepted.push(job);
+                break;
+            case 'Not Answered':
+                jobs.notAnswered.push(job);
+                break;
+        }
+    });
+    return jobs;
+}
+
 // Add new job
 app.post('/add-new-job', async (req, res) =>
 {
@@ -183,46 +220,15 @@ app.get('/get-all-jobs', async (req, res) =>
             else
             {
                 console.log(`${result.length} jobs found`);
-                var jobs = {
-                    wishlist: [],
-                    applied: [],
-                    inProgress: [],
-                    rejected: [],
-                    accepted: [],
-                    notAnswered: []
-                };
-                result.forEach((job) =>
-                {
-                    switch(job.status)
-                    {
-                        case 'Wishlist':
-                            jobs.wishlist.push(job);
-                            break;
-                        case 'Applied':
-                            jobs.applied.push(job);
-                            break;
-                        case 'In Progress':
-                            jobs.inProgress.push(job);
-                            break;
-                        case 'Rejected':
-                            jobs.rejected.push(job);
-                            break;
-                        case 'Accepted':
-                            jobs.accepted.push(job);
-                            break;
-                        case 'Not Answered':
-                            jobs.notAnswered.push(job);
-                            break;
-                    }
-                });
+                var jobs = mappingJobs(result);
                 res.json(jobs);
             }
         }
     );
 });
 
-// Get all user's jobs for stats
-app.get('/get-all-jobs-for-stats', async (req, res) =>
+// Get all user's stats
+app.get('/get-stats', async (req, res) =>
 {
     var email = req.query.email;
     JobModel.find({"owner": email}, 
@@ -235,8 +241,14 @@ app.get('/get-all-jobs-for-stats', async (req, res) =>
             }
             else
             {
-                console.log(`${result.length} jobs found`);
-                res.json(result);
+                var stats = {
+                    jobs: [],  // array of jobs as is
+                    mapped: {} // objects of mapped by states jobs
+                };
+                result.forEach((job) => { stats.jobs.push(job); });
+                stats.mapped = mappingJobs(result);
+                console.log(stats);
+                res.json(stats);
             }
         }
     );

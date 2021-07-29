@@ -11,8 +11,15 @@ export default makeStyles(() => ({
     statTitle:
     {
         fontFamily: `'Poppins', sans-serif`,
+        color: '#1d5692',
         fontWeight: 600,
         letterSpacing: 1.2,
         marginBottom: 10
+    },
+    statContent:
+    {
+        fontFamily: `'Poppins', sans-serif`,
+        position: 'absolute',
+        bottom: 10
     }
 }));

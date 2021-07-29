@@ -7,13 +7,18 @@ import { Progress } from 'rsuite';
 import DataTable from 'react-data-table-component';
 import Sidebar from '../Sidebar/Sidebar';
 import LoadingAnimation from '../Loading Animation/LoadingAnimation';
-import { columns } from './columns';
+import Stat1 from '../../assets/stats/job-search.png';
+import Stat2 from '../../assets/stats/interview.png';
+import Stat3 from '../../assets/stats/contract.png';
+import { tableColumns } from './columns';
 import useStyles from './styles';
 import './Stats.sass';
 
 const Stats = () => 
 {
     const [jobs, setJobs] = useState('');
+    const [columns, setColumns] = useState('');
+    const [mapped, setMapped] = useState({});
     const classes = useStyles();
     const history = useHistory();
     const { user } = useAuth();
@@ -26,21 +31,24 @@ const Stats = () =>
             return;
         }
         document.title = `Jobi - ${user.displayName ? user.displayName : user.email}'s stats`;
-        fetch(`/get-all-jobs-for-stats?email=${user.email}`)
+        fetch(`/get-stats?email=${user.email}`)
         .then(res => res.json())
         .then(json => {
             var arr = [];
-            json.map((job) => {
+            json.jobs.map((job) => {
                 return (
-                arr.push({
-                    position: job.title,
-                    company: job.company,
-                    status: job.status,
-                    progress: <>{renderProgressLine(job)}</>,
-                    link: <a href={job.url} target="_blank" rel="noreferrer">{job.url}</a>
-                }));
+                    arr.push({
+                        position: job.title,
+                        company: job.company,
+                        status: job.status,
+                        progress: <div style={{width: 250}}>{renderProgressLine(job)}</div>,
+                        link: job.url && <a href={job.url} target="_blank" rel="noreferrer">{job.url.slice(0, 55)}...</a>
+                    })
+                );
             });
-            setJobs(arr);
+            setColumns(arr);
+            setJobs(json.jobs);
+            setMapped(json.mapped);
         });
     }, [history, user]);
 
@@ -49,31 +57,58 @@ const Stats = () =>
         switch (job.status)
         {
             case 'Wishlist':
-                return <Progress.Line percent="0" status="active" />
+                return <Progress.Line percent={0} status="active" />
             case 'Applied':
-                return <Progress.Line percent="25" strokeColor="#0d47a1" status="active" />
+                return <Progress.Line percent={25} strokeColor="#0d47a1" status="active" />
             case 'In Progress':
-                return <Progress.Line percent="50" strokeColor="#fbc02d" status="active" />
+                return <Progress.Line percent={50} strokeColor="#fbc02d" status="active" />
             case 'Accepted':
-                return <Progress.Line percent="100" status="success" />
+                return <Progress.Line percent={100} status="success" />
             case 'Rejected':
-                return <Progress.Line percent="100" status="fail" />
+                return <Progress.Line percent={100} status="fail" />
             default: return null;
         }
     }
 
-    return (user && jobs) ? (
+    return (user && jobs && Object.keys(mapped).length > 0) ? (
         <div className="page-container">
             <Sidebar auth={auth} />
             <div className="stats-container">
                 <div className="stats-header">
                     <Typography className={classes.title} variant="h6">{user.displayName ? user.displayName : user.email}'s stats</Typography>
                 </div>
+                <div className="statistic-container">
+                    <div className="content">
+                        <Typography className={classes.statTitle} variant="subtitle1">Total jobs</Typography>
+                        <Typography className={classes.statContent} variant="h6">{jobs.length}</Typography>
+                    </div>
+                    <div className="image-container">
+                        <img src={Stat1} alt="Stat1" title="Icons made by Freepik from Flaticon" />
+                    </div>
+                </div>
+                <div className="statistic-container">
+                    <div className="content">
+                        <Typography className={classes.statTitle} variant="subtitle1">Job in progress</Typography>
+                        <Typography className={classes.statContent} variant="h6">{mapped.inProgress.length}</Typography>
+                    </div>
+                    <div className="image-container">
+                        <img src={Stat2} alt="Stat1" title="Icons made by Freepik from Flaticon" />
+                    </div>
+                </div>
+                {/* <div className="statistic-container">
+                    <div className="content">
+                        <Typography className={classes.statTitle} variant="subtitle1">Job offered</Typography>
+                        <Typography className={classes.statContent} variant="h6">1</Typography>
+                    </div>
+                    <div className="image-container">
+                        <img src={Stat3} alt="Stat1" title="Icons made by DinosoftLabs from Flaticon" />
+                    </div>
+                </div> */}
                 <div className="stat-container">
                     <Typography className={classes.statTitle} variant="subtitle1">Jobs overview</Typography>
                     <DataTable
-                        columns={columns}
-                        data={jobs}
+                        columns={tableColumns}
+                        data={columns}
                         pagination
                         pointerOnHover
                         theme="solarized"

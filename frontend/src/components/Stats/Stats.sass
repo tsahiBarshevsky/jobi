@@ -20,6 +20,7 @@
         justify-content: flex-start
         align-items: flex-start
         width: calc( 100% - 200px )
+        // min-height: 100vh
         height: 100vh
         padding-inline: 20px
 
@@ -33,6 +34,33 @@
             align-items: center
             width: 100%
             padding-block: 15px
+            margin-bottom: 12px
+
+        .statistic-container
+            display: flex
+            flex-direction: row
+            justify-content: space-between
+            align-items: flex-start
+            position: relative
+            width: 265px
+            height: 120px
+            background-color: white
+            border-radius: 20px
+            padding: 10px 15px
+            margin-bottom: 15px
+
+            .content
+                display: flex
+                flex-direction: column
+                justify-content: flex-start
+                align-items: flex-start
+
+            .image-container
+                display: flex
+                justify-content: center
+                align-items: center
+                height: fit-content
+                height: 100%
 
         .stat-container
             display: flex
