@@ -4,7 +4,7 @@ import {
     DialogTitle, DialogContent, DialogContentText, DialogActions } from '@material-ui/core';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import { Timeline, Icon } from 'rsuite';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'rsuite/dist/styles/rsuite-default.css';
 import useStyles from './styles';
 

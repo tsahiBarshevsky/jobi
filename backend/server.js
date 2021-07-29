@@ -221,6 +221,27 @@ app.get('/get-all-jobs', async (req, res) =>
     );
 });
 
+// Get all user's jobs for stats
+app.get('/get-all-jobs-for-stats', async (req, res) =>
+{
+    var email = req.query.email;
+    JobModel.find({"owner": email}, 
+        function(err, result)
+        {
+            if (err)
+            {
+                console.log("Error: " + err)
+                res.send(err);
+            }
+            else
+            {
+                console.log(`${result.length} jobs found`);
+                res.json(result);
+            }
+        }
+    );
+});
+
 app.listen(port, () => {
     console.log(`Listening at port ${port}`);
 });
