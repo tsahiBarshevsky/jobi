@@ -223,7 +223,7 @@ const EditJob = ({ openEdit, setOpenEdit, id, columns, setColumns }) =>
                                         (step.action === 'Rejected' ?
                                         <Icon icon="close" className={classes.icon} style={{backgroundColor: 'red'}} /> : null)
                                     }>
-                                    <Typography className={classes.action} variant="subtitle1">{step.action}</Typography>
+                                    <Typography className={classes.text} variant="subtitle1">{step.action}</Typography>
                                     <Typography className={classes.text} variant="caption">{renderDate(new Date(step.date * 1000))}</Typography>
                                 </Timeline.Item>
                             )

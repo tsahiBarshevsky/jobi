@@ -9,20 +9,35 @@
     height: 100vh
     color: white
     background-color: $secondary-color
+    padding-block: 15px
     cursor: default
 
     @media screen and ( max-width: $sm )
         flex-direction: row
         width: 100%
         height: 60px
-        bottom: 0
-        position: absolute
-        padding-inline: 20px
+
+    .logo
+        display: flex
+        justify-content: center
+        align-items: center
+        width: 100%
+        margin-bottom: 15px
+        transform: translateX(-5%)
+
+        @media screen and ( max-width: $sm )
+            display: none
+
+        img
+            width: 40px
+            margin-right: 15px
+            transform: scaleX(-1) rotate(-30deg)
 
     .links-container
         display: flex
         flex-direction: column
         width: 100%
+        margin-top: 20px
 
         @media screen and ( max-width: $sm )
             display: none
@@ -50,6 +65,14 @@
             #logout
                 transform: rotate(180deg)
 
+    .copyright
+        position: absolute
+        bottom: 0
+        margin-bottom: 10px
+
+        @media screen and ( max-width: $sm )
+            display: none
+
     .mobile-links-container
         display: none
 
@@ -70,7 +93,10 @@
             height: 60px
             user-select: none
             padding-inline: 10px
-            margin-right: 10px
+            cursor: pointer
+
+            &:hover
+                background-color: #043a71
 
             .icon
                 font-size: 20px

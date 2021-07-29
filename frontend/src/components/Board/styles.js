@@ -5,7 +5,8 @@ export default makeStyles(() => ({
     greet:
     {
         fontFamily: `'Poppins', sans-serif`,
-        fontWeight: 600
+        fontWeight: 600,
+        lineHeight: 1.1
     },
     addJobButton:
     {
@@ -14,6 +15,7 @@ export default makeStyles(() => ({
         color: 'white',
         backgroundColor: '#1d5692',
         textTransform: 'capitalize',
+        marginLeft: 20,
         '&:hover':
         {
             backgroundColor: '#1d5692CC'
