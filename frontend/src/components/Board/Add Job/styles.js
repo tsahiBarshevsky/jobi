@@ -36,6 +36,7 @@ export default makeStyles(() => ({
     },
     input:
     {
+        fontFamily: `'Poppins', sans-serif`,
         width: '100%',
         marginBottom: 20
     },

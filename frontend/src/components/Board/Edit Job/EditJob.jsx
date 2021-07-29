@@ -4,6 +4,7 @@ import {
     DialogTitle, DialogContent, DialogContentText, DialogActions } from '@material-ui/core';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import { Timeline, Icon } from 'rsuite';
+import { ToastContainer, toast } from 'react-toastify';
 import 'rsuite/dist/styles/rsuite-default.css';
 import useStyles from './styles';
 
@@ -53,66 +54,62 @@ const EditJob = ({ openEdit, setOpenEdit, id, columns, setColumns }) =>
         setOpenAlert(false);
     }
 
-    const handleEditing = () =>
+    const handleEditing = (event) =>
     {
-        if (title === '' || company === '')
-            // toast.error("Oops! You've left one of the fields blank");
-            alert("Oops! You've left one of the fields blank");
-        else
-        {
-            fetch(`/edit-job?id=${id}`,
-                {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        title: title,
-                        company: company,
-                        location: location,
-                        salary: salary,
-                        contact: contact,
-                        url: url
-                    })
-                }
-            )
-            .then(res => res.json())
-            .then(json => {
-                console.log(json);
-
-                // New job to replace
-                const newJob = {
-                    _id: id,
+        event.preventDefault();
+        fetch(`/edit-job?id=${id}`,
+            {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
                     title: title,
                     company: company,
                     location: location,
                     salary: salary,
                     contact: contact,
-                    url: url,
-                    owner: job.owner,
-                    status: job.status,
-                    timeline: job.timeline
-                };
+                    url: url
+                })
+            }
+        )
+        .then(res => res.json())
+        .then(json => {
+            console.log(json);
+            toast.success(json);
 
-                // Update columns
-                const source = job.status;
-                const column = columns[source];
-                const copiedItems = [...column.items];
-                const indexToUpdate = copiedItems.map(function(e) { return e._id }).indexOf(id);
+            // New job to replace
+            const newJob = {
+                _id: id,
+                title: title,
+                company: company,
+                location: location,
+                salary: salary,
+                contact: contact,
+                url: url,
+                owner: job.owner,
+                status: job.status,
+                timeline: job.timeline
+            };
 
-                // Replacement
-                copiedItems[indexToUpdate] = newJob;
-                setColumns({
-                    ...columns,
-                    [source]: {
-                        ...column,
-                        items: copiedItems
-                    }
-                });
+            // Update columns
+            const source = job.status;
+            const column = columns[source];
+            const copiedItems = [...column.items];
+            const indexToUpdate = copiedItems.map(function(e) { return e._id }).indexOf(id);
+
+            // Replacement
+            copiedItems[indexToUpdate] = newJob;
+            setColumns({
+                ...columns,
+                [source]: {
+                    ...column,
+                    items: copiedItems
+                }
             });
-            handleClose();
-        }
+        });
+        handleClose();
     }
 
     const renderDate = (date) =>
@@ -161,9 +158,10 @@ const EditJob = ({ openEdit, setOpenEdit, id, columns, setColumns }) =>
                             </div>
                             <IconButton size="small" onClick={() => setOpenEdit(false)}><CloseRoundedIcon /></IconButton>
                         </div>
-                        <div className={classes.inputs}>
+                        <form className={classes.inputs} onSubmit={handleEditing}>
                             <TextField
                                 required
+                                autoFocus
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
                                 className={classes.input}
@@ -202,11 +200,11 @@ const EditJob = ({ openEdit, setOpenEdit, id, columns, setColumns }) =>
                                 className={classes.input}
                                 variant="outlined"
                                 label="URL" />
-                        </div>
-                        <div className={classes.actions}>
-                            <Button variant="contained" className={classes.delete} onClick={() => setOpenAlert(true)}>Delete job</Button>
-                            <Button variant="contained" className={classes.saveChanges} onClick={handleEditing}>Save changes</Button>
-                        </div>
+                            <div className={classes.actions}>
+                                <Button variant="contained" className={classes.delete} onClick={() => setOpenAlert(true)}>Delete job</Button>
+                                <Button type="submit" variant="contained" className={classes.saveChanges}>Save changes</Button>
+                            </div>
+                        </form>
                     </div>
                     <div className={classes.timelineContainer}>
                         <Typography className={classes.text} variant="h6">Timeline</Typography>

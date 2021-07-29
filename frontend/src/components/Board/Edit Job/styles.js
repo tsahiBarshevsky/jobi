@@ -118,6 +118,7 @@ export default makeStyles((theme) => ({
     },
     input:
     {
+        fontFamily: `'Poppins', sans-serif`,
         width: '100%',
         marginBlock: 10
     },
