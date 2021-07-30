@@ -60,6 +60,28 @@ function mappingJobs(array)
     return jobs;
 }
 
+function timelineUpdate(status)
+{
+    switch (status)
+    {
+        case 'Accepted':
+            return "Accepted!";
+        case 'Rejected':
+            return "Rejected";
+        case 'Offered':
+            return "Got an offer";
+        default: return `Moved to ${status}`;
+    }
+}
+
+function getCurrentWeek() 
+{
+    var now = moment();
+    var weekStart = now.clone().startOf('week');
+    var weekEnd = now.clone().endOf('week');
+    return {start: weekStart, end: weekEnd};
+}
+
 // Add new job
 app.post('/add-new-job', async (req, res) =>
 {
@@ -140,8 +162,7 @@ app.post('/update-job-status', async (req, res) =>
     // Add to timeline
     var newStep = 
     { 
-        // action: status === 'Accepted' ? 'Accepted!' : `Moved to ${status}`,
-        action: (status !== 'Accepted' && status !== 'Rejected') ? `Moved to ${status}` : (status === 'Accepted' ? "Accepted!" : "Rejected"),
+        action: timelineUpdate(status),
         date: parseInt(new Date().getTime() / 1000)
     }
     JobModel.findByIdAndUpdate(id, 
@@ -247,10 +268,11 @@ app.get('/get-stats', async (req, res) =>
             else
             {
                 var stats = {
-                    jobs: [],           // array of jobs as is
-                    mapped: {},         // object of mapped by states jobs
-                    weeklyApplies: 0,   // numbers of applications per week
-                    monthlyApplies: [   // numbers of applications per month
+                    jobs: [],           // 1. array of jobs as is
+                    mapped: {},         // 2. object of mapped by states jobs
+                    week: {},           // 3. days of current week
+                    weeklyApplies: 0,   // 4. numbers of applications per week
+                    monthlyApplies: [   // 5. numbers of applications per month
                         {month: 'January', amount: 0},
                         {month: 'February', amount: 0},
                         {month: 'March', amount: 0},
@@ -263,19 +285,37 @@ app.get('/get-stats', async (req, res) =>
                         {month: 'October', amount: 0},
                         {month: 'November', amount: 0},
                         {month: 'December', amount: 0}
-                    ]
+                    ],
+                    progressThisWeek: 0, // 6. moved to progress this week
+                    offeredThisWeek: 0   // 7. moved to offered this week
                 };
+
+                // 1. array of jobs as is
                 stats.jobs = result.slice();
+                
+                //2. object of mapped by states jobs
                 stats.mapped = mappingJobs(result);
 
+                // 3. days of current week
+                stats.week = getCurrentWeek();
+
+                // 4. numbers of applications per week
                 const now = moment();
                 const thisWeek = result.filter(job => moment.unix(job.timeline[0].date).isoWeek() === now.isoWeek());
                 stats.weeklyApplies = thisWeek.length;
 
                 result.map((res) => {
+                    // 5. numbers of applications per month
                     var casting = new Date(res.timeline[0].date * 1000); 
                     if (casting.getFullYear() === new Date().getFullYear())
                         stats.monthlyApplies[casting.getMonth()].amount++;
+
+                    // 6. moved to progress this week
+                    // 7. moved to offered this week
+                    var progressCheck = res.timeline.filter(step => step.action === 'Moved to In Progress' && moment.unix(step.date).isoWeek() === now.isoWeek());
+                    var offeredCheck = res.timeline.filter(step => step.action === 'Got an offer' && moment.unix(step.date).isoWeek() === now.isoWeek());
+                    stats.progressThisWeek += progressCheck.length;
+                    stats.offeredThisWeek += offeredCheck.length;
                 });
 
                 res.json(stats);

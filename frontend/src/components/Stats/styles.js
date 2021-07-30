@@ -19,7 +19,16 @@ export default makeStyles(() => ({
     statContent:
     {
         fontFamily: `'Poppins', sans-serif`,
-        position: 'absolute',
-        bottom: 10
+        marginBottom: -3
+    },
+    grid:
+    {
+        marginBottom: 2
+    },
+    item:
+    {
+        display: 'flex',
+        justifyContent: 'center',
+        width: '100%'
     }
 }));
