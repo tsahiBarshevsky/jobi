@@ -247,9 +247,23 @@ app.get('/get-stats', async (req, res) =>
             else
             {
                 var stats = {
-                    jobs: [],       // array of jobs as is
-                    mapped: {},     // object of mapped by states jobs
-                    weeklyApplies: 0  // numbers of applications per week
+                    jobs: [],           // array of jobs as is
+                    mapped: {},         // object of mapped by states jobs
+                    weeklyApplies: 0,   // numbers of applications per week
+                    monthlyApplies: [   // numbers of applications per month
+                        {month: 'January', amount: 0},
+                        {month: 'February', amount: 0},
+                        {month: 'March', amount: 0},
+                        {month: 'April', amount: 0},
+                        {month: 'May', amount: 0},
+                        {month: 'June', amount: 0},
+                        {month: 'July', amount: 0},
+                        {month: 'August', amount: 0},
+                        {month: 'September', amount: 0},
+                        {month: 'October', amount: 0},
+                        {month: 'November', amount: 0},
+                        {month: 'December', amount: 0}
+                    ]
                 };
                 stats.jobs = result.slice();
                 stats.mapped = mappingJobs(result);
@@ -258,7 +272,12 @@ app.get('/get-stats', async (req, res) =>
                 const thisWeek = result.filter(job => moment.unix(job.timeline[0].date).isoWeek() === now.isoWeek());
                 stats.weeklyApplies = thisWeek.length;
 
-                console.log(stats);
+                result.map((res) => {
+                    var casting = new Date(res.timeline[0].date * 1000); 
+                    if (casting.getFullYear() === new Date().getFullYear())
+                        stats.monthlyApplies[casting.getMonth()].amount++;
+                });
+
                 res.json(stats);
             }
         }

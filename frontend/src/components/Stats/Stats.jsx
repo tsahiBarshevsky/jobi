@@ -5,6 +5,7 @@ import { useAuth } from '../../Contexts/AuthContext';
 import { auth } from '../../firebase';
 import { Progress } from 'rsuite';
 import DataTable from 'react-data-table-component';
+import { Line } from 'react-chartjs-2';
 import Sidebar from '../Sidebar/Sidebar';
 import LoadingAnimation from '../Loading Animation/LoadingAnimation';
 import Stat1 from '../../assets/stats/job-search.png';
@@ -21,9 +22,22 @@ const Stats = () =>
     const [columns, setColumns] = useState('');
     const [mapped, setMapped] = useState({});
     const [weeklyApplications, setWeeklyApplications] = useState(0);
+    const [monthlyApplications, setMonthlyApplications] = useState([]);
     const classes = useStyles();
     const history = useHistory();
     const { user } = useAuth();
+
+    const data = {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        datasets: 
+        [{
+            label: '# of applications',
+            data: Object.keys(monthlyApplications).length > 0 ? monthlyApplications.map(a => a.amount) : [],
+            fill: false,
+            backgroundColor: '#1d5692',
+            borderColor: '#1d569250'
+        }]
+      };
 
     useEffect(() => 
     {
@@ -51,7 +65,8 @@ const Stats = () =>
             setColumns(arr);
             setJobs(json.jobs);
             setMapped(json.mapped);
-            setWeeklyApplications(json.weeklyApplies)
+            setWeeklyApplications(json.weeklyApplies);
+            setMonthlyApplications(json.monthlyApplies);
         });
     }, [history, user]);
 
@@ -86,7 +101,7 @@ const Stats = () =>
                     <Grid item style={{width: '100%'}}>
                         <div className="statistic-container">
                             <div className="content">
-                                <Typography className={classes.statTitle} variant="subtitle2">Total jobs</Typography>
+                                <Typography className={classes.statTitle} variant="subtitle2">Total Jobs</Typography>
                                 <Typography className={classes.statContent} variant="h6">{jobs.length}</Typography>
                             </div>
                             <div className="image-container">
@@ -97,7 +112,7 @@ const Stats = () =>
                     <Grid item style={{width: '100%'}}>
                         <div className="statistic-container">
                             <div className="content">
-                                <Typography className={classes.statTitle} variant="subtitle2">Job in progress</Typography>
+                                <Typography className={classes.statTitle} variant="subtitle2">Job In Progress</Typography>
                                 <Typography className={classes.statContent} variant="h6">{mapped.inProgress.length}</Typography>
                             </div>
                             <div className="image-container">
@@ -108,7 +123,7 @@ const Stats = () =>
                     <Grid item style={{width: '100%'}}>
                         <div className="statistic-container">
                             <div className="content">
-                                <Typography className={classes.statTitle} variant="subtitle2">Job offered</Typography>
+                                <Typography className={classes.statTitle} variant="subtitle2">Job Offered</Typography>
                                 <Typography className={classes.statContent} variant="h6">{mapped.offered.length}</Typography>
                             </div>
                             <div className="image-container">
@@ -119,7 +134,7 @@ const Stats = () =>
                     <Grid item style={{width: '100%'}}>
                         <div className="statistic-container">
                             <div className="content">
-                                <Typography className={classes.statTitle} variant="subtitle2">Added this week</Typography>
+                                <Typography className={classes.statTitle} variant="subtitle2">Added This Week</Typography>
                                 <Typography className={classes.statContent} variant="h6">{weeklyApplications}</Typography>
                             </div>
                             <div className="image-container">
@@ -129,7 +144,7 @@ const Stats = () =>
                     </Grid>
                 </Grid>
                 <div className="stat-container">
-                    <Typography className={classes.statTitle} variant="subtitle1">Jobs overview</Typography>
+                    <Typography className={classes.statTitle} variant="subtitle1">Jobs Overview</Typography>
                     <DataTable
                         columns={tableColumns}
                         data={columns}
@@ -137,6 +152,10 @@ const Stats = () =>
                         pointerOnHover
                         theme="solarized"
                     />
+                </div>
+                <div className="stat-container">
+                    <Typography className={classes.statTitle} variant="subtitle1">Jobs Applications Monthly Activity</Typography>
+                    <Line data={data} />
                 </div>
             </div>
         </div>
