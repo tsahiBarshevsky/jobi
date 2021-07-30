@@ -3,6 +3,7 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { Divider, Button , Typography } from '@material-ui/core';
 import { useHistory } from 'react-router';
 import { useAuth } from '../../Contexts/AuthContext';
+import WorkOutlineOutlinedIcon from '@material-ui/icons/WorkOutlineOutlined';
 import { 
     BsHeart, GiCheckMark, FiPhoneIncoming, HiOutlineThumbDown, 
     HiOutlineThumbUp, FiPhoneOff } from 'react-icons/all';
@@ -47,6 +48,10 @@ const Board = () =>
                 "In Progress": {
                     name: "In Progress",
                     items: json.inProgress
+                },
+                "Offered": {
+                    name: "Offered",
+                    items: json.offered
                 },
                 "Rejected": {
                     name: "Rejected",
@@ -132,6 +137,8 @@ const Board = () =>
                 return <GiCheckMark className="column-header-icon" />;
             case 'In Progress':
                 return <FiPhoneIncoming className="column-header-icon" />;
+            case 'Offered':
+                return <WorkOutlineOutlinedIcon className="column-header-icon" />;
             case 'Rejected':
                 return <HiOutlineThumbDown className="column-header-icon" />;
             case 'Accepted':
@@ -154,7 +161,7 @@ const Board = () =>
                     <DragDropContext onDragEnd={result => onDragEnd(result, columns, setColumns)}>
                         {Object.entries(columns).map(([columnId, column], index) => {
                         return (
-                            <div className="context" key={columnId} style={index !== 5 ? {marginRight: 20} : {}}>
+                            <div className="context" key={columnId} style={index !== 6 ? {marginRight: 20} : {}}>
                                 <div className="column-header">
                                     <div className="column-header-top-line">
                                         <Typography className={classes.columnTitle} variant="subtitle1">{column.name}</Typography>

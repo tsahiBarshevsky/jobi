@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const moment = require('moment');
 const app = express();
 const JobModel = require('./Model/Jobs');
 
@@ -24,6 +25,7 @@ function mappingJobs(array)
         wishlist: [],
         applied: [],
         inProgress: [],
+        offered: [],
         rejected: [],
         accepted: [],
         notAnswered: []
@@ -40,6 +42,9 @@ function mappingJobs(array)
                 break;
             case 'In Progress':
                 jobs.inProgress.push(job);
+                break;
+            case 'Offered':
+                jobs.offered.push(job);
                 break;
             case 'Rejected':
                 jobs.rejected.push(job);
@@ -242,11 +247,17 @@ app.get('/get-stats', async (req, res) =>
             else
             {
                 var stats = {
-                    jobs: [],  // array of jobs as is
-                    mapped: {} // objects of mapped by states jobs
+                    jobs: [],       // array of jobs as is
+                    mapped: {},     // object of mapped by states jobs
+                    weeklyApplies: 0  // numbers of applications per week
                 };
-                result.forEach((job) => { stats.jobs.push(job); });
+                stats.jobs = result.slice();
                 stats.mapped = mappingJobs(result);
+
+                const now = moment();
+                const thisWeek = result.filter(job => moment.unix(job.timeline[0].date).isoWeek() === now.isoWeek());
+                stats.weeklyApplies = thisWeek.length;
+
                 console.log(stats);
                 res.json(stats);
             }

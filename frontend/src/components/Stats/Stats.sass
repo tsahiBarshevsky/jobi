@@ -8,7 +8,8 @@
     width: 100%
     height: 100vh
     color: black
-    background-color: $primary-color
+    // background-color: $primary-color
+    background-color: rgba(black, 0.5)
     cursor: default
 
     @media screen and ( max-width: $sm )
@@ -22,6 +23,7 @@
         width: calc( 100% - 200px )
         // min-height: 100vh
         height: 100vh
+        overflow-y: auto
         padding-inline: 20px
 
         @media screen and ( max-width: $sm )
@@ -49,6 +51,9 @@
             padding: 10px 15px
             margin-bottom: 15px
 
+            @media screen and ( max-width: $xs )
+                width: 100%
+
             .content
                 display: flex
                 flex-direction: column
@@ -72,3 +77,4 @@
             background-color: white
             border-radius: 20px
             padding: 20px
+            margin-bottom: 15px
