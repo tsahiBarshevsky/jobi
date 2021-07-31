@@ -27,17 +27,11 @@ export default makeStyles((theme) => ({
     {
         fontSize: 18,
         color: 'white',
-        textDecoration: 'none',
         position: 'relative',
         display: 'inline-block',
         cursor: 'pointer',
         textTransform: 'capitalize',
-        paddingInline: 10,
-        transition: 'color 0.35s ease-in-out',
-        '&:hover':
-        {
-            color: '#3aa9ab'
-        }
+        paddingInline: 10
     },
     logo:
     {

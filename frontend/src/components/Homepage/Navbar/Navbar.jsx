@@ -6,6 +6,7 @@ import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import MenuToggle from './MenuToggle';
 import useStyles from './styles';
+import './Navbar.sass';
 
 const Navbar = () => 
 {
@@ -22,8 +23,22 @@ const Navbar = () =>
                 <Typography variant="h5" className={classes.logo} onClick={toggleHome}>Jobi</Typography>
                 {!matches &&
                 <div className={classes.links}>
-                    <Link to='about-us' className={classes.link} smooth spy exact='true' duration={1000} offset={-40}>About us</Link>
-                    <Link to='features-container' className={classes.link} smooth spy exact='true' duration={1000} offset={-40}>Features</Link>
+                    <Link style={{textDecoration: 'none', color: 'white'}}
+                        to='about-us'
+                        className="scroll-link"
+                        smooth spy exact='true' 
+                        duration={1000} offset={-40}
+                    >
+                        About us
+                    </Link>
+                    <Link style={{textDecoration: 'none', color: 'white'}}
+                        to='features-container'
+                        className="scroll-link"
+                        smooth spy exact='true' 
+                        duration={1000} offset={-40}
+                    >
+                        Features
+                    </Link>
                     <Button component={Route} to='/registration' className={classes.registration}>Sign up</Button>
                     <Button component={Route} to='/login' className={classes.login}>Sign in</Button>
                 </div>}
@@ -33,16 +48,16 @@ const Navbar = () =>
                 <div className={classes.mobileMenu}>
                     <ul className={classes.list}>
                         <li className={classes.listItem}>
-                            <Link to='about-us' onClick={() => setExpanded(false)} className={classes.link} smooth spy exact='true' duration={1000} offset={-40}>About us</Link>
+                            <Link to='about-us' style={{textDecoration: 'none', color: 'white'}} onClick={() => setExpanded(false)} className={classes.link} smooth spy exact='true' duration={1000} offset={-40}>About us</Link>
                         </li>
                         <li className={classes.listItem}>
-                            <Link to='features-container' onClick={() => setExpanded(false)} className={classes.link} smooth spy exact='true' duration={1000} offset={-40}>Features</Link>
+                            <Link to='features-container' style={{textDecoration: 'none', color: 'white'}} onClick={() => setExpanded(false)} className={classes.link} smooth spy exact='true' duration={1000} offset={-40}>Features</Link>
                         </li>
                         <li className={classes.listItem}>
-                            <Route to='registration' className={classes.link}>Sign up</Route>
+                            <Route to='registration' style={{textDecoration: 'none', color: 'white'}} className={classes.link}>Sign up</Route>
                         </li>
                         <li className={classes.listItem}>
-                            <Route to='/login' className={classes.link}>Sign in</Route>
+                            <Route to='/login' style={{textDecoration: 'none', color: 'white'}} className={classes.link}>Sign in</Route>
                         </li>
                     </ul>
                 </div>

@@ -69,7 +69,7 @@ const Homepage = () =>
                             variant="contained" 
                             className={classes.aboutButton} 
                         >
-                            <Typography className={classes.text} variant="h6" align="center">
+                            <Typography className={classes.text} style={{color: 'white'}} variant="h6" align="center">
                                 Get started
                             </Typography>
                         </Button>
@@ -81,13 +81,13 @@ const Homepage = () =>
             </div>
             <div id="how-does-it-works-container">
                 <div className="section-title">
-                    <Typography className={classes.sectionTitle} variant="h4">How does it works</Typography>
-                    <Divider className={classes.divider} style={{background: 'black'}} />
+                    <Typography className={classes.sectionTitle} style={{color: 'white'}} variant="h4">How does it works</Typography>
+                    <Divider className={classes.divider} style={{background: 'white'}} />
                 </div>
                 <ol className="steps">
-                    <li className="step">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent egestas pellentesque erat, at maximus tellus iaculis et. Suspendisse vitae purus quis tortor condimentum consequat non a urna. Interdum et malesuada.</li>
-                    <li className="step">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent egestas pellentesque erat, at maximus tellus iaculis et. Suspendisse vitae purus quis tortor condimentum consequat non a urna. Interdum et malesuada.</li>
-                    <li className="step">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent egestas pellentesque erat, at maximus tellus iaculis et. Suspendisse vitae purus quis tortor condimentum consequat non a urna. Interdum et malesuada.</li>
+                    <li className="step">{texts.howItWorks[0]}</li>
+                    <li className="step">{texts.howItWorks[1]}</li>
+                    <li className="step">{texts.howItWorks[2]}</li>
                 </ol>
             </div>
             <div id="features-container">
@@ -102,7 +102,7 @@ const Homepage = () =>
                             <div className="feature-text">
                                 <Typography className={classes.featureTitle} variant="h6">Prevents unpleasantness</Typography>
                                 <Typography className={classes.featureText} variant="subtitle1" color="textSecondary">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent egestas pellentesque erat, at maximus tellus iaculis et. Suspendisse vitae purus quis tortor condimentum consequat non a urna. Interdum et malesuada.
+                                    {texts.features[0]}
                                 </Typography>
                             </div>
                         </div>
@@ -111,7 +111,7 @@ const Homepage = () =>
                             <div className="feature-text">
                                 <Typography className={classes.featureTitle} variant="h6">No Excel files needed</Typography>
                                 <Typography className={classes.featureText} variant="subtitle1" color="textSecondary">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent egestas pellentesque erat, at maximus tellus iaculis et. Suspendisse vitae purus quis tortor condimentum consequat non a urna. Interdum et malesuada.
+                                    {texts.features[1]}
                                 </Typography>
                             </div>
                         </div>
@@ -120,7 +120,7 @@ const Homepage = () =>
                             <div className="feature-text">
                                 <Typography className={classes.featureTitle} variant="h6">Mobile friendly</Typography>
                                 <Typography className={classes.featureText} variant="subtitle1" color="textSecondary">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent egestas pellentesque erat, at maximus tellus iaculis et. Suspendisse vitae purus quis tortor condimentum consequat non a urna. Interdum et malesuada.
+                                    {texts.features[2]}
                                 </Typography>
                             </div>
                         </div>
@@ -129,9 +129,9 @@ const Homepage = () =>
                         <div className="feature-box">
                             <img className="feature-image" src={Feature4} alt="Friendly interface" title="Icons made by Freepik from Flaticon" />
                             <div className="feature-text">
-                                <Typography className={classes.featureTitle} variant="h6">Friendly interface</Typography>
+                                <Typography className={classes.featureTitle} variant="h6">Statistical analysis</Typography>
                                 <Typography className={classes.featureText} variant="subtitle1" color="textSecondary">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent egestas pellentesque erat, at maximus tellus iaculis et. Suspendisse vitae purus quis tortor condimentum consequat non a urna. Interdum et malesuada.
+                                    {texts.features[3]}
                                 </Typography>
                             </div>
                         </div>
@@ -140,7 +140,7 @@ const Homepage = () =>
                             <div className="feature-text">
                                 <Typography className={classes.featureTitle} variant="h6">Sign in with Google</Typography>
                                 <Typography className={classes.featureText} variant="subtitle1" color="textSecondary">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent egestas pellentesque erat, at maximus tellus iaculis et. Suspendisse vitae purus quis tortor condimentum consequat non a urna. Interdum et malesuada.
+                                    {texts.features[4]}
                                 </Typography>
                             </div>
                         </div>
@@ -149,7 +149,7 @@ const Homepage = () =>
                             <div className="feature-text">
                                 <Typography className={classes.featureTitle} variant="h6">Use simple drag & drop</Typography>
                                 <Typography className={classes.featureText} variant="subtitle1" color="textSecondary">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent egestas pellentesque erat, at maximus tellus iaculis et. Suspendisse vitae purus quis tortor condimentum consequat non a urna. Interdum et malesuada.
+                                    {texts.features[5]}
                                 </Typography>
                             </div>
                         </div>
@@ -158,10 +158,10 @@ const Homepage = () =>
             </div>
             <footer>
                 <Typography className={classes.footerContent} paragraph>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur quis porta sapien. Ut vitae nulla purus. Aliquam mattis enim lectus. Pellentesque vulputate lacus in mattis tempus. Phasellus aliquam nibh at nunc dignissim vulputate nec a turpis. Aenean at massa ex. Donec non nibh commodo libero pulvinar varius. Vivamus scelerisque nisi tortor, sed tempus tortor dapibus eu. Maecenas et sodales eros. Donec viverra ornare leo, vitae accumsan metus tincidunt sit amet. Nam massa tellus, sodales nec enim nec, porttitor sagittis ex. Mauris pharetra elit sem, et luctus ligula scelerisque eget. Etiam odio arcu, interdum id efficitur vel, ultrices ac magna. Mauris sed posuere lectus. Ut vel tellus semper, porttitor eros vel, laoreet orci.
+                {texts.footerParagraph1}
                 </Typography>
                 <Typography className={classes.footerContent} paragraph>
-                    Quisque sed venenatis justo. Pellentesque id metus vitae tellus mattis convallis quis eu ligula. Nam ac viverra orci, eget tincidunt tellus. Donec semper, nisl id vulputate bibendum, purus turpis ultricies quam, at eleifend elit nisi vel nibh. Pellentesque volutpat sem ante, eget venenatis felis bibendum nec. Donec nec volutpat risus. Mauris a mi rutrum sem ornare semper at at lorem. Nullam ut cursus sem. Fusce venenatis dolor a nisl ultricies, sed fermentum ante tincidunt. Integer id sollicitudin velit. Cras egestas libero massa, sed laoreet elit molestie id. Nulla ac felis vitae purus malesuada consectetur ut a augue. Proin ac semper eros. Vivamus id luctus enim.
+                    {texts.footerParagraph2}
                 </Typography>
                 <Divider className={classes.footerDivider} />
                 <div className="wrapper">

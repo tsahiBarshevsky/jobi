@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { AuthProvider } from './Contexts/AuthContext';
 import Homepage from './components/Homepage/Homepage';
 import Registration from './components/Registration/Registration';
-import PasswordReset from './components/Password reset/PasswordReset';
+import PasswordReset from './components/Password Reset/PasswordReset';
 import Login from './components/Login/Login';
 import Board from './components/Board/Board';
 import Stats from './components/Stats/Stats';

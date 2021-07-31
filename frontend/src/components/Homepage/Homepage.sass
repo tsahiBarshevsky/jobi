@@ -83,6 +83,7 @@
             flex-wrap: wrap
 
             .step
+                color: white
                 counter-increment: steps
                 display: flex
                 flex-direction: column
@@ -94,6 +95,7 @@
                 position: relative
                 margin: 0 10px
                 padding: 15px
+                // font-size: 16px
 
                 @media screen and ( max-width: $xs )
                     width: 100%
@@ -101,7 +103,7 @@
                 &::before
                     content: counter(steps, decimal-leading-zero)
                     font-size: 200px
-                    color: black
+                    color: white
                     text-align: center
                     width: 100%
                     display: block

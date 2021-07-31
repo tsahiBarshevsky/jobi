@@ -10,6 +10,7 @@ export default makeStyles((theme) => ({
     },
     sectionTitle:
     {
+        color: '#1d5692',
         fontFamily: `'Ubuntu', sans-serif`,
         fontWeight: 600,
         marginBottom: 10,
@@ -21,7 +22,7 @@ export default makeStyles((theme) => ({
         height: 2,
         borderRadius: 25,
         marginBottom: 15,
-        backgroundColor: '#3aa9ab'
+        backgroundColor: '#1d5692'
     },
     /* ============ Hero elements ============ */
     toolbar: theme.mixins.toolbar,
@@ -88,7 +89,7 @@ export default makeStyles((theme) => ({
         marginTop: 30,
         color: 'white',
         textTransform: 'capitalize',
-        background: 'linear-gradient(to left, #3aa9ab 50%, #328a8b 50%) right',
+        background: 'linear-gradient(to left, #1d5692 50%, #153b64 50%) right',
         backgroundSize: '200%',
         transition: '0.4s ease-out',
         '&:hover':

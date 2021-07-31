@@ -12,7 +12,7 @@ const LoadingAnimation = () =>
 {
     return (
         <div className="loading-animation-container">
-            <PropagateLoader color="#3aa9ab" css={override} size={15} />
+            <PropagateLoader color="#1d5692" css={override} size={15} />
         </div>
     )
 }
