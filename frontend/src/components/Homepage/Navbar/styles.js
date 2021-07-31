@@ -35,8 +35,7 @@ export default makeStyles((theme) => ({
     },
     logo:
     {
-        fontFamily: `'Poppins', sans-serif`,
-        letterSpacing: 1.2,
+        fontFamily: `'WindSong', sans-serif`,
         cursor: 'pointer',
         userSelect: 'none'
     },
@@ -83,7 +82,7 @@ export default makeStyles((theme) => ({
     mobileMenu:
     {
         paddingInline: 15,
-        paddingBlock: 10,
+        paddingBlock: 20,
         backgroundColor: '#010E21',
         [theme.breakpoints.down('xs')]: { paddingInline: 5 }
     },

@@ -42,5 +42,13 @@ export default makeStyles((theme) => ({
         {
             width: '100%'
         }
+    },
+    logo:
+    {
+        fontFamily: `'WindSong', sans-serif`,
+        userSelect: 'none',
+        transform: 'translateX(-10%)',
+        marginBottom: 25,
+        [theme.breakpoints.down('sm')]: { display: 'none' }
     }
 }));

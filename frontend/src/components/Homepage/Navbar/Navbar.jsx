@@ -20,7 +20,7 @@ const Navbar = () =>
     return (
         <AppBar position="fixed" className={classes.appBar}>
             <Toolbar className={classes.toolbar}>
-                <Typography variant="h5" className={classes.logo} onClick={toggleHome}>Jobi</Typography>
+                <Typography variant="h4" className={classes.logo} onClick={toggleHome}>Jobi</Typography>
                 {!matches &&
                 <div className={classes.links}>
                     <Link style={{textDecoration: 'none', color: 'white'}}

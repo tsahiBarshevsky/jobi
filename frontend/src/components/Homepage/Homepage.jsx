@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { Link as Scroll } from 'react-scroll';
 import Emoji from 'react-emoji-render';
 import { FaLinkedinIn, FaGithub} from 'react-icons/fa';
-import Illustartion from '../../assets/about-illustartion.svg';
+import HeroIllustartion from '../../assets/File Transfer.svg';
+import AboutIllustartion from '../../assets/about-illustartion.svg';
 import Feature1 from '../../assets/features/f1.png';
 import Feature2 from '../../assets/features/f2.png';
 import Feature3 from '../../assets/features/f3.png';
@@ -24,26 +25,38 @@ const Homepage = () =>
     return (
         <div className="homepage-container">
             <Navbar />
-            <div id="hero-container" title="Background image made designed by pikisuperstar from Freepik">
+            <div id="hero-container" title="Background image made designed by vector_corp from Freepik">
                 <div className={classes.toolbar} />
-                <Typography className={classes.heroTitle} variant="h2" align="center" gutterBottom>
-                    Welcome to Jobi!
-                </Typography>
-                <Typography className={classes.heroSubtitle} variant="h5" align="center">
-                    A jobseeker? Using a clumsy Excel file for tracking of jobs for which you've applied? Forget about it and meet Jobi - an online job tracker!
-                </Typography>
-                <Button 
-                    component={Scroll} 
-                    to="about-us" 
-                    variant="contained" 
-                    className={classes.button} 
-                    smooth spy exact='true' 
-                    duration={1000} offset={-40}
-                >
-                    <Typography className={classes.text} variant="h6" align="center">
-                        Tell me more!
-                    </Typography>
-                </Button>
+                <Grid className={classes.grid} container spacing={3} direction="row" justifyContent="center" alignItems="center">
+                    <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
+                        <div className="hero-content">
+                            <Typography className={classes.heroTitle} variant="h2" gutterBottom>
+                                Organize and track your job applications
+                            </Typography>
+                            <Typography className={classes.heroSubtitle} variant="h5">
+                                {texts.heroAbout}
+                            </Typography>
+                            <Button
+                                component={Scroll}
+                                to="about-us"
+                                variant="contained"
+                                className="button" 
+                                smooth spy exact='true' 
+                                duration={1000} offset={-40}
+                            >
+                                <Typography className={classes.text} variant="subtitle1">
+                                    Tell me more!
+                                </Typography>
+                            </Button>
+                        </div>
+                    </Grid>
+                    <Grid item lg={6} xl={6}>
+                        <img className="hero-image" src={HeroIllustartion} alt="File transfer" />
+                    </Grid>
+                </Grid>
+                <svg id="svg" xmlns="http://www.w3.org/2000/svg" viewBox="-300 0 950 270">
+                    <path d="M-314,267 C105,364 400,100 812,279" fill="none" stroke="#f1f4f6" strokeWidth="120" strokeLinecap="round" />
+                </svg>
             </div>
             <div id="about-us">
                 <div className="section-title">
@@ -75,7 +88,7 @@ const Homepage = () =>
                         </Button>
                     </Grid>
                     <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
-                        <img className="about-us-image" src={Illustartion} alt="" />
+                        <img className="about-us-image" src={AboutIllustartion} alt="Welcome to the team" />
                     </Grid>
                 </Grid>
             </div>

@@ -9,19 +9,27 @@
     background-color: $primary-color
     width: 100%
     cursor: default
+    overflow-x: hidden
 
     #hero-container
         display: flex
         flex-direction: column
-        justify-content: center
-        align-items: center
+        justify-content: flex-start
+        align-items: flex-start
         color: white
-        background-color: rgba(black, 0.85)
+        background-color: rgba(black, 0.5)
         position: relative
         width: 100%
         height: 100vh
-        padding-inline: 20px
+        padding: 0 20px 0 100px //top right bottom left
         user-select: none
+
+        @media screen and ( max-width: $md )
+            height: 100%
+            padding: 50px 20px 100px
+
+        @media screen and ( max-width: $vs )
+            padding: 50px 5px 100px
 
         &::after
             content: ''
@@ -30,12 +38,54 @@
             left: 0
             top: 0
             width: 100%
-            height: 100vh
-            opacity: 0.1
-            background: url(../../assets/hero-background.jpg) no-repeat center center fixed
+            height: 100%
+            opacity: 0.75
+            background: url(../../assets/hero-background2.jpg) no-repeat center center
             background-size: cover
             pointer-events: none
-            filter: blur(0.7px)
+
+        .hero-content
+            display: flex
+            flex-direction: column
+            justify-content: flex-start
+            align-items: flex-start
+            width: 600px
+
+            @media screen and ( max-width: $md )
+                width: 100%
+
+            .button
+                border-radius: 25px
+                width: 200px
+                height: 40px
+                fonts-ize: 18px
+                letter-spacing: 1px
+                z-index: 1
+                margin-top: 30px
+                color: white
+                background-color: transparent
+                border: 2px solid white
+                text-transform: capitalize
+                text-decoration: none
+                transition: all 0.35s ease-in-out
+
+                &:hover
+                    color: black
+                    background-color: white
+
+        .hero-image
+            width: 100%
+            height: auto
+            z-index: 2
+
+            @media screen and ( max-width: $md )
+                display: none
+
+        svg
+            z-index: 1
+            position: absolute
+            bottom: 0
+            left: 0
 
     #about-us
         display: flex
@@ -95,7 +145,7 @@
                 position: relative
                 margin: 0 10px
                 padding: 15px
-                // font-size: 16px
+                font-size: 16px
 
                 @media screen and ( max-width: $xs )
                     width: 100%
@@ -201,7 +251,7 @@
             align-items: center
             width: 100%
 
-            @media screen and ( max-width: $vs )
+            @media screen and ( max-width: $xs )
                 flex-direction: column
                 justify-content: center
                 align-items: center
@@ -234,7 +284,7 @@
                     background-color: #33353d
                     transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out
 
-                    @media screen and ( max-width: $vs )
+                    @media screen and ( max-width: $xs )
                         margin: 20px 0 0 0
 
                     &:hover

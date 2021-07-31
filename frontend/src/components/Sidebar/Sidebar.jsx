@@ -4,7 +4,6 @@ import { MdDashboard, IoStatsChart, FiLogOut } from 'react-icons/all';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { useHistory } from 'react-router';
-import Footprint from '../../assets/footprint.png';
 import useStyles from './styles';
 import './Sidebar.sass';
 
@@ -19,13 +18,10 @@ const Sidebar = ({ auth }) =>
         await auth.signOut();
         history.push('/');
     }
-
+    
     return (
         <div className="sidebar-container">
-            <div className="logo" title="Icons made by Nikita Golubev from Flaticon">
-                <img src={Footprint} alt="Logo" />
-                <Typography className={classes.text} variant="h6">Jobi</Typography>
-            </div>
+            <Typography variant="h4" className={classes.logo}>Jobi</Typography>
             <div className="links-container">
                 {location.pathname !== '/board' ?
                     <Link to='/board' className="link">

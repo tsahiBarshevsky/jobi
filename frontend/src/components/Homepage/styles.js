@@ -4,17 +4,18 @@ export default makeStyles((theme) => ({
     /* ============ General elements ============ */
     text: 
     { 
-        fontFamily: `'Ubuntu', sans-serif`,
+        fontFamily: `'Comfortaa', sans-serif`,
         letterSpacing: 1.5,
         zIndex: 1
     },
     sectionTitle:
     {
-        color: '#1d5692',
-        fontFamily: `'Ubuntu', sans-serif`,
-        fontWeight: 600,
         marginBottom: 10,
-        textTransform: 'capitalize'
+        fontWeight: 600,
+        color: 'black',
+        fontFamily: `'Comfortaa', sans-serif`,
+        textTransform: 'capitalize',
+        textAlign: 'center'
     },
     divider:
     {
@@ -22,46 +23,35 @@ export default makeStyles((theme) => ({
         height: 2,
         borderRadius: 25,
         marginBottom: 15,
-        backgroundColor: '#1d5692'
+        backgroundColor: 'black'
     },
     /* ============ Hero elements ============ */
     toolbar: theme.mixins.toolbar,
+    grid: 
+    { 
+        marginTop: 35,
+        zIndex: 2,
+        [theme.breakpoints.down('md')]: { margin: 0 }
+    },
     heroTitle:
     {
-        fontFamily: `'Permanent Marker', sans-serif`,
-        textStorke: '1px red',
-        textShadow: '5px 5px 0px rgba(255, 255, 255, 0.2)',
-        WebkitTextStroke: '1px black',
+        fontFamily: `'Bebas Neue', sans-serif`,
+        textShadow: '5px 3px 3px black',
         letterSpacing: 1.5,
+        lineHeight: 1,
         zIndex: 1
+        //textStorke: '1px red',
+        //textShadow: '5px 5px 0px rgba(255, 255, 255, 0.2)',
+        // WebkitTextStroke: '1px black',
     },
     heroSubtitle:
     {
-        fontFamily: `'Ubuntu', sans-serif`,
+        fontFamily: `'Comfortaa', sans-serif`,
+        letterSpacing: 1.2,
+        marginTop: 5,
         zIndex: 1,
-        width: '50%',
         [theme.breakpoints.down('md')]: { width: '75%'},
         [theme.breakpoints.down('sm')]: { width: '90%'}
-    },
-    button:
-    {
-        borderRadius: 25,
-        width: 200,
-        height: 40,
-        fontSize: 18,
-        letterSpacing: 1,
-        zIndex: 1,
-        marginTop: 30,
-        color: 'white',
-        backgroundColor: 'transparent',
-        border: '2px solid white',
-        textTransform: 'capitalize',
-        transition: 'all 0.35s ease-in-out',
-        '&:hover':
-        {
-            color: 'black',
-            backgroundColor: 'white'
-        }
     },
     /* ============ About us elements ============ */
     aboutTitle:

@@ -44,7 +44,7 @@ const Login = () =>
     return (
         <div className="login-container">
             <div className="registration" title="Background vector created by rawpixel.com - www.freepik.com">
-                <Link to="/" className="logo">Jobi</Link>
+                <Link to="/" className="login-logo">Jobi</Link>
                 <Typography className={classes.title} variant="h3" align="center">
                     First time here?
                 </Typography>

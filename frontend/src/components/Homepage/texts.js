@@ -1,6 +1,7 @@
 const texts = {
-    aboutPrimary: "With Jobi you can keep track of all the positions you have applied for, and actually avoid inconveniences when a recruiter calls you about a job.",
-    aboutSecondary: "Jobi also offers you the option to update position's status to in progress, not answered and rejected.",
+    heroAbout: "Jobseeker, are you using a clumsy Excel file for tracking of jobs for which you have applied? So meet Jobi - the tool that will help you do that easily and offers some other features!",
+    aboutPrimary: "By using Jobi you can keep track of all the positions you are applying for, and in so doing, staying up to date and avoiding unpleasantness when a recruiter calls you about a position.",
+    aboutSecondary: "Jobi also offers the option to update a position's status to 7 different stages, display position history and statistical analysis. With Jobi you'll be thoroughly prepared to find a job!",
     howItWorks: [
         "Create a new account using a valid email and password or use your Google account to quickly log in. Congratulations! Now you have a Jobi account and you can start adding positions in order to tracking them.",
         "Add a position you wish to apply to into your wishlist or a position you've been already applied to. Got a summons to an interview? Got a job offer? Great! Now you can update your board until you'll get a job.",
@@ -15,7 +16,7 @@ const texts = {
         "Jobi puts an emphasis on a friendly and intuitive interface. Because of that, the main tracking intrface has implemented by a drag and drop system: Just drag a position you want to update and drop it to the appropriate column."
     ],
     footerParagraph1: "Jobi is an online and fully responsive job tracker, born out of my need to organize and track all of my job applications. The main app's feature is to track job applications and divide them into 7 stages: Wishlist, applied, in progress, job offered, rejected, accepted and not answered. Besides this, the app performs statistical analysis, based on the job applications: Total jobs added, weekly applications number, jobs in progress and offered and monthly activity.",
-    footerParagraph2: "Jobi is a MERN stack application. The client-side was built using React with SASS, Material-UI and rsuite. The server-side was built using Express.js, Node.js and MongoDB as a database."
+    footerParagraph2: "Jobi is a MERN stack application. The client-side was built using React with SASS, Material-UI and rsuite. The server-side was built using Express.js, Node.js and MongoDB as a database. In addition, I've been using Firebase for a quick authentication (with email and password and with Google)."
 };
 
 export default texts;

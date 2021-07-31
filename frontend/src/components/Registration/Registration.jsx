@@ -54,7 +54,7 @@ const Registration = () =>
     return (
         <div className="registration-container">
             <div className="login" title="Background vector created by rawpixel.com - www.freepik.com">
-                <Link to="/" className="logo">Jobi</Link>
+                <Link to="/" className="registration-logo">Jobi</Link>
                 <Typography className={classes.title} variant="h3" align="center">
                     Already registered?
                 </Typography>
