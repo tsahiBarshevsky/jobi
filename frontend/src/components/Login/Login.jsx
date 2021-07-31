@@ -101,9 +101,14 @@ const Login = () =>
                 >
                     Sign in with google
                 </Button>
+                <div className="reset-password">
+                    <Typography variant="subtitle1" className={classes.text}>
+                        Forgot your password? <Link className="link" to="/password-reset">Reset it</Link>
+                    </Typography>
+                </div>
                 <div className="mobile-registration-link">
                     <Typography variant="subtitle1" className={classes.text}>
-                        Already registered? <Link className={classes.link} to="/registration">Sign up</Link>
+                        Already registered? <Link className="link" to="/registration">Sign up</Link>
                     </Typography>
                 </div>
             </form>

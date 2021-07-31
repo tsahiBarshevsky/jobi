@@ -90,12 +90,34 @@
             margin-block: 10px
 
         .or span
+            color: black
             background: $form-main-color
             padding: 0 10px
+
+        .reset-password
+            margin-top: 20px
+
+            .link
+                font-weight: 600
+                color: black
+                text-decoration: none
+                transition: color 0.5s ease-in-out
+
+                &:hover
+                    color: #1d5692
 
         .mobile-registration-link
             display: none
 
             @media screen and ( max-width: $sm )
                 display: inline
-                margin-top: 10px
+                margin-top: -5px
+
+            .link
+                font-weight: 600
+                color: black
+                text-decoration: none
+                transition: color 0.5s ease-in-out
+
+                &:hover
+                    color: #1d5692

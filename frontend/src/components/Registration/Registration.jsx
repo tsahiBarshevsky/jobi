@@ -125,7 +125,7 @@ const Registration = () =>
                 </Button>
                 <div className="mobile-login-link">
                     <Typography variant="subtitle1" className={classes.text}>
-                        Already registered? <Link className={classes.link} to="/login">Sign in</Link>
+                        Already registered? <Link className="link" to="/login">Sign in</Link>
                     </Typography>
                 </div>
             </form>

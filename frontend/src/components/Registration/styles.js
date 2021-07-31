@@ -9,7 +9,7 @@ export default makeStyles(() => ({
     formText: 
     { 
         fontFamily: `'Poppins', sans-serif`,
-        color: '#3aa9ab',
+        color: '#1d5692',
         textAlign: 'center',
         fontWeight: 600,
         marginBottom: 25,
@@ -39,7 +39,7 @@ export default makeStyles(() => ({
         transition: '0.3s ease-out',
         '&:hover':
         {
-            color: '#3aa9ab',
+            color: '#1d5692',
             backgroundColor: 'white'
         }
     },
@@ -80,7 +80,7 @@ export default makeStyles(() => ({
         marginBottom: 10,
         color: 'white',
         textTransform: 'capitalize',
-        background: 'linear-gradient(to left, #3aa9ab 50%, #328a8b 50%) right',
+        background: 'linear-gradient(to left, #1d5692 50%, #153b64 50%) right',
         backgroundSize: '200%',
         transition: '0.4s ease-out',
         '&:hover':
@@ -105,17 +105,6 @@ export default makeStyles(() => ({
         '&:hover':
         {
             backgroundPosition: 'left'
-        }
-    },
-    link:
-    {
-        fontWeight: 600,
-        color: 'black',
-        textDecoration: 'none',
-        transition: 'color 0.5s ease-in-out',
-        '&:hover':
-        {
-            color: '#3aa9ab'
         }
     }
 }))
