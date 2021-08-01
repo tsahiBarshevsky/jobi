@@ -4,8 +4,9 @@ const mongoose = require('mongoose');
 const moment = require('moment');
 const app = express();
 const JobModel = require('./Model/Jobs');
+require("dotenv").config();
 
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 var router = express.Router();
 app.use(cors());
@@ -13,7 +14,7 @@ app.use(express.urlencoded());
 app.use(express.json());
 
 // Connect to database
-mongoose.connect('mongodb://localhost:27017/jobi', { 
+mongoose.connect('mongodb+srv://tsahiBarshavsky:databaseadmin@jobi.axvpn.mongodb.net/jobi?retryWrites=true&w=majority', { 
     useNewUrlParser: true, 
     useUnifiedTopology: true,
     useFindAndModify: false 
@@ -322,6 +323,11 @@ app.get('/get-stats', async (req, res) =>
             }
         }
     );
+});
+
+app.get('/check', async (req, res) =>
+{
+    res.json("check ok");
 });
 
 app.listen(port, () => {
