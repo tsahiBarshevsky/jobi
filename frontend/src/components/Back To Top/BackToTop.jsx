@@ -26,7 +26,8 @@ const useStyles = makeStyles(() => ({
     },
     arrow:
     {
-        fontSize: 40
+        fontSize: 40,
+        transform: 'translateX(-3%)'
     }
 }));
 
