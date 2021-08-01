@@ -1,5 +1,5 @@
 const header = { color: 'black', letterSpacing: 1 };
-const cell = { color: 'black', fontSize: 16, paddingBlock: 5 };
+const cell = { color: 'black', fontSize: 16, padding: '5px 0' };
 
 export const tableColumns = [
     {

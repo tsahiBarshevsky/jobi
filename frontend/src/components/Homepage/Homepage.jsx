@@ -26,7 +26,7 @@ const Homepage = () =>
         <>
             <Navbar />
             <div className="homepage-container">
-                <div id="hero-container" title="Background image made designed by vector_corp from Freepik">
+                <div id="hero-container" title="Background image designed by vector_corp from Freepik">
                     <div className={classes.toolbar} />
                     <Grid className={classes.grid} container spacing={3} direction="row" justifyContent="center" alignItems="center">
                         <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>

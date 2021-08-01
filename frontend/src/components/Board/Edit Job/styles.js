@@ -51,7 +51,7 @@ export default makeStyles((theme) => ({
         justifyContent: 'space-between',
         alignItems: 'flex-end',
         width: '100%',
-        marginBlock: 15,
+        margin: '15px 0'
     },
     saveChanges:
     {
@@ -90,8 +90,7 @@ export default makeStyles((theme) => ({
         backgroundColor: '#1d5692',
         overflowY: 'auto',
         overflowX: 'hidden',
-        paddingBlock: 10,
-        paddingInline: 15,
+        padding: '10px 15px',
         [theme.breakpoints.down('sm')]:
         {
             display: 'none'
@@ -120,7 +119,7 @@ export default makeStyles((theme) => ({
     {
         fontFamily: `'Poppins', sans-serif`,
         width: '100%',
-        marginBlock: 10
+        margin: '10px 0'
     },
     dialogContentText:
     {

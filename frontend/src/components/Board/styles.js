@@ -33,7 +33,7 @@ export default makeStyles(() => ({
     divider:
     {
         width: '100%',
-        marginBlock: 10
+        margin: '10px 0',
     },
     fab:
     {

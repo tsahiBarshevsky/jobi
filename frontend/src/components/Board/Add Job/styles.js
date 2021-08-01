@@ -48,7 +48,7 @@ export default makeStyles(() => ({
     },
     button:
     {
-        marginBlock: 5,
+        margin: '5px 0',
         height: 40,
         borderRadius: 5,
         fontSize: 18,

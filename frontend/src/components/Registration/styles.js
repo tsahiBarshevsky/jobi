@@ -48,7 +48,7 @@ export default makeStyles(() => ({
         width: 350,
         height: 40,
         borderRadius: 25,
-        marginBlock: 7,
+        margin: '7px 0',
         backgroundColor: 'white',
         fontFamily: `'Poppins', sans-serif`,
         zIndex: 1,

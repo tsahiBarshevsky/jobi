@@ -29,20 +29,6 @@ export default makeStyles((theme) => ({
         textDecoration: 'none',
         color: 'white'
     },
-    paper:
-    {
-        width: 350,
-        paddingBlock: 10,
-        paddingInline: 20,
-        cursor: 'default',
-        color: 'white',
-        backgroundColor: '#18191d',
-        borderRight: '1px solid #ffffff1A',
-        [theme.breakpoints.down('xs')]:
-        {
-            width: '100%'
-        }
-    },
     logo:
     {
         fontFamily: `'WindSong', sans-serif`,

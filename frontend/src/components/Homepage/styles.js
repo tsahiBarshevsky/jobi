@@ -116,7 +116,7 @@ export default makeStyles((theme) => ({
     {
         width: '100%',
         backgroundColor: '#ffffff33',
-        marginBlock: 20
+        margin: '20px 0'
     },
     copyright:
     {

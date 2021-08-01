@@ -4,11 +4,11 @@ export default makeStyles((theme) => ({
     appBar:
     {
         top: 0,
-        paddingInline: 15,
+        padding: '0 15px',
         color: 'white',
         boxShadow: '0 2px 3px rgba(15, 15, 15, 0.25)',
         backgroundColor: '#010E21',
-        [theme.breakpoints.down('xs')]: { paddingInline: 5 }
+        [theme.breakpoints.down('xs')]: { padding: '0 5px' }
     },
     toolbar:
     {
@@ -31,7 +31,7 @@ export default makeStyles((theme) => ({
         display: 'inline-block',
         cursor: 'pointer',
         textTransform: 'capitalize',
-        paddingInline: 10
+        padding: '0 10px'
     },
     logo:
     {
@@ -46,8 +46,8 @@ export default makeStyles((theme) => ({
         height: 32,
         fontSize: 18,
         letterSpacing: 1,
-        marginInline: 5,
         zIndex: 1,
+        margin: '5px 0',
         color: 'white',
         backgroundColor: 'transparent',
         border: '2px solid white',
@@ -66,8 +66,8 @@ export default makeStyles((theme) => ({
         height: 32,
         fontSize: 18,
         letterSpacing: 1,
-        marginInline: 5,
         zIndex: 1,
+        margin: '5px 0',
         color: 'black',
         backgroundColor: 'white',
         border: '2px solid white',
@@ -81,10 +81,9 @@ export default makeStyles((theme) => ({
     },
     mobileMenu:
     {
-        paddingInline: 15,
-        paddingBlock: 20,
+        padding: '20px 15px',
         backgroundColor: '#010E21',
-        [theme.breakpoints.down('xs')]: { paddingInline: 5 }
+        [theme.breakpoints.down('xs')]: { padding: '0 5px' }
     },
     list:
     {
@@ -92,7 +91,7 @@ export default makeStyles((theme) => ({
     },
     listItem:
     {
-        marginBlock: 7
+        margin: '7px 0'
     },
     navLink:
     {
