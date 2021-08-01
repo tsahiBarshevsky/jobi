@@ -21,7 +21,7 @@ const Sidebar = ({ auth }) =>
     
     return (
         <div className="sidebar-container">
-            <Typography variant="h4" className={classes.logo}>Jobi</Typography>
+            <Link to="/" className={classes.logo} style={{color: 'white', textDecoration: 'none'}}>Jobi</Link>
             <div className="links-container">
                 {location.pathname !== '/board' ?
                     <Link to='/board' className="link">

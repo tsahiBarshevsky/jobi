@@ -34,7 +34,9 @@ export default makeStyles((theme) => ({
         fontFamily: `'WindSong', sans-serif`,
         userSelect: 'none',
         transform: 'translateX(-10%)',
+        textDecoration: 'none',
         marginBottom: 25,
+        fontSize: 35,
         [theme.breakpoints.down('sm')]: { display: 'none' }
     }
 }));
