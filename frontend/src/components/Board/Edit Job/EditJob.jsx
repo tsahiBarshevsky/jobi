@@ -24,7 +24,7 @@ const EditJob = ({ openEdit, setOpenEdit, id, columns, setColumns }) =>
     {
         if (openEdit)
         {
-            fetch(`/get-single-job?id=${id}`)
+            fetch(`https://jobi-backend.herokuapp.com/get-single-job?id=${id}`)
             .then(res => res.json())
             .then(json => {
                 setJob(json);
@@ -57,7 +57,7 @@ const EditJob = ({ openEdit, setOpenEdit, id, columns, setColumns }) =>
     const handleEditing = (event) =>
     {
         event.preventDefault();
-        fetch(`/edit-job?id=${id}`,
+        fetch(`https://jobi-backend.herokuapp.com/edit-job?id=${id}`,
             {
                 method: 'POST',
                 headers: {
@@ -124,7 +124,7 @@ const EditJob = ({ openEdit, setOpenEdit, id, columns, setColumns }) =>
     {
         setOpenAlert(false);
         setOpenEdit(false);
-        fetch(`/delete-job?id=${job._id}`)
+        fetch(`https://jobi-backend.herokuapp.com/delete-job?id=${job._id}`)
         .then(res => res.json())
         .then(json => {
             console.log(json);

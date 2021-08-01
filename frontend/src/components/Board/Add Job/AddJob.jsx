@@ -42,7 +42,7 @@ const AddJob = ({ open, setOpen, email, columns, setColumns }) =>
                 }
             ]
         }
-        fetch('/add-new-job',
+        fetch('https://jobi-backend.herokuapp.com/add-new-job',
             {
                 method: 'POST',
                 headers: {

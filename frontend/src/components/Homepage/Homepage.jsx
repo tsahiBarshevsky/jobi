@@ -13,6 +13,7 @@ import Feature4 from '../../assets/features/f4.png';
 import Feature5 from '../../assets/features/f5.png';
 import Feature6 from '../../assets/features/f6.png';
 import Navbar from './Navbar/Navbar';
+import BackToTop from '../Back To Top/BackToTop';
 import texts from './texts';
 import useStyles from './styles';
 import './Homepage.sass';
@@ -25,6 +26,7 @@ const Homepage = () =>
     return (
         <>
             <Navbar />
+            <BackToTop />
             <div className="homepage-container">
                 <div id="hero-container" title="Background image designed by vector_corp from Freepik">
                     <div className={classes.toolbar} />

@@ -53,7 +53,7 @@ const Stats = () =>
             return;
         }
         document.title = `Jobi - ${user.displayName ? user.displayName : user.email}'s stats`;
-        fetch(`/get-stats?email=${user.email}`)
+        fetch(`https://jobi-backend.herokuapp.com/get-stats?email=${user.email}`)
         .then(res => res.json())
         .then(json => {
             var arr = [];

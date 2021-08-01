@@ -33,7 +33,7 @@ const Board = () =>
             return;
         }
         document.title = `Jobi - ${user.displayName ? user.displayName : user.email}'s board`;
-        fetch(`/get-all-jobs?email=${user.email}`)
+        fetch(`https://jobi-backend.herokuapp.com/get-all-jobs?email=${user.email}`)
         .then(res => res.json())
         .then(json => {
             const fetchedData = {
@@ -96,7 +96,7 @@ const Board = () =>
                 }
             });
             // Update job status due to destination 
-            fetch(`/update-job-status?id=${draggableId}`,
+            fetch(`https://jobi-backend.herokuapp.com/update-job-status?id=${draggableId}`,
                 {
                     method: 'POST',
                     headers: {
