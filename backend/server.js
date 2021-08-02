@@ -14,7 +14,7 @@ app.use(express.urlencoded());
 app.use(express.json());
 
 // Connect to database
-mongoose.connect('mongodb+srv://tsahiBarshavsky:databaseadmin@jobi.axvpn.mongodb.net/jobi?retryWrites=true&w=majority', { 
+mongoose.connect(process.env.MONGODB_PATH, { 
     useNewUrlParser: true, 
     useUnifiedTopology: true,
     useFindAndModify: false 
