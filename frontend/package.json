@@ -15,6 +15,7 @@
     "firebase": "^8.7.1",
     "framer-motion": "^4.1.17",
     "moment": "^2.29.1",
+    "mpath": "^0.8.4",
     "node-sass": "^6.0.1",
     "react": "^17.0.2",
     "react-beautiful-dnd": "^13.1.0",
